@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HCI_Project</string>
+    <string name="search_hint">Type your ingredient here</string>
+    <string name="favorite_title">You Favorite Recipes</string>
 </resources>
