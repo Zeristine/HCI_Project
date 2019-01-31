@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +23,10 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
     private Context context;
     private int recource;
     private List<Recipe> recipes;
+    private final DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    private String shortenedTitle;
 
-    public RecipeAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Recipe> recipes) {
+    public RecipeAdapter(@NonNull Context context, int resource, @NonNull List<Recipe> recipes) {
         super(context, resource, recipes);
         this.context = context;
         this.recource = resource;
@@ -47,9 +51,10 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
         Recipe recipe = recipes.get(position);
 //        viewHolder.imgRecipe.setImageDrawable();
-        viewHolder.txtTitle.setText(recipe.getTitle());
+        shortenedTitle = recipe.getTitle().length() > 12 ? recipe.getTitle().substring(0,11)+"...": recipe.getTitle();
+        viewHolder.txtTitle.setText(shortenedTitle);
         viewHolder.txtAuthor.setText(recipe.getAuthor());
-        viewHolder.txtCreateDate.setText(recipe.getCreatedDate().toString());
+        viewHolder.txtCreateDate.setText(format.format(recipe.getCreatedDate()));
         return convertView;
     }
 

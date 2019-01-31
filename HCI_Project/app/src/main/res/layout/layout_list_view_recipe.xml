@@ -52,7 +52,7 @@
                     android:id="@+id/txtCreateDate"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="75dp"
+                    android:layout_marginLeft="60dp"
                     android:text="12/05/2018" />
             </LinearLayout>
 
