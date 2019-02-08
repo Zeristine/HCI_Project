@@ -13,6 +13,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PickIngridientActivity extends AppCompatActivity {
 
@@ -20,7 +22,9 @@ public class PickIngridientActivity extends AppCompatActivity {
     private EditText txtIngredient;
     private TextView textView;
     private String searchValue;
-    private final List<String> suggestions = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang", "khoai tay", "hanh");
+    private final List<String> suggestions = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
+            "khoai tay", "hanh", "hanh phi", "trung", "thit bo", "thit heo", "thit ga");
+    private Logger log = Logger.getGlobal();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +48,14 @@ public class PickIngridientActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 searchValue = s.toString();
-                List<String> result ;
+                List<String> result;
                 if (searchValue.length() >= 3) {
-                    textView.setText(searchValue);
-//                    result = findSuggestion(searchValue);
-//                    ArrayAdapter adapter = new ArrayAdapter(PickIngridientActivity.this, R.layout.layout_list_view, result);
-//                    lstSuggest.setAdapter(adapter);
-//                    lstSuggest.setVisibility(ListView.VISIBLE);
-                }else{
-                    textView.setText(R.string.selected_tag);
+                    result = findSuggestion(searchValue);
+
+                    ArrayAdapter adapter = new ArrayAdapter(PickIngridientActivity.this, android.R.layout.simple_list_item_1, result);
+                    lstSuggest.setAdapter(adapter);
+                    lstSuggest.setVisibility(ListView.VISIBLE);
+                } else {
                     lstSuggest.setVisibility(ListView.GONE);
                 }
             }
