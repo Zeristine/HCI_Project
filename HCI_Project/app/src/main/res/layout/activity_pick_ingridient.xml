@@ -26,14 +26,13 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txtTest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/selected_tag"/>
     <ListView
         android:id="@+id/lstIngredientSearch"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="wrap_content">
 
     </ListView>
 
@@ -44,7 +43,7 @@
     <ListView
         android:id="@+id/lstIngredientSuggest"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="wrap_content">
 
     </ListView>
 

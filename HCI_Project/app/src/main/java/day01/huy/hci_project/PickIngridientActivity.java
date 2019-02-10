@@ -16,15 +16,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import day01.huy.hci_project.custom.TextAdapter;
+
 public class PickIngridientActivity extends AppCompatActivity {
 
     private ListView lstSuggest, lstSearch;
     private EditText txtIngredient;
-    private TextView textView;
     private String searchValue;
     private final List<String> suggestions = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
             "khoai tay", "hanh", "hanh phi", "trung", "thit bo", "thit heo", "thit ga");
-    private Logger log = Logger.getGlobal();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,6 @@ public class PickIngridientActivity extends AppCompatActivity {
         lstSuggest = findViewById(R.id.lstIngredientSuggest);
         lstSearch = findViewById(R.id.lstIngredientSearch);
         txtIngredient = findViewById(R.id.txtIngredient);
-        textView = findViewById(R.id.txtTest);
 
         lstSuggest.setVisibility(ListView.GONE);
         if (lstSearch.getAdapter() == null) {
@@ -52,7 +51,7 @@ public class PickIngridientActivity extends AppCompatActivity {
                 if (searchValue.length() >= 3) {
                     result = findSuggestion(searchValue);
 
-                    ArrayAdapter adapter = new ArrayAdapter(PickIngridientActivity.this, android.R.layout.simple_list_item_1, result);
+                    TextAdapter adapter = new TextAdapter(PickIngridientActivity.this, R.layout.layout_list_view_simple_row, result);
                     lstSuggest.setAdapter(adapter);
                     lstSuggest.setVisibility(ListView.VISIBLE);
                 } else {
