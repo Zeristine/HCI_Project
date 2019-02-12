@@ -1,11 +1,13 @@
 package day01.huy.hci_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class PickIngridientActivity extends AppCompatActivity {
         txtIngredient = findViewById(R.id.txtIngredient);
         tags = new ArrayList<>();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, suggestions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(PickIngridientActivity.this, android.R.layout.simple_dropdown_item_1line, suggestions);
         txtIngredient.setAdapter(adapter);
         txtIngredient.setThreshold(3);
         txtIngredient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -42,6 +44,7 @@ public class PickIngridientActivity extends AppCompatActivity {
                         tags.add(value);
                         TextAdapter adapter = new TextAdapter(PickIngridientActivity.this, R.layout.layout_list_view_simple_row, tags);
                         lstSearch.setAdapter(adapter);
+                        txtIngredient.setText("");
                     }
                 }
             }
@@ -49,8 +52,13 @@ public class PickIngridientActivity extends AppCompatActivity {
     }
 
     public void clickToSearch(View view) {
+//        ListAdapter adapter = lstSearch.getAdapter();
+//        Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
+//        intent.putExtra("size", adapter.getCount());
+//        for (int i = 0; i < adapter.getCount(); i++) {
+//            intent.putExtra(i+"", adapter.getItem(i).toString());
+//        }
+//        startActivity(intent);
     }
 
-    public void clickToAddTag(View view) {
-    }
 }

@@ -10,25 +10,15 @@
         android:id="@+id/txtIngredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:hint="Type your ingredient here"
-        />
+        android:inputType="text" />
 
-    <LinearLayout
+
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <ImageButton
-            android:layout_width="0dip"
-            android:layout_weight=".5"
-            android:layout_height="50dp"
-            android:onClick="clickToSearch"/>
-
-
-    </LinearLayout>
-
+        android:text="Search recipe"
+        android:onClick="clickToSearch" />
 
     <ListView
         android:id="@+id/lstIngredientSearch"
