@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickToPick(View view) {
+        Intent intent = new Intent(this, PickIngridientActivity.class);
+        startActivity(intent);
     }
 
     public void clickToFavorite(View view) {
