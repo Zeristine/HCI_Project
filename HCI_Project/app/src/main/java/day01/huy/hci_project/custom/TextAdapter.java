@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.List;
@@ -29,20 +30,31 @@ public class TextAdapter extends ArrayAdapter<String> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_list_view_simple_row, parent, false);
             viewHolder = new ViewHolder();
             viewHolder.txtListItem = convertView.findViewById(R.id.txtListItem);
+            viewHolder.checkBox = convertView.findViewById(R.id.chkListItem);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.txtListItem.setText(items.get(position));
+        viewHolder.checkBox.setChecked(true);
+        viewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(viewHolder.checkBox.isChecked()){
+
+                }
+            }
+        });
         return convertView;
     }
 
     public class ViewHolder {
         TextView txtListItem;
+        CheckBox checkBox;
     }
 }

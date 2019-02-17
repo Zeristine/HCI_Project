@@ -4,29 +4,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PickIngridientActivity">
-
-    <AutoCompleteTextView
-        android:id="@+id/txtIngredient"
+    tools:context=".PickIngridientActivity"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Type your ingredient here"
-        android:inputType="text" />
+        android:orientation="horizontal"
+        android:weightSum="6"
+        >
 
+        <AutoCompleteTextView
+            android:id="@+id/txtIngredient"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:hint="Type your ingredient here"
+            android:inputType="text" />
 
-    <Button
+        <ImageButton
+            android:id="@+id/btnSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search recipe"
-        android:onClick="clickToSearch" />
-
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="6"
+        android:background="@color/greenMint"
+        android:onClick="clickToShowMainList">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="Main Ingredient"
+            android:textSize="20dp"
+            android:paddingLeft="15dp"/>
+        <ImageView
+            android:id="@+id/imgIcon1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
     <ListView
-        android:id="@+id/lstIngredientSearch"
+        android:id="@+id/lstMainIngredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:visibility="gone">
 
     </ListView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:weightSum="6"
+        android:background="@color/greenMint"
+        android:onClick="clickToShowSubList">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="Sub Ingredient"
+            android:textSize="20dp"
+            android:paddingLeft="15dp"/>
+        <ImageView
+            android:id="@+id/imgIcon2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lstSubIngredient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+    </ListView>
 
 </LinearLayout>
