@@ -5,27 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="20"
+    android:background="@color/white">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imgTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="YoCo"
-        android:textStyle="bold"
-        android:textSize="45dp"
+        android:layout_height="0dp"
+        android:layout_weight="16"/>
+    <Button
+        android:layout_width="165dp"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:text="GET STARTED"
         android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@color/greenMint"
+        android:onClick="clickToNavigation"
         />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pick Ingredient(s)"
-        android:onClick="clickToPick"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Favorite"
-        android:onClick="clickToFavorite"/>
-
 </LinearLayout>
