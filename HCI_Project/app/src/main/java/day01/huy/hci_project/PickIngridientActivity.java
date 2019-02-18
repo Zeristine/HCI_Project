@@ -58,6 +58,8 @@ public class PickIngridientActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(PickIngridientActivity.this,
                         "The ingredient has been selected", Toast.LENGTH_SHORT).show();
+                String text = (String) parent.getItemAtPosition(position);
+                // ahihi
             }
         });
         btnSearch.setOnClickListener(new View.OnClickListener() {
