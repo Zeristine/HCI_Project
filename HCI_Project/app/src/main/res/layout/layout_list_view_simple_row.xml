@@ -2,22 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:orientation="horizontal"
-    android:weightSum="10">
+    android:orientation="vertical"
+    >
     <CheckBox
         android:id="@+id/chkListItem"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        />
-    <TextView
-        android:id="@+id/txtListItem"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="9"
-        android:textColor="@color/black"
-        android:gravity="center_vertical"
         android:textSize="20dp"
+        android:paddingLeft="10dp"
         android:text="Ingredient here"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         />
 </LinearLayout>
