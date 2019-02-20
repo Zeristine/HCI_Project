@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -59,7 +61,7 @@ public class PickIngridientActivity extends AppCompatActivity {
                 String value = (String) parent.getItemAtPosition(position);
                 if (subIngredientAdapter.addSelectedIngredient(value)) {
                     initSubListView(false);
-                }else if(mainIngredientAdapter.addSelectedIngredient(value)){
+                } else if (mainIngredientAdapter.addSelectedIngredient(value)) {
                     initMainListView(false);
                 }
                 Toast.makeText(PickIngridientActivity.this,
@@ -80,30 +82,31 @@ public class PickIngridientActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        resetSearch();
-    }
 
     public void clickToShowMainList(View view) {
         if (imgIcon1.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
-            lstMainIngredient.setVisibility(View.VISIBLE);
+            setListHieght(lstMainIngredient, ViewGroup.LayoutParams.WRAP_CONTENT);
             imgIcon1.setImageResource(R.drawable.icons_double_up);
         } else {
-            lstMainIngredient.setVisibility(View.GONE);
+            setListHieght(lstMainIngredient, 0);
             imgIcon1.setImageResource(R.drawable.icons_double_down);
         }
     }
 
     public void clickToShowSubList(View view) {
         if (imgIcon2.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
-            lstSubIngredient.setVisibility(View.VISIBLE);
+            setListHieght(lstSubIngredient, ViewGroup.LayoutParams.WRAP_CONTENT);
             imgIcon2.setImageResource(R.drawable.icons_double_up);
         } else {
-            lstSubIngredient.setVisibility(View.GONE);
+            setListHieght(lstSubIngredient, 0);
             imgIcon2.setImageResource(R.drawable.icons_double_down);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        resetSearchView();
     }
 
     private void initListViews() {
@@ -125,12 +128,21 @@ public class PickIngridientActivity extends AppCompatActivity {
         lstSubIngredient.setAdapter(subIngredientAdapter);
     }
 
-    private void resetSearch() {
-        initListViews();
+    private void resetSearchView() {
+        txtIngredient.setText("");
         imgIcon1.setImageResource(R.drawable.icons_double_down);
         imgIcon2.setImageResource(R.drawable.icons_double_down);
-        lstSubIngredient.setVisibility(View.GONE);
-        lstMainIngredient.setVisibility(View.GONE);
-        txtIngredient.setText("");
+        setListHieght(lstMainIngredient, 0);
+        setListHieght(lstSubIngredient, 0);
+    }
+
+    private void setListHieght(ListView list, int value) {
+        ViewGroup.LayoutParams layoutParams = list.getLayoutParams();
+        layoutParams.height = value;
+        list.setLayoutParams(layoutParams);
+    }
+
+    private LinearLayout.LayoutParams getWeightParams(float value) {
+        return new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, value);
     }
 }
