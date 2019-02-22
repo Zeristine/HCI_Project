@@ -4,35 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NavigationActivity"
     android:orientation="vertical"
-    >
+    tools:context=".DishesTypeActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="YoCo"
-        android:textStyle="bold"
-        android:textSize="45dp"
+        android:text="Loại Món Ăn"
         android:gravity="center"
-        />
+        android:textStyle="bold"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pick Ingredient(s)"
-        android:onClick="clickToPick"/>
+        android:onClick="clickToVegan"
+        android:text="Món Chay"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Favorite"
-        android:onClick="clickToFavorite"/>
+        android:onClick="clickToNonVegan"
+        android:text="Món Mặn"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Show History"
-        android:onClick="clickToShowHistory"/>
+        android:onClick="clickToDrink"
+        android:text="Nước"/>
 
 </LinearLayout>
