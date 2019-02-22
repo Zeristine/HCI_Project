@@ -16,8 +16,11 @@ public class SearchResultActivity extends AppCompatActivity {
         EditText test = findViewById(R.id.edtTest);
         String value = "";
         for (int i = 0; i < ingredients.size(); i++) {
-            value += ingredients.get(i) + " ";
+            value += ingredients.get(i) + ", ";
         }
         test.setText(value);
+
+
+
     }
 }
