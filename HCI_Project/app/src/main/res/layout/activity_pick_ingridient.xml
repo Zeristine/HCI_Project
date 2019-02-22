@@ -5,15 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".PickIngridientActivity"
-    android:weightSum="30"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="6"
-        android:layout_weight="3"
         >
 
         <AutoCompleteTextView
@@ -70,7 +68,8 @@
         android:orientation="horizontal"
         android:weightSum="6"
         android:background="@color/greenMint"
-        android:onClick="clickToShowSubList">
+        android:onClick="clickToShowSubList"
+        >
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
