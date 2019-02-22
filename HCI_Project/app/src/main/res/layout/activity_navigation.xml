@@ -1,38 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NavigationActivity"
-    android:orientation="vertical"
     >
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="YoCo"
-        android:textStyle="bold"
-        android:textSize="45dp"
-        android:gravity="center"
-        />
+        android:layout_height="match_parent"
+        android:background="@color/greenLightPrimary">
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_title_no_text" />
+    </LinearLayout>
 
-    <Button
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pick Ingredient(s)"
-        android:onClick="clickToPick"/>
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:weightSum="20"
+        >
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Favorite"
-        android:onClick="clickToFavorite"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:text="Pick Ingredient(s)"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/greenPrimary"
+            android:textColor="@color/white"
+            android:onClick="clickToPick"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Show History"
-        android:onClick="clickToShowHistory"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3.25"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Show History"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/greenPrimary"
+                android:textColor="@color/white"
+                android:onClick="clickToShowHistory"/>
 
-</LinearLayout>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Favorite"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/greenPrimary"
+                android:textColor="@color/white"
+                android:onClick="clickToFavorite"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>
