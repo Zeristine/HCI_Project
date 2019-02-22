@@ -16,12 +16,17 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     public void clickToPick(View view) {
-        Intent intent = new Intent(this, PickIngridientActivity.class);
+        Intent intent = new Intent(this, DishesTypeActivity.class);
         startActivity(intent);
     }
 
     public void clickToFavorite(View view) {
         Intent intent = new Intent(this, FavoriteActivity.class);
+        startActivity(intent);
+    }
+
+    public void clickToShowHistory(View view) {
+        Intent intent = new Intent(this, ShowHistoryActivity.class);
         startActivity(intent);
     }
 
