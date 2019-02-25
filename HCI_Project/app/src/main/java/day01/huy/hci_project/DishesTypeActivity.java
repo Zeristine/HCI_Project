@@ -15,16 +15,19 @@ public class DishesTypeActivity extends AppCompatActivity {
 
     public void clickToVegan(View view) {
         Intent intent = new Intent(this, PickIngridientActivity.class);
+        intent.putExtra("choice", 2);
         startActivity(intent);
     }
 
     public void clickToNonVegan(View view) {
         Intent intent = new Intent(this, PickIngridientActivity.class);
+        intent.putExtra("choice", 1);
         startActivity(intent);
     }
 
     public void clickToDrink(View view) {
         Intent intent = new Intent(this, PickIngridientActivity.class);
+        intent.putExtra("choice", 3);
         startActivity(intent);
     }
 }

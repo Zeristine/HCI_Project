@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 public class NavigationActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

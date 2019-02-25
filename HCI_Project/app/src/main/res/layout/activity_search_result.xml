@@ -5,43 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchResultActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="20">
 
     <EditText
         android:id="@+id/edtTest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-        <LinearLayout
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Result"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Result" />
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/listView"></ListView>
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Suggestion"/>
+    </LinearLayout>
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/suggestView"></ListView>
-        </LinearLayout>
-    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Result" />
+
+        <ListView
+            android:id="@+id/suggestView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+
+    </LinearLayout>
 
 
 </LinearLayout>

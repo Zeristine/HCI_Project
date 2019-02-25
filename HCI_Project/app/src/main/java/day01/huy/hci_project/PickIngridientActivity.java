@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,15 +29,21 @@ public class PickIngridientActivity extends AppCompatActivity {
     private ImageView imgIcon1, imgIcon2;
     private ImageButton btnSearch;
     private TextAdapter subIngredientAdapter, mainIngredientAdapter;
-    private final List<String> mainIngredient = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
+    private final List<String> mainMan = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
             "khoai tay", "hanh", "hanh phi", "trung", "thit bo", "thit heo", "thit ga");
-    private final List<String> subIngredient = Arrays.asList("aaa", "bbb", "ccc");
+    private final List<String> subMan = Arrays.asList("aaa", "bbb", "ccc");
+    private final List<String> mainChay = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
+            "khoai tay", "hanh", "hanh phi", "gao lut");
+    private final List<String> subChay = Arrays.asList("ddd", "eee", "fff");
+    private final List<String> mainDrink = Arrays.asList("pepsi", "coca cola", "Coffee", "Black Coffee");
+    private final List<String> subDrink = Arrays.asList("ggg", "hhh", "iii");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_pick_ingridient);
+
+        int choiceValue = getIntent().getIntExtra("choice", 0);
         lstMainIngredient = findViewById(R.id.lstMainIngredient);
         lstSubIngredient = findViewById(R.id.lstSubIngredient);
         txtIngredient = findViewById(R.id.txtIngredient);
@@ -43,40 +51,34 @@ public class PickIngridientActivity extends AppCompatActivity {
         imgIcon2 = findViewById(R.id.imgIcon2);
         btnSearch = findViewById(R.id.btnSearch);
 
-        List<String> ingredients = new ArrayList<>(mainIngredient);
-        ingredients.addAll(subIngredient);
-
         imgIcon1.setImageResource(R.drawable.icons_double_down);
         imgIcon2.setImageResource(R.drawable.icons_double_down);
         btnSearch.setImageResource(R.drawable.icons_search);
-        initListViews();
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(PickIngridientActivity.this, android.R.layout.simple_dropdown_item_1line,
-                        ingredients);
-        txtIngredient.setAdapter(adapter);
-        txtIngredient.setThreshold(3);
-        txtIngredient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String value = (String) parent.getItemAtPosition(position);
-                if (subIngredientAdapter.addSelectedIngredient(value)) {
-                    initSubListView(false);
-                } else if (mainIngredientAdapter.addSelectedIngredient(value)) {
-                    initMainListView(false);
-                }
-                Toast.makeText(PickIngridientActivity.this,
-                        "The ingredient " + value + " has been selected", Toast.LENGTH_SHORT).show();
-                txtIngredient.setText("");
-            }
-        });
+        switch (choiceValue) {
+            case 1:
+                initAdapterForView(mainMan, subMan);
+                break;
+            case 2:
+                initAdapterForView(mainChay, subChay);
+                break;
+            case 3:
+                initAdapterForView(mainDrink, subDrink);
+                break;
+        }
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<String> ingredients = new ArrayList<>(mainIngredientAdapter.getSelectedItems());
-                ingredients.addAll(subIngredientAdapter.getSelectedItems());
-                Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
-                intent.putStringArrayListExtra("ingredients", (ArrayList<String>) ingredients);
-                startActivity(intent);
+                if (!ingredients.isEmpty()) {
+                    ingredients.addAll(subIngredientAdapter.getSelectedItems());
+                    Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
+                    intent.putStringArrayListExtra("ingredients", (ArrayList<String>) ingredients);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(PickIngridientActivity.this,
+                            "No ingredient selected! Please choose at least one.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -84,23 +86,11 @@ public class PickIngridientActivity extends AppCompatActivity {
 
 
     public void clickToShowMainList(View view) {
-        if (imgIcon1.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
-            setListHieght(lstMainIngredient, ViewGroup.LayoutParams.WRAP_CONTENT);
-            imgIcon1.setImageResource(R.drawable.icons_double_up);
-        } else {
-            setListHieght(lstMainIngredient, 0);
-            imgIcon1.setImageResource(R.drawable.icons_double_down);
-        }
+        resizeListView(imgIcon1, lstMainIngredient);
     }
 
     public void clickToShowSubList(View view) {
-        if (imgIcon2.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
-            setListHieght(lstSubIngredient, ViewGroup.LayoutParams.WRAP_CONTENT);
-            imgIcon2.setImageResource(R.drawable.icons_double_up);
-        } else {
-            setListHieght(lstSubIngredient, 0);
-            imgIcon2.setImageResource(R.drawable.icons_double_down);
-        }
+        resizeListView(imgIcon2, lstSubIngredient);
     }
 
     @Override
@@ -109,21 +99,21 @@ public class PickIngridientActivity extends AppCompatActivity {
         resetSearchView();
     }
 
-    private void initListViews() {
-        initMainListView(true);
-        initSubListView(true);
+    private void initListViews(List<String> main, List<String> sub) {
+        initMainListView(true, main);
+        initSubListView(true, sub);
     }
 
-    private void initMainListView(boolean isGoodToResetAdapter) {
+    private void initMainListView(boolean isGoodToResetAdapter, List<String> main) {
         if (isGoodToResetAdapter) {
-            mainIngredientAdapter = new TextAdapter(this, R.layout.layout_list_view_simple_row, mainIngredient);
+            mainIngredientAdapter = new TextAdapter(this, R.layout.layout_list_view_simple_row, main);
         }
         lstMainIngredient.setAdapter(mainIngredientAdapter);
     }
 
-    private void initSubListView(boolean isGoodToResetAdapter) {
+    private void initSubListView(boolean isGoodToResetAdapter, List<String> sub) {
         if (isGoodToResetAdapter) {
-            subIngredientAdapter = new TextAdapter(this, R.layout.layout_list_view_simple_row, subIngredient);
+            subIngredientAdapter = new TextAdapter(this, R.layout.layout_list_view_simple_row, sub);
         }
         lstSubIngredient.setAdapter(subIngredientAdapter);
     }
@@ -132,11 +122,11 @@ public class PickIngridientActivity extends AppCompatActivity {
         txtIngredient.setText("");
         imgIcon1.setImageResource(R.drawable.icons_double_down);
         imgIcon2.setImageResource(R.drawable.icons_double_down);
-        setListHieght(lstMainIngredient, 0);
-        setListHieght(lstSubIngredient, 0);
+        setListHeight(lstMainIngredient, 0);
+        setListHeight(lstSubIngredient, 0);
     }
 
-    private void setListHieght(ListView list, int value) {
+    private void setListHeight(@NotNull ListView list, int value) {
         ViewGroup.LayoutParams layoutParams = list.getLayoutParams();
         layoutParams.height = value;
         list.setLayoutParams(layoutParams);
@@ -144,5 +134,40 @@ public class PickIngridientActivity extends AppCompatActivity {
 
     private LinearLayout.LayoutParams getWeightParams(float value) {
         return new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, value);
+    }
+
+    private void initAdapterForView(final List<String> main, final List<String> sub) {
+        List<String> ingredients = new ArrayList<>(main);
+        ingredients.addAll(sub);
+        initListViews(main, sub);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(PickIngridientActivity.this, android.R.layout.simple_dropdown_item_1line,
+                        ingredients);
+        txtIngredient.setAdapter(adapter);
+        txtIngredient.setThreshold(1);
+        txtIngredient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String value = (String) parent.getItemAtPosition(position);
+                if (subIngredientAdapter.addSelectedIngredient(value)) {
+                    initSubListView(false, main);
+                } else if (mainIngredientAdapter.addSelectedIngredient(value)) {
+                    initMainListView(false, sub);
+                }
+                Toast.makeText(PickIngridientActivity.this,
+                        "The ingredient " + value + " has been selected", Toast.LENGTH_SHORT).show();
+                txtIngredient.setText("");
+            }
+        });
+    }
+
+    private void resizeListView(@NotNull ImageView icon, ListView list) {
+        if (icon.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
+            setListHeight(list, ViewGroup.LayoutParams.WRAP_CONTENT);
+            icon.setImageResource(R.drawable.icons_double_up);
+        } else {
+            setListHeight(list, 0);
+            icon.setImageResource(R.drawable.icons_double_down);
+        }
     }
 }
