@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,7 +24,7 @@ public class SearchResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
         List<String> ingredients = getIntent().getStringArrayListExtra("ingredients");
-        EditText test = findViewById(R.id.edtTest);
+        TextView test = findViewById(R.id.edtTest);
         String value = "";
         for (int i = 0; i < ingredients.size(); i++) {
             value += ingredients.get(i) + ", ";

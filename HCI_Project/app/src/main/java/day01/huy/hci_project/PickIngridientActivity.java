@@ -3,6 +3,7 @@ package day01.huy.hci_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,6 +30,7 @@ public class PickIngridientActivity extends AppCompatActivity {
     private ImageView imgIcon1, imgIcon2;
     private ImageButton btnSearch;
     private TextAdapter subIngredientAdapter, mainIngredientAdapter;
+    private DisplayMetrics displayMetrics;
     private final List<String> mainMan = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
             "khoai tay", "hanh", "hanh phi", "trung", "thit bo", "thit heo", "thit ga");
     private final List<String> subMan = Arrays.asList("aaa", "bbb", "ccc");
@@ -50,6 +52,8 @@ public class PickIngridientActivity extends AppCompatActivity {
         imgIcon1 = findViewById(R.id.imgIcon1);
         imgIcon2 = findViewById(R.id.imgIcon2);
         btnSearch = findViewById(R.id.btnSearch);
+        displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         imgIcon1.setImageResource(R.drawable.icons_double_down);
         imgIcon2.setImageResource(R.drawable.icons_double_down);
@@ -86,10 +90,18 @@ public class PickIngridientActivity extends AppCompatActivity {
 
 
     public void clickToShowMainList(View view) {
+        ViewGroup.LayoutParams layoutParams = lstSubIngredient.getLayoutParams();
+        if(layoutParams.height != 0){
+            resizeListView(imgIcon2, lstSubIngredient);
+        }
         resizeListView(imgIcon1, lstMainIngredient);
     }
 
     public void clickToShowSubList(View view) {
+        ViewGroup.LayoutParams layoutParams = lstMainIngredient.getLayoutParams();
+        if(layoutParams.height != 0){
+            resizeListView(imgIcon1, lstMainIngredient);
+        }
         resizeListView(imgIcon2, lstSubIngredient);
     }
 
@@ -132,10 +144,6 @@ public class PickIngridientActivity extends AppCompatActivity {
         list.setLayoutParams(layoutParams);
     }
 
-    private LinearLayout.LayoutParams getWeightParams(float value) {
-        return new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, value);
-    }
-
     private void initAdapterForView(final List<String> main, final List<String> sub) {
         List<String> ingredients = new ArrayList<>(main);
         ingredients.addAll(sub);
@@ -163,7 +171,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 
     private void resizeListView(@NotNull ImageView icon, ListView list) {
         if (icon.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
-            setListHeight(list, ViewGroup.LayoutParams.WRAP_CONTENT);
+            setListHeight(list, displayMetrics.heightPixels/3);
             icon.setImageResource(R.drawable.icons_double_up);
         } else {
             setListHeight(list, 0);

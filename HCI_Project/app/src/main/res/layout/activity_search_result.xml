@@ -8,11 +8,11 @@
     android:orientation="vertical"
     android:weightSum="20">
 
-    <EditText
+    <TextView
         android:id="@+id/edtTest"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"/>
+        android:layout_height="wrap_content"
+        />
 
 
     <LinearLayout
