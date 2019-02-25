@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:hint="Type your ingredient here"
+            android:hint="Nhập nguyên liêu ở đây"
             android:inputType="text" />
 
         <ImageButton
@@ -38,13 +38,13 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:weightSum="6"
-        android:background="@color/greenMint"
+        android:background="@color/greenLightPrimary"
         android:onClick="clickToShowMainList">
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:text="Main Ingredient"
+            android:text="Nguyên Liệu Chính"
             android:textSize="20dp"
             android:paddingLeft="15dp"/>
         <ImageView
@@ -67,14 +67,14 @@
         android:layout_marginTop="25dp"
         android:orientation="horizontal"
         android:weightSum="6"
-        android:background="@color/greenMint"
+        android:background="@color/greenLightPrimary"
         android:onClick="clickToShowSubList"
         >
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:text="Sub Ingredient"
+            android:text="Nguyên Liệu Phụ"
             android:textSize="20dp"
             android:paddingLeft="15dp"/>
         <ImageView
