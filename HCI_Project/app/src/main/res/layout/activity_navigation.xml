@@ -39,7 +39,8 @@
             android:layout_marginBottom="15dp"
             android:background="@color/greenPrimary"
             android:textColor="@color/white"
-            android:onClick="clickToPick"/>
+            android:onClick="clickToPick"
+            android:textStyle="bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,6 +56,7 @@
                 android:text="Lịch Sử"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
+                android:textStyle="bold"
                 android:background="@color/greenPrimary"
                 android:textColor="@color/white"
                 android:onClick="clickToShowHistory"/>
@@ -68,7 +70,8 @@
                 android:layout_marginLeft="10dp"
                 android:background="@color/greenPrimary"
                 android:textColor="@color/white"
-                android:onClick="clickToFavorite"/>
+                android:onClick="clickToFavorite"
+                android:textStyle="bold"/>
         </LinearLayout>
 
     </LinearLayout>
