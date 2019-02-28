@@ -1,7 +1,10 @@
 package day01.huy.hci_project;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -33,5 +36,13 @@ public class ShowHistoryActivity extends AppCompatActivity {
 
         RecipeAdapter adapter = new RecipeAdapter(this, R.layout.layout_list_view_recipe, recipes);
         lstHistory.setAdapter(adapter);
+
+        lstHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ShowHistoryActivity.this, DetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -41,8 +41,12 @@ public class DetailActivity extends AppCompatActivity {
         btFavority = findViewById(R.id.button);
         //get boolean like from previous activity
 
+        boolean like = false;
         Intent intent = getIntent();
-        boolean like = intent.getExtras().getBoolean("check");
+        if(intent.hasExtra("check")){
+
+             like = intent.getExtras().getBoolean("check");
+        }
         if (like) {
             btFavority.setBackgroundColor(getResources().getColor(R.color.grayLight));
         }
