@@ -44,17 +44,25 @@ public class DetailActivity extends AppCompatActivity {
         boolean like = false;
         Intent intent = getIntent();
         if(intent.hasExtra("check")){
-
              like = intent.getExtras().getBoolean("check");
         }
         if (like) {
+            btFavority.setText("UNFAVORITE");
             btFavority.setBackgroundColor(getResources().getColor(R.color.grayLight));
         }
 
     }
 
     public void clickToFavorite(View view) {
-        btFavority.setBackgroundColor(getResources().getColor(R.color.grayLight));
+        String text = (String) btFavority.getText();
+        if (text.equalsIgnoreCase("favorite")) {
+            btFavority.setText("UNFAVORITE");
+            btFavority.setBackgroundColor(getResources().getColor(R.color.grayLight));
+        } else {
+            btFavority.setText("FAVORITE");
+            btFavority.setBackgroundColor(getResources().getColor(R.color.greenAccent));
+
+        }
     }
 
 }
