@@ -1,7 +1,10 @@
 package day01.huy.hci_project;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,6 +40,21 @@ public class SearchResultActivity extends AppCompatActivity {
         makeListForResult();
 
         makeListForSuggestion();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SearchResultActivity.this,DetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        suggestView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SearchResultActivity.this,DetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void makeListForResult(){
