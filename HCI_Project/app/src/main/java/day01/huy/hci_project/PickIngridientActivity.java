@@ -171,7 +171,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 
     private void resizeListView(@NotNull ImageView icon, ListView list) {
         if (icon.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
-            setListHeight(list, displayMetrics.heightPixels*(3/5));
+            setListHeight(list, (displayMetrics.heightPixels*3)/5);
             icon.setImageResource(R.drawable.icons_double_up);
         } else {
             setListHeight(list, 0);
