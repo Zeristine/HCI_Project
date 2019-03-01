@@ -14,7 +14,7 @@
             android:id="@+id/imgRecipeImage"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:background="#18ade4"/>
+            android:background="@color/transparent"/>
 
         <LinearLayout
             android:layout_width="match_parent"

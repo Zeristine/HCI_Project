@@ -84,4 +84,6 @@ public class SearchResultActivity extends AppCompatActivity {
         RecipeAdapter suggestAdapter = new RecipeAdapter(this, R.layout.layout_list_view_recipe, recipesS);
         suggestView.setAdapter(suggestAdapter);
     }
+
+
 }

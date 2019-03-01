@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import day01.huy.hci_project.R;
@@ -37,7 +36,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         ViewHolder viewHolder;
-        if(convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.layout_list_view_recipe, parent, false);
             viewHolder = new ViewHolder();
             viewHolder.imgRecipe = convertView.findViewById(R.id.imgRecipeImage);
@@ -45,20 +44,22 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
             viewHolder.txtAuthor = convertView.findViewById(R.id.txtAuthor);
             viewHolder.txtCreateDate = convertView.findViewById(R.id.txtCreateDate);
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         Recipe recipe = recipes.get(position);
-//        viewHolder.imgRecipe.setImageDrawable();
-        shortenedTitle = recipe.getTitle().length() > 12 ? recipe.getTitle().substring(0,11)+"...": recipe.getTitle();
+        if (recipe.getImageLink().isEmpty()) {
+            viewHolder.imgRecipe.setImageResource(R.drawable.no_image_icon);
+        }
+        shortenedTitle = recipe.getTitle().length() > 12 ? recipe.getTitle().substring(0, 11) + "..." : recipe.getTitle();
         viewHolder.txtTitle.setText(shortenedTitle);
         viewHolder.txtAuthor.setText(recipe.getAuthor());
         viewHolder.txtCreateDate.setText(format.format(recipe.getCreatedDate()));
         return convertView;
     }
 
-    public class ViewHolder{
+    public class ViewHolder {
         TextView txtTitle, txtAuthor, txtCreateDate;
         ImageView imgRecipe;
     }
