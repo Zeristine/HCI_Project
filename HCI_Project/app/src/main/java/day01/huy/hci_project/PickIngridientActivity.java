@@ -1,17 +1,19 @@
 package day01.huy.hci_project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -55,6 +57,8 @@ public class PickIngridientActivity extends AppCompatActivity {
         displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         imgIcon1.setImageResource(R.drawable.icons_double_down);
         imgIcon2.setImageResource(R.drawable.icons_double_down);
         btnSearch.setImageResource(R.drawable.icons_search);
@@ -67,6 +71,9 @@ public class PickIngridientActivity extends AppCompatActivity {
                 break;
             case 3:
                 initAdapterForView(mainDrink, subDrink);
+                break;
+            default:
+                initAdapterForView(null, null);
                 break;
         }
 
@@ -91,7 +98,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 
     public void clickToShowMainList(View view) {
         ViewGroup.LayoutParams layoutParams = lstSubIngredient.getLayoutParams();
-        if(layoutParams.height != 0){
+        if (layoutParams.height != 0) {
             resizeListView(imgIcon2, lstSubIngredient);
         }
         resizeListView(imgIcon1, lstMainIngredient);
@@ -99,7 +106,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 
     public void clickToShowSubList(View view) {
         ViewGroup.LayoutParams layoutParams = lstMainIngredient.getLayoutParams();
-        if(layoutParams.height != 0){
+        if (layoutParams.height != 0) {
             resizeListView(imgIcon1, lstMainIngredient);
         }
         resizeListView(imgIcon2, lstSubIngredient);
@@ -145,6 +152,10 @@ public class PickIngridientActivity extends AppCompatActivity {
     }
 
     private void initAdapterForView(final List<String> main, final List<String> sub) {
+        if (main == null || sub == null) {
+            Toast.makeText(this, "Unknown Approach", Toast.LENGTH_SHORT).show();
+            finish();
+        }
         List<String> ingredients = new ArrayList<>(main);
         ingredients.addAll(sub);
         initListViews(main, sub);
@@ -171,7 +182,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 
     private void resizeListView(@NotNull ImageView icon, ListView list) {
         if (icon.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
-            setListHeight(list, (displayMetrics.heightPixels*3)/5);
+            setListHeight(list, (displayMetrics.heightPixels * 3) / 5);
             icon.setImageResource(R.drawable.icons_double_up);
         } else {
             setListHeight(list, 0);
