@@ -1,89 +1,85 @@
 package day01.huy.hci_project;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import day01.huy.hci_project.custom.RecipeAdapter;
 import day01.huy.hci_project.dto.Recipe;
+import day01.huy.hci_project.ultis.ItemGenerator;
 
 public class SearchResultActivity extends AppCompatActivity {
 
-    private ListView listView,suggestView;
+    private GridLayout resultGridLayout, suggestGridLayout;
+    private LinearLayout mainLayout;
     private List<Recipe> recipes, recipesS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
-        List<String> ingredients = getIntent().getStringArrayListExtra("ingredients");
-        TextView test = findViewById(R.id.edtTest);
-        String value = "";
-        for (int i = 0; i < ingredients.size(); i++) {
-            value += ingredients.get(i) + ", ";
-        }
-        test.setText(value);
-
-        listView =findViewById(R.id.listView);
-        suggestView = findViewById(R.id.suggestView);
-
+//        List<String> ingredients = getIntent().getStringArrayListExtra("ingredients");
+        resultGridLayout = findViewById(R.id.glResult);
+        suggestGridLayout = findViewById(R.id.glSuggest);
+        mainLayout = findViewById(R.id.mainLayout);
         makeListForResult();
-
         makeListForSuggestion();
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SearchResultActivity.this,DetailActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        suggestView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SearchResultActivity.this,DetailActivity.class);
-                startActivity(intent);
-            }
-        });
+        double row = recipes.size() / 2;
+        int rowCount = (int) row;
+        if ((row * 10) % 2 != 0) {
+            rowCount++;
+        }
+        resultGridLayout.setColumnCount(2);
+        resultGridLayout.setRowCount(rowCount);
+        for (Recipe recipe : recipes) {
+            ItemGenerator.createCardView(recipe, resultGridLayout, this, getResources().getColor(R.color.red600));
+        }
+
+        double rowS = recipesS.size() / 2;
+        int rowCountS = (int) rowS;
+        if ((rowS * 10) % 2 != 0) {
+            rowCountS++;
+        }
+        suggestGridLayout.setColumnCount(2);
+        suggestGridLayout.setRowCount(rowCountS);
+        for (Recipe recipe : recipesS) {
+            ItemGenerator.createCardView(recipe, suggestGridLayout, this, getResources().getColor(R.color.red600));
+        }
     }
 
-    public void makeListForResult(){
+    public void makeListForResult() {
         recipes = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
-        recipes.add(new Recipe(1, "Rau muong xao toi", "HuyLM", "adada", date,"", null ));
-        recipes.add(new Recipe(2, "Nui xao bo", "HuyLM", "adada", date,"", null ));
-        recipes.add(new Recipe(3, "Che chan trau", "HuyLM", "adada", date,"", null ));
+        recipes.add(new Recipe(1, "Rau muong xao toi", "HuyLM", "adada", date, "", null));
+        recipes.add(new Recipe(2, "Nui xao bo", "HuyLM", "adada", date, "", null));
+        recipes.add(new Recipe(3, "Che chan trau", "HuyLM", "adada", date, "", null));
 
-        RecipeAdapter adapter = new RecipeAdapter(this, R.layout.layout_list_view_recipe, recipes);
-        listView.setAdapter(adapter);
     }
 
-    public void makeListForSuggestion(){
+    public void makeListForSuggestion() {
 
         recipesS = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
 
-        recipesS.add(new Recipe(1, "Rau muong xao toi", "HuyLM", "adada", date,"", null ));
-        recipesS.add(new Recipe(2, "Nui xao bo", "HuyLM", "adada", date,"", null ));
-        recipesS.add(new Recipe(3, "Che chan trau", "HuyLM", "adada", date,"", null ));
-        recipesS.add(new Recipe(4, "Choco Ball", "HuyLM", "adada", date,"", null ));
-        recipesS.add(new Recipe(5, "Canh rau muong", "HuyLM", "adada", date,"", null ));
+        recipesS.add(new Recipe(1, "Rau muong xao toi", "HuyLM", "adada", date, "", null));
+        recipesS.add(new Recipe(2, "Nui xao bo", "HuyLM", "adada", date, "", null));
+        recipesS.add(new Recipe(3, "Che chan trau", "HuyLM", "adada", date, "", null));
+        recipesS.add(new Recipe(4, "Choco Ball", "HuyLM", "adada", date, "", null));
+        recipesS.add(new Recipe(5, "Canh rau muong", "HuyLM", "adada", date, "", null));
 
-        RecipeAdapter suggestAdapter = new RecipeAdapter(this, R.layout.layout_list_view_recipe, recipesS);
-        suggestView.setAdapter(suggestAdapter);
     }
-
-
 }

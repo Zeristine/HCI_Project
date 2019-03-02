@@ -7,88 +7,107 @@
     tools:context=".PickIngridientActivity"
     >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="6"
-        >
-
-        <AutoCompleteTextView
-            android:id="@+id/txtIngredient"
-            android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:hint="Nhập nguyên liêu ở đây"
-            android:inputType="text" />
+            android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/btnSearch"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/transparent"
-            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="6"
+                >
 
-    </LinearLayout>
+                <AutoCompleteTextView
+                    android:id="@+id/txtIngredient"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:hint="Nhập nguyên liêu ở đây"
+                    android:inputType="text" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:weightSum="6"
-        android:background="@color/greenLightPrimary"
-        android:onClick="clickToShowMainList">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="Nguyên Liệu Chính"
-            android:textSize="20dp"
-            android:paddingLeft="15dp"/>
-        <ImageView
-            android:id="@+id/imgIcon1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <ListView
-        android:id="@+id/lstMainIngredient"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        >
+                <ImageButton
+                    android:id="@+id/btnSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    />
 
-    </ListView>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:orientation="horizontal"
-        android:weightSum="6"
-        android:background="@color/greenLightPrimary"
-        android:onClick="clickToShowSubList"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:text="Nguyên Liệu Phụ"
-            android:textSize="20dp"
-            android:paddingLeft="15dp"/>
-        <ImageView
-            android:id="@+id/imgIcon2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <ListView
-        android:id="@+id/lstSubIngredient"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:weightSum="6"
+                android:background="@color/greenLightPrimary"
+                android:onClick="clickToShowMainList">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="Nguyên Liệu Chính"
+                    android:textSize="30dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"/>
+                <ImageView
+                    android:id="@+id/imgIcon1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lstMainIngredient"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                >
 
-    </ListView>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:weightSum="6"
+                android:background="@color/greenLightPrimary"
+                android:onClick="clickToShowSubList"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="Nguyên Liệu Phụ"
+                    android:textSize="30dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"/>
+                <ImageView
+                    android:id="@+id/imgIcon2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lstSubIngredient"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                >
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

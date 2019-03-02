@@ -7,21 +7,33 @@
     android:weightSum="10"
     tools:context=".FavoriteActivity">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="History"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/lstHistory"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </ListView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/red500"
+                android:gravity="center"
+                android:text="Your list of seen Recipes"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <GridLayout
+                android:id="@+id/glHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alignmentMode="alignMargins"></GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

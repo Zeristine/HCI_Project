@@ -1,6 +1,5 @@
 package day01.huy.hci_project;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,13 +7,12 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
@@ -23,16 +21,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import day01.huy.hci_project.custom.TextAdapter;
+import day01.huy.hci_project.ultis.ItemGenerator;
 
 public class PickIngridientActivity extends AppCompatActivity {
 
-    private ListView lstMainIngredient, lstSubIngredient;
+    private LinearLayout lstMainIngredient, lstSubIngredient;
     private AutoCompleteTextView txtIngredient;
     private ImageView imgIcon1, imgIcon2;
     private ImageButton btnSearch;
-    private TextAdapter subIngredientAdapter, mainIngredientAdapter;
-    private DisplayMetrics displayMetrics;
     private final List<String> mainMan = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
             "khoai tay", "hanh", "hanh phi", "trung", "thit bo", "thit heo", "thit ga");
     private final List<String> subMan = Arrays.asList("aaa", "bbb", "ccc");
@@ -41,6 +37,7 @@ public class PickIngridientActivity extends AppCompatActivity {
     private final List<String> subChay = Arrays.asList("ddd", "eee", "fff");
     private final List<String> mainDrink = Arrays.asList("pepsi", "coca cola", "Coffee", "Black Coffee");
     private final List<String> subDrink = Arrays.asList("ggg", "hhh", "iii");
+    private final List<String> selectedIngredients = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +51,6 @@ public class PickIngridientActivity extends AppCompatActivity {
         imgIcon1 = findViewById(R.id.imgIcon1);
         imgIcon2 = findViewById(R.id.imgIcon2);
         btnSearch = findViewById(R.id.btnSearch);
-        displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -80,11 +75,9 @@ public class PickIngridientActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<String> ingredients = new ArrayList<>(mainIngredientAdapter.getSelectedItems());
-                if (!ingredients.isEmpty()) {
-                    ingredients.addAll(subIngredientAdapter.getSelectedItems());
+                if (!selectedIngredients.isEmpty()) {
                     Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
-                    intent.putStringArrayListExtra("ingredients", (ArrayList<String>) ingredients);
+                    intent.putStringArrayListExtra("ingredients", (ArrayList<String>) selectedIngredients);
                     startActivity(intent);
                 } else {
                     Toast.makeText(PickIngridientActivity.this,
@@ -119,22 +112,17 @@ public class PickIngridientActivity extends AppCompatActivity {
     }
 
     private void initListViews(List<String> main, List<String> sub) {
-        initMainListView(true, main);
-        initSubListView(true, sub);
+        initListView(true, main, lstMainIngredient);
+        initListView(true, sub, lstSubIngredient);
     }
 
-    private void initMainListView(boolean isGoodToResetAdapter, List<String> main) {
+    private void initListView(boolean isGoodToResetAdapter, List<String> ingredients, LinearLayout list) {
         if (isGoodToResetAdapter) {
-            mainIngredientAdapter = new TextAdapter(this, R.layout.layout_list_view_simple_row, main);
+            list.removeAllViews();
+            for (String ingredient : ingredients) {
+                ItemGenerator.createCheckBoxItem(ingredient, list, this, selectedIngredients);
+            }
         }
-        lstMainIngredient.setAdapter(mainIngredientAdapter);
-    }
-
-    private void initSubListView(boolean isGoodToResetAdapter, List<String> sub) {
-        if (isGoodToResetAdapter) {
-            subIngredientAdapter = new TextAdapter(this, R.layout.layout_list_view_simple_row, sub);
-        }
-        lstSubIngredient.setAdapter(subIngredientAdapter);
     }
 
     private void resetSearchView() {
@@ -145,7 +133,7 @@ public class PickIngridientActivity extends AppCompatActivity {
         setListHeight(lstSubIngredient, 0);
     }
 
-    private void setListHeight(@NotNull ListView list, int value) {
+    private void setListHeight(@NotNull LinearLayout list, int value) {
         ViewGroup.LayoutParams layoutParams = list.getLayoutParams();
         layoutParams.height = value;
         list.setLayoutParams(layoutParams);
@@ -156,22 +144,24 @@ public class PickIngridientActivity extends AppCompatActivity {
             Toast.makeText(this, "Unknown Approach", Toast.LENGTH_SHORT).show();
             finish();
         }
+        initListViews(main, sub);
         List<String> ingredients = new ArrayList<>(main);
         ingredients.addAll(sub);
-        initListViews(main, sub);
+
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(PickIngridientActivity.this, android.R.layout.simple_dropdown_item_1line,
                         ingredients);
         txtIngredient.setAdapter(adapter);
         txtIngredient.setThreshold(1);
+        // Bug không tick check box
         txtIngredient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String value = (String) parent.getItemAtPosition(position);
-                if (subIngredientAdapter.addSelectedIngredient(value)) {
-                    initSubListView(false, main);
-                } else if (mainIngredientAdapter.addSelectedIngredient(value)) {
-                    initMainListView(false, sub);
+                if (addToSelectedList(value, main)) {
+                    initListView(true, main, lstMainIngredient);
+                } else if (addToSelectedList(value, sub)) {
+                    initListView(true, sub, lstSubIngredient);
                 }
                 Toast.makeText(PickIngridientActivity.this,
                         "The ingredient " + value + " has been selected", Toast.LENGTH_SHORT).show();
@@ -180,13 +170,24 @@ public class PickIngridientActivity extends AppCompatActivity {
         });
     }
 
-    private void resizeListView(@NotNull ImageView icon, ListView list) {
+    private void resizeListView(@NotNull ImageView icon, LinearLayout list) {
         if (icon.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
-            setListHeight(list, (displayMetrics.heightPixels * 3) / 5);
+            setListHeight(list, LinearLayout.LayoutParams.WRAP_CONTENT);
             icon.setImageResource(R.drawable.icons_double_up);
         } else {
             setListHeight(list, 0);
             icon.setImageResource(R.drawable.icons_double_down);
         }
+    }
+
+    private boolean addToSelectedList(String value, @NotNull List<String> list) {
+        if(selectedIngredients.contains(value)){
+            return false;
+        }
+        if (list.contains(value)) {
+            selectedIngredients.add(value);
+            return true;
+        }
+        return false;
     }
 }

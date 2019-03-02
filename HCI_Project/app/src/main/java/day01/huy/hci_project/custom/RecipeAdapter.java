@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import day01.huy.hci_project.R;
@@ -55,12 +57,33 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
         shortenedTitle = recipe.getTitle().length() > 12 ? recipe.getTitle().substring(0, 11) + "..." : recipe.getTitle();
         viewHolder.txtTitle.setText(shortenedTitle);
         viewHolder.txtAuthor.setText(recipe.getAuthor());
-        viewHolder.txtCreateDate.setText(format.format(recipe.getCreatedDate()));
+        viewHolder.txtCreateDate.setText(getRecipeAge(recipe.getCreatedDate()));
         return convertView;
     }
 
     public class ViewHolder {
         TextView txtTitle, txtAuthor, txtCreateDate;
         ImageView imgRecipe;
+    }
+
+    private String getRecipeAge(Date createdDate) {
+        Calendar calendar = Calendar.getInstance();
+        Date current = calendar.getTime();
+        int seconds, minutes, hours;
+        String secValue = "", minValue = "", hourValue = "";
+
+        seconds = current.getSeconds() - createdDate.getSeconds();
+        secValue = seconds + "g";
+        if (seconds >= 60) {
+            minutes = seconds / 60;
+            secValue = (seconds % 60) + "g";
+            minValue = minutes + "ph";
+            if (minutes >= 60) {
+                hours = minutes / 60;
+                minValue = (minutes % 60) + "ph";
+                hourValue = hours + "h";
+            }
+        }
+        return hourValue + minValue + secValue;
     }
 }
