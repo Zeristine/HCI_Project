@@ -6,22 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
+    android:background="@color/white"
     tools:context=".DishesTypeActivity">
 
     <TextView
+        android:id="@+id/txtDishTypeTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="Loại Món Ăn"
         android:gravity="center"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:textColor="@color/red200"/>
 
     <LinearLayout
+        android:id="@+id/btnChay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
         android:weightSum="2"
-        android:onClick="clickToVegan"
         android:background="@color/greenPrimary"
         android:orientation="horizontal"
         android:layout_margin="10dp">
@@ -37,19 +41,19 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center|left"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:text="Món Chay"/>
+            android:text="MÓN CHAY"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/btnMan"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
         android:weightSum="2"
-        android:onClick="clickToNonVegan"
         android:background="@color/greenPrimary"
         android:orientation="horizontal"
         android:layout_margin="10dp">
@@ -65,20 +69,20 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center|left"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:text="Món Mặn"/>
+            android:text="MÓN MẶN"/>
 
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/btnDrinks"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
         android:weightSum="2"
-        android:onClick="clickToDrink"
         android:background="@color/greenPrimary"
         android:orientation="horizontal"
         android:layout_margin="10dp">
@@ -94,10 +98,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center|left"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:text="Thức uống"/>
+            android:text="THỨC UỐNG"/>
 
     </LinearLayout>
 

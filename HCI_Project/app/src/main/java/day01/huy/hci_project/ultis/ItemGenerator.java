@@ -11,7 +11,6 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -88,7 +87,6 @@ public class ItemGenerator {
                 }
             }
         });
-        linearLayout.addView(createLine(context));
         linearLayout.addView(checkBox);
         linearLayout.addView(createLine(context));
     }

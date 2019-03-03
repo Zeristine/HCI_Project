@@ -3,7 +3,6 @@ package day01.huy.hci_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -112,16 +111,14 @@ public class PickIngridientActivity extends AppCompatActivity {
     }
 
     private void initListViews(List<String> main, List<String> sub) {
-        initListView(true, main, lstMainIngredient);
-        initListView(true, sub, lstSubIngredient);
+        initListView(main, lstMainIngredient);
+        initListView(sub, lstSubIngredient);
     }
 
-    private void initListView(boolean isGoodToResetAdapter, List<String> ingredients, LinearLayout list) {
-        if (isGoodToResetAdapter) {
-            list.removeAllViews();
-            for (String ingredient : ingredients) {
-                ItemGenerator.createCheckBoxItem(ingredient, list, this, selectedIngredients);
-            }
+    private void initListView(@NotNull List<String> ingredients, @NotNull LinearLayout list) {
+        list.removeAllViews();
+        for (String ingredient : ingredients) {
+            ItemGenerator.createCheckBoxItem(ingredient, list, this, selectedIngredients);
         }
     }
 
@@ -159,9 +156,9 @@ public class PickIngridientActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String value = (String) parent.getItemAtPosition(position);
                 if (addToSelectedList(value, main)) {
-                    initListView(true, main, lstMainIngredient);
+                    initListView(main, lstMainIngredient);
                 } else if (addToSelectedList(value, sub)) {
-                    initListView(true, sub, lstSubIngredient);
+                    initListView(sub, lstSubIngredient);
                 }
                 Toast.makeText(PickIngridientActivity.this,
                         "The ingredient " + value + " has been selected", Toast.LENGTH_SHORT).show();
@@ -181,7 +178,7 @@ public class PickIngridientActivity extends AppCompatActivity {
     }
 
     private boolean addToSelectedList(String value, @NotNull List<String> list) {
-        if(selectedIngredients.contains(value)){
+        if (selectedIngredients.contains(value)) {
             return false;
         }
         if (list.contains(value)) {

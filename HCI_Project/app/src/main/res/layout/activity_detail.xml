@@ -1,83 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".DetailActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <RelativeLayout
+        android:id="@+id/layoutRecipeImage"
+        android:layout_width="match_parent"
+        android:layout_height="206dp"
+        android:background="@drawable/frychicken">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="206dp"
-            android:background="#388E3C">
+        <Button
+            android:id="@+id/btnFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="91dp"
+            android:textColor="@color/white"
+            android:background="@color/greenAccent"
+            android:onClick="clickToFavorite"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Favorite" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="64dp"
-                android:text="Fried Larvae"
-                android:textColor="#ffffff"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.974"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="0dp"
-                android:layout_height="106dp"
-                android:layout_marginStart="31dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="39dp"
-                android:src="@drawable/frychicken"
-                app:layout_constraintEnd_toStartOf="@+id/button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txtRecipeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:text="Fried Larvae"
+        android:background="@color/red800"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="91dp"
-                android:text="Favorite"
-                android:background="@color/greenAccent"
-                android:onClick="clickToFavorite"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        </android.support.constraint.ConstraintLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pagerRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="549dp"
+        android:layout_marginTop="8dp"
+        />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="533dp"
-            tools:layout_editor_absoluteY="198dp">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/pager"
-                android:layout_width="372dp"
-                android:layout_height="549dp"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

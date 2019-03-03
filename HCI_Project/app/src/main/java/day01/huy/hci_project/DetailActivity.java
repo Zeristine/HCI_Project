@@ -1,14 +1,18 @@
 package day01.huy.hci_project;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,51 +21,80 @@ import day01.huy.hci_project.custom.SlicePagerAdapter;
 import day01.huy.hci_project.fragments.PageFragment1;
 import day01.huy.hci_project.fragments.PageFragment2;
 import day01.huy.hci_project.fragments.PageFragment3;
+import day01.huy.hci_project.ultis.RedGradient;
 
 public class DetailActivity extends AppCompatActivity {
 
-    ViewPager viewPager;
-    PagerAdapter pagerAdapter;
-    Button btFavority;
+    private ViewPager viewPager;
+    private PagerAdapter pagerAdapter;
+    private Button btnFavorite;
+    private RelativeLayout layoutRecipeImage;
+    private TextView txtRecipeTitle;
+    private DisplayMetrics displayMetrics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        LinearLayout.LayoutParams layoutParams;
+        viewPager = findViewById(R.id.pagerRecipe);
+        layoutRecipeImage = findViewById(R.id.layoutRecipeImage);
+        txtRecipeTitle = findViewById(R.id.txtRecipeTitle);
+        btnFavorite = findViewById(R.id.btnFavorite);
+        displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new PageFragment1());
         fragmentList.add(new PageFragment2());
         fragmentList.add(new PageFragment3());
-        viewPager = findViewById(R.id.pager);
         pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(pagerAdapter);
 
-        //set color for favorite button
-        btFavority = findViewById(R.id.button);
-        //get boolean like from previous activity
+        layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                (displayMetrics.heightPixels*3)/10);
+        layoutRecipeImage.setLayoutParams(layoutParams);
+        RelativeLayout.LayoutParams btnLayout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        btnLayout.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        btnLayout.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        btnLayout.bottomMargin = 10;
+        btnLayout.rightMargin = (displayMetrics.widthPixels*1)/30;
+        btnFavorite.setLayoutParams(btnLayout);
+        layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                (displayMetrics.heightPixels*1)/10);
+        txtRecipeTitle.setLayoutParams(layoutParams);
+        layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                (displayMetrics.heightPixels*6)/10);
+        layoutParams.leftMargin = 10;
+        layoutParams.rightMargin = 10;
+        viewPager.setLayoutParams(layoutParams);
+
 
         boolean like = false;
         Intent intent = getIntent();
-        if(intent.hasExtra("check")){
-             like = intent.getExtras().getBoolean("check");
+        if (intent.hasExtra("check")) {
+            like = intent.getExtras().getBoolean("check");
         }
         if (like) {
-            btFavority.setText("UNFAVORITE");
-            btFavority.setBackgroundColor(getResources().getColor(R.color.grayLight));
+            btnFavorite.setText("UNFAVORITE");
+            btnFavorite.setBackground(RedGradient.getRedGradientBlackGray(this));
+        } else {
+            btnFavorite.setText("FAVORITE");
+            btnFavorite.setBackground(RedGradient.getRedGradient(this));
         }
 
     }
 
     public void clickToFavorite(View view) {
-        String text = (String) btFavority.getText();
+        String text = (String) btnFavorite.getText();
         if (text.equalsIgnoreCase("favorite")) {
-            btFavority.setText("UNFAVORITE");
-            btFavority.setBackgroundColor(getResources().getColor(R.color.grayLight));
+            btnFavorite.setText("UNFAVORITE");
+            btnFavorite.setBackground(RedGradient.getRedGradientBlackGray(this));
         } else {
-            btFavority.setText("FAVORITE");
-            btFavority.setBackgroundColor(getResources().getColor(R.color.greenAccent));
-
+            btnFavorite.setText("FAVORITE");
+            btnFavorite.setBackground(RedGradient.getRedGradient(this));
         }
     }
 

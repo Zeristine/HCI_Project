@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/greenLightPrimary">
+        android:background="@color/red200">
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -24,12 +24,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:columnCount="2"
+        android:rowCount="2"
         android:gravity="bottom"
         android:orientation="vertical"
         android:weightSum="20"
         >
 
         <Button
+            android:id="@+id/btnPickIngredient"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4"
@@ -39,7 +42,6 @@
             android:layout_marginBottom="15dp"
             android:background="@color/greenPrimary"
             android:textColor="@color/white"
-            android:onClick="clickToPick"
             android:textStyle="bold"/>
 
         <LinearLayout
@@ -50,6 +52,7 @@
             android:orientation="horizontal"
             android:weightSum="2">
             <Button
+                android:id="@+id/btnHistory"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -59,9 +62,10 @@
                 android:textStyle="bold"
                 android:background="@color/greenPrimary"
                 android:textColor="@color/white"
-                android:onClick="clickToShowHistory"/>
+                />
 
             <Button
+                android:id="@+id/btnFavorite"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -70,8 +74,8 @@
                 android:layout_marginLeft="10dp"
                 android:background="@color/greenPrimary"
                 android:textColor="@color/white"
-                android:onClick="clickToFavorite"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                />
         </LinearLayout>
 
     </LinearLayout>
