@@ -53,8 +53,8 @@ public class PickIngridientActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        imgIcon1.setImageResource(R.drawable.icons_double_down);
-        imgIcon2.setImageResource(R.drawable.icons_double_down);
+        imgIcon1.setImageResource(R.drawable.icons_arrow_expand);
+        imgIcon2.setImageResource(R.drawable.icons_arrow_expand);
         btnSearch.setImageResource(R.drawable.icons_search);
         switch (choiceValue) {
             case 1:
@@ -124,8 +124,8 @@ public class PickIngridientActivity extends AppCompatActivity {
 
     private void resetSearchView() {
         txtIngredient.setText("");
-        imgIcon1.setImageResource(R.drawable.icons_double_down);
-        imgIcon2.setImageResource(R.drawable.icons_double_down);
+        imgIcon1.setImageResource(R.drawable.icons_arrow_expand);
+        imgIcon2.setImageResource(R.drawable.icons_arrow_expand);
         setListHeight(lstMainIngredient, 0);
         setListHeight(lstSubIngredient, 0);
     }
@@ -168,12 +168,12 @@ public class PickIngridientActivity extends AppCompatActivity {
     }
 
     private void resizeListView(@NotNull ImageView icon, LinearLayout list) {
-        if (icon.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_double_down).getConstantState())) {
+        if (icon.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_arrow_expand).getConstantState())) {
             setListHeight(list, LinearLayout.LayoutParams.WRAP_CONTENT);
-            icon.setImageResource(R.drawable.icons_double_up);
+            icon.setImageResource(R.drawable.icons_arrow_collapse);
         } else {
             setListHeight(list, 0);
-            icon.setImageResource(R.drawable.icons_double_down);
+            icon.setImageResource(R.drawable.icons_arrow_expand);
         }
     }
 

@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PickIngridientActivity"
-    >
+    tools:context=".PickIngridientActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,8 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="6"
-                >
+                android:weightSum="6">
 
                 <AutoCompleteTextView
                     android:id="@+id/txtIngredient"
@@ -35,8 +34,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/transparent"
-                    />
+                    android:background="@color/transparent" />
 
             </LinearLayout>
 
@@ -44,79 +42,87 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/black"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
+                android:background="@color/red700"
+                android:onClick="clickToShowMainList"
                 android:orientation="horizontal"
-                android:weightSum="6"
-                android:background="@color/greenLightPrimary"
-                android:onClick="clickToShowMainList">
+                android:weightSum="6">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:text="Nguyên Liệu Chính"
-                    android:textSize="30dp"
-                    android:textColor="@color/black"
                     android:gravity="center_vertical"
-                    android:paddingLeft="15dp"/>
+                    android:paddingLeft="15dp"
+                    android:text="Nguyên Liệu Chính"
+                    android:textColor="@color/white"
+                    android:textSize="30dp" />
+
                 <ImageView
                     android:id="@+id/imgIcon1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_weight="1" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/lstMainIngredient"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/black"/>
+                android:background="@color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:orientation="horizontal"
-                android:weightSum="6"
-                android:background="@color/greenLightPrimary"
+                android:background="@color/red700"
                 android:onClick="clickToShowSubList"
-                >
+                android:orientation="horizontal"
+                android:weightSum="6">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:text="Nguyên Liệu Phụ"
-                    android:textSize="30dp"
-                    android:textColor="@color/black"
                     android:gravity="center_vertical"
-                    android:paddingLeft="15dp"/>
+                    android:paddingLeft="15dp"
+                    android:text="Nguyên Liệu Phụ"
+                    android:textColor="@color/whifte"
+                    android:textSize="30dp" />
+
                 <ImageView
                     android:id="@+id/imgIcon2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_weight="1" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/lstSubIngredient"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/black"/>
+                android:background="@color/black" />
         </LinearLayout>
     </ScrollView>
 
