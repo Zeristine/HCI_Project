@@ -1,14 +1,13 @@
 package day01.huy.hci_project;
 
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import day01.huy.hci_project.ultis.RedGradient;
+import day01.huy.hci_project.ultis.ColorGradient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         imgTitle.setImageResource(R.drawable.image_title);
 
-        btnBegin.setBackground(RedGradient.getRedGradient(this));
+        btnBegin.setBackground(ColorGradient.getRedGradient(this));
         btnBegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

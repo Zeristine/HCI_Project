@@ -21,7 +21,7 @@ import day01.huy.hci_project.custom.SlicePagerAdapter;
 import day01.huy.hci_project.fragments.PageFragment1;
 import day01.huy.hci_project.fragments.PageFragment2;
 import day01.huy.hci_project.fragments.PageFragment3;
-import day01.huy.hci_project.ultis.RedGradient;
+import day01.huy.hci_project.ultis.ColorGradient;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -79,10 +79,10 @@ public class DetailActivity extends AppCompatActivity {
         }
         if (like) {
             btnFavorite.setText("UNFAVORITE");
-            btnFavorite.setBackground(RedGradient.getRedGradientBlackGray(this));
+            btnFavorite.setBackground(ColorGradient.getRedGradientBlackGray(this));
         } else {
             btnFavorite.setText("FAVORITE");
-            btnFavorite.setBackground(RedGradient.getRedGradient(this));
+            btnFavorite.setBackground(ColorGradient.getRedGradient(this));
         }
 
     }
@@ -91,10 +91,10 @@ public class DetailActivity extends AppCompatActivity {
         String text = (String) btnFavorite.getText();
         if (text.equalsIgnoreCase("favorite")) {
             btnFavorite.setText("UNFAVORITE");
-            btnFavorite.setBackground(RedGradient.getRedGradientBlackGray(this));
+            btnFavorite.setBackground(ColorGradient.getRedGradientBlackGray(this));
         } else {
             btnFavorite.setText("FAVORITE");
-            btnFavorite.setBackground(RedGradient.getRedGradient(this));
+            btnFavorite.setBackground(ColorGradient.getRedGradient(this));
         }
     }
 

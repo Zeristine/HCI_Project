@@ -1,14 +1,12 @@
 package day01.huy.hci_project;
 
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import day01.huy.hci_project.ultis.RedGradient;
+import day01.huy.hci_project.ultis.ColorGradient;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -22,9 +20,9 @@ public class NavigationActivity extends AppCompatActivity {
         btnFavorite = findViewById(R.id.btnFavorite);
         btnHistory = findViewById(R.id.btnHistory);
 
-        btnPickIngredient.setBackground(RedGradient.getRedGradientDeep(this));
-        btnHistory.setBackground(RedGradient.getRedGradientDeeper(this));
-        btnFavorite.setBackground(RedGradient.getRedGradientDeeper(this));
+        btnPickIngredient.setBackground(ColorGradient.getRedGradientDeep(this));
+        btnHistory.setBackground(ColorGradient.getRedGradientDeeper(this));
+        btnFavorite.setBackground(ColorGradient.getRedGradientDeeper(this));
         btnPickIngredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

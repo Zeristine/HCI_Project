@@ -22,7 +22,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@color/red500"
                 android:gravity="center"
-                android:text="Your list of seen Recipes"
+                android:text="LỊCH SỬ"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />

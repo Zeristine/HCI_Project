@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import day01.huy.hci_project.ultis.RedGradient;
+import day01.huy.hci_project.ultis.ColorGradient;
 
 public class DishesTypeActivity extends AppCompatActivity {
 
@@ -20,9 +20,9 @@ public class DishesTypeActivity extends AppCompatActivity {
         btnMan = findViewById(R.id.btnMan);
         btnDrinks = findViewById(R.id.btnDrinks);
 
-        btnChay.setBackground(RedGradient.getRedGradientDeepBlack(this));
-        btnMan.setBackground(RedGradient.getRedGradientDeepBlack(this));
-        btnDrinks.setBackground(RedGradient.getRedGradientDeepBlack(this));
+        btnChay.setBackground(ColorGradient.getRedGradientDeep(this));
+        btnMan.setBackground(ColorGradient.getRedGradientDeep(this));
+        btnDrinks.setBackground(ColorGradient.getRedGradientDeep(this));
         btnChay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

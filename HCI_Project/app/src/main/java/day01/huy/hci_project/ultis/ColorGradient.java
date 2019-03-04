@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import day01.huy.hci_project.R;
 
-public class RedGradient {
+public class ColorGradient {
 
     public static GradientDrawable getRedGradient(@NotNull Context context){
         GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
