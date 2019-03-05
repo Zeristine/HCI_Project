@@ -45,6 +45,7 @@ public class DetailActivity extends AppCompatActivity {
         displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
+        Intent intent = getIntent();
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new PageFragment1());
         fragmentList.add(new PageFragment2());
@@ -55,6 +56,8 @@ public class DetailActivity extends AppCompatActivity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 (displayMetrics.heightPixels*3)/10);
         layoutRecipeImage.setLayoutParams(layoutParams);
+        layoutRecipeImage.setBackgroundResource(getResources()
+                .getIdentifier("image_food_"+ intent.getStringExtra("image"), "drawable", getPackageName()));
         RelativeLayout.LayoutParams btnLayout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         btnLayout.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
@@ -65,6 +68,7 @@ public class DetailActivity extends AppCompatActivity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 (displayMetrics.heightPixels*1)/10);
         txtRecipeTitle.setLayoutParams(layoutParams);
+        txtRecipeTitle.setText(intent.getStringExtra("title"));
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 (displayMetrics.heightPixels*6)/10);
         layoutParams.leftMargin = 10;
@@ -73,7 +77,6 @@ public class DetailActivity extends AppCompatActivity {
 
 
         boolean like = false;
-        Intent intent = getIntent();
         if (intent.hasExtra("check")) {
             like = intent.getExtras().getBoolean("check");
         }

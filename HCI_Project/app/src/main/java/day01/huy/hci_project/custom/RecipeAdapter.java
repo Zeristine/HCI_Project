@@ -51,7 +51,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
         Recipe recipe = recipes.get(position);
         if (recipe.getImageLink().isEmpty()) {
-            viewHolder.imgRecipe.setImageResource(R.drawable.no_image_icon);
+            viewHolder.imgRecipe.setImageResource(R.drawable.icon_no_image);
         }
         shortenedTitle = recipe.getTitle().length() > 12 ? recipe.getTitle().substring(0, 11) + "..." : recipe.getTitle();
         viewHolder.txtTitle.setText(shortenedTitle);

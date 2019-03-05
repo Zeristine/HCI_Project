@@ -2,20 +2,21 @@ package day01.huy.hci_project.ultis;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import day01.huy.hci_project.DetailActivity;
@@ -24,12 +25,13 @@ import day01.huy.hci_project.dto.Recipe;
 
 public class ItemGenerator {
 
-    public static void createCardView(@NotNull Recipe recipe, GridLayout gridLayout, final Context context, int color) {
+    public static void createCardView(@NotNull final Recipe recipe, GridLayout gridLayout, final Context context, int color) {
         CardView recipeCard = new CardView(context);
         recipeCard.setCardElevation(8);
         recipeCard.setRadius(10);
         recipeCard.setCardBackgroundColor(color);
-        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f), GridLayout.spec(GridLayout.UNDEFINED, 1f));
+        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                , GridLayout.spec(GridLayout.UNDEFINED, 1f));
         layoutParams.leftMargin = 5;
         layoutParams.rightMargin = 5;
         layoutParams.bottomMargin = 10;
@@ -39,6 +41,8 @@ public class ItemGenerator {
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("check", false);
+                intent.putExtra("image", recipe.getImageLink());
+                intent.putExtra("title", recipe.getTitle());
                 context.startActivity(intent);
             }
         });
@@ -50,9 +54,11 @@ public class ItemGenerator {
         TextView txtAuthor = recipeView.findViewById(R.id.txtAuthor);
 
         if (recipe.getImageLink().length() == 0) {
-            imgRecipe.setImageResource(R.drawable.no_image_icon);
+            imgRecipe.setImageResource(R.drawable.icon_no_image);
         } else {
-            imgRecipe.setImageResource(R.drawable.no_image_icon);
+            int resId = context.getResources()
+                    .getIdentifier("image_food_"+recipe.getImageLink()+"_small", "drawable",context.getPackageName());
+            imgRecipe.setImageResource(resId);
         }
         txtTitle.setText(recipe.getTitle());
         txtTimer.setText(CalendarCal.getCardAge(recipe.getCreatedDate()));
@@ -100,5 +106,14 @@ public class ItemGenerator {
         line.setLayoutParams(layoutParams);
         line.setBackgroundColor(context.getResources().getColor(R.color.black));
         return line;
+    }
+
+    public static int getResId(String resourceName, Class<?> c){
+        try{
+            Field field = c.getDeclaredField(resourceName);
+            return field.getInt(field);
+        }catch (Exception e){
+            return 0;
+        }
     }
 }
