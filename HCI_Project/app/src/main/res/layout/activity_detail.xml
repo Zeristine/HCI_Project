@@ -12,6 +12,15 @@
         android:layout_height="206dp"
         android:background="@drawable/frychicken">
 
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icons_arrow_return"
+            android:background="@color/transparent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:onClick="clickToFinish"/>
+
         <Button
             android:id="@+id/btnFavorite"
             android:layout_width="wrap_content"

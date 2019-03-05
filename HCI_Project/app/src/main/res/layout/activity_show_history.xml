@@ -15,17 +15,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/red800"
                 android:layout_marginBottom="10dp"
-                android:background="@color/red500"
-                android:gravity="center"
-                android:text="LỊCH SỬ"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                >
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icons_arrow_return"
+                    android:background="@color/transparent"
+                    android:layout_alignParentLeft="true"
+                    android:onClick="clickToFinish"/>
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="LỊCH SỬ"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
 
             <GridLayout
                 android:id="@+id/glHistory"

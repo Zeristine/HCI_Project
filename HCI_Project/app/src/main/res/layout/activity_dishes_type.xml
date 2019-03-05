@@ -9,16 +9,36 @@
     android:background="@color/white"
     tools:context=".DishesTypeActivity">
 
-    <TextView
-        android:id="@+id/txtDishTypeTitle"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Loại Món Ăn"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="40dp"
-        android:textColor="@color/red200"/>
+        android:background="@color/red300"
+        >
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icons_arrow_return"
+            android:background="@color/transparent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:onClick="clickToFinish"/>
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="LOẠI MÓN ĂN"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="40dp"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:id="@+id/btnChay"

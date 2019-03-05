@@ -10,6 +10,8 @@
     <string name="direction">In a large shallow dish, combine 2-2/3 cups flour, 2 tablespoons garlic salt, 1 tablespoon paprika, 2-1/2 teaspoons pepper and 2-1/2 teaspoons poultry seasoning.\n\nIn another shallow dish, beat eggs and 1-1/2 cups water; add 1 teaspoon salt and the remaining 1-1/3 cup flour and 1/2 teaspoon pepper. \n\nDip chicken in egg mixture, then place in the flour mixture, a few pieces at a time. Turn to coat.\n\nIn a deep-fat fryer, heat oil to 375°. Working in batches, fry chicken, several pieces at a time, until golden brown and a thermometer inserted into chicken reads 165° about 7-8 minutes on each side. Drain on paper towels. </string>
     <string name="nutrition">5 ounces chicken: 543 calories\nflour: 33g fat (7g saturated fat), 137mg cholesterol.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

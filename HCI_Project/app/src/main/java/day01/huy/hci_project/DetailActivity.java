@@ -98,4 +98,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    public void clickToFinish(View view) {
+        finish();
+    }
 }

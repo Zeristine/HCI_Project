@@ -6,8 +6,10 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -88,10 +90,10 @@ public class ItemGenerator {
             }
         });
         linearLayout.addView(checkBox);
-        linearLayout.addView(createLine(context));
+//        linearLayout.addView(createLine(context));
     }
 
-    private static View createLine(Context context){
+    public static View createLine(Context context){
         View line = new View(context);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 2);
@@ -99,5 +101,4 @@ public class ItemGenerator {
         line.setBackgroundColor(context.getResources().getColor(R.color.black));
         return line;
     }
-
 }
