@@ -10,7 +10,7 @@
         android:id="@+id/layoutRecipeImage"
         android:layout_width="match_parent"
         android:layout_height="206dp"
-        android:background="@drawable/frychicken">
+        android:background="@drawable/image_food_frychicken">
 
         <Button
             android:id="@+id/btnFavorite"
