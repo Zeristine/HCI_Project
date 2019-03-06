@@ -32,8 +32,9 @@ public class PickIngridientActivity extends AppCompatActivity {
     private AutoCompleteTextView txtIngredient;
     private ImageButton btnSearch;
     private ViewPager viewPagerIngredient;
-    private final List<String> mainMan = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
-            "khoai tay", "hanh", "hanh phi", "trung", "thit bo", "thit heo", "thit ga");
+    private final List<String> mainMan = Arrays.asList("rau muong", "toi", "ca rot", "cu cai trang",
+            "khoai tay", "hanh", "hanh phi", "trung", "thit bo", "thit heo", "thit ga", "thit ca", "thit tom",
+            "thit cua", "");
     private final List<String> subMan = Arrays.asList("aaa", "bbb", "ccc");
     private final List<String> mainChay = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
             "khoai tay", "hanh", "hanh phi", "gao lut");
@@ -75,21 +76,6 @@ public class PickIngridientActivity extends AppCompatActivity {
                 initAdapterForView(null, null);
                 break;
         }
-
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!selectedIngredients.isEmpty()) {
-                    Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
-                    intent.putStringArrayListExtra("ingredients", (ArrayList<String>) selectedIngredients);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(PickIngridientActivity.this,
-                            "No ingredient selected! Please choose at least one.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
     }
 
 
@@ -119,8 +105,8 @@ public class PickIngridientActivity extends AppCompatActivity {
 //        initListView(main, lstMainIngredient);
 //        initListView(sub, lstSubIngredient);
         List<Fragment> list = new ArrayList<>();
-        list.add(initIngredientFragment("Nguyên liệu chính", main));
-        list.add(initIngredientFragment("Nguyên liêu phụ", sub));
+        list.add(initIngredientFragment("Nguyên liệu chính", main, true, false, false));
+        list.add(initIngredientFragment("Nguyên liêu phụ", sub, false, false, true));
         SlicePagerAdapter pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), list);
         viewPagerIngredient.setAdapter(pagerAdapter);
     }
@@ -132,9 +118,9 @@ public class PickIngridientActivity extends AppCompatActivity {
 //        }
 //    }
 
-    private Fragment initIngredientFragment(String title, List<String> ingredients) {
+    private Fragment initIngredientFragment(String title, List<String> ingredients, boolean isFirst, boolean isMiddle, boolean isLast) {
         IngredientFragment fragment = new IngredientFragment();
-        fragment.setResource(title, ingredients, selectedIngredients);
+        fragment.setResource(title, ingredients, selectedIngredients, isFirst, isMiddle, isLast, viewPagerIngredient);
         return fragment;
     }
 
@@ -193,6 +179,20 @@ public class PickIngridientActivity extends AppCompatActivity {
                 Toast.makeText(PickIngridientActivity.this,
                         value, Toast.LENGTH_SHORT).show();
                 txtIngredient.setText("");
+            }
+        });
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!selectedIngredients.isEmpty()) {
+                    Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
+                    intent.putStringArrayListExtra("ingredients", (ArrayList<String>) selectedIngredients);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(PickIngridientActivity.this,
+                            "No ingredient selected! Please choose at least one.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
