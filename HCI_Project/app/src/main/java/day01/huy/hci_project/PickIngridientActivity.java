@@ -32,15 +32,20 @@ public class PickIngridientActivity extends AppCompatActivity {
     private AutoCompleteTextView txtIngredient;
     private ImageButton btnSearch;
     private ViewPager viewPagerIngredient;
-    private final List<String> mainMan = Arrays.asList("rau muong", "toi", "ca rot", "cu cai trang",
-            "khoai tay", "hanh", "hanh phi", "trung", "thit bo", "thit heo", "thit ga", "thit ca", "thit tom",
-            "thit cua", "");
-    private final List<String> subMan = Arrays.asList("aaa", "bbb", "ccc");
-    private final List<String> mainChay = Arrays.asList("rau muong", "toi", "ca rot", " cu cai trang",
-            "khoai tay", "hanh", "hanh phi", "gao lut");
-    private final List<String> subChay = Arrays.asList("ddd", "eee", "fff");
-    private final List<String> mainDrink = Arrays.asList("pepsi", "coca cola", "Coffee", "Black Coffee");
-    private final List<String> subDrink = Arrays.asList("ggg", "hhh", "iii");
+    private final List<String> mainMan = Arrays.asList("rau muống", "cà rốt", "củ cải trắng",
+            "khoai tây", "trứng", "thịt bò", "thịt heo", "thịt gà", "thịt cá", "thịt tôm",
+            "thịt cua");
+    private final List<String> subMan = Arrays.asList("muối","đường","tiêu","tỏi","ớt","hành phi",
+            "hành lá","hành tây");
+
+    private final List<String> mainChay = Arrays.asList("rau muống","tàu hủ", "cà rót", " nấm",
+            "khoai tây","bông cải", "gạo lức");
+    private final List<String> subChay = Arrays.asList("muối","đường","tiêu","tỏi","ớt","hành phi",
+            "hành lá","hành tây");
+    private final List<String> mainDrink = Arrays.asList("rượu đỏ", "rượu trắng", "champaign",
+            "Black Coffee","milk" );
+    private final List<String> subDrink = Arrays.asList("dâu tây", "xoài", "chanh","mật ong","dưa hấu",
+    "bơ");
     private final List<String> selectedIngredients = new ArrayList<>();
 
     @Override
