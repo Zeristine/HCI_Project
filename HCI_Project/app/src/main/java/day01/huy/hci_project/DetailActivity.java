@@ -81,10 +81,10 @@ public class DetailActivity extends AppCompatActivity {
             like = intent.getExtras().getBoolean("check");
         }
         if (like) {
-            btnFavorite.setText("UNFAVORITE");
+            btnFavorite.setText("Bỏ Thích");
             btnFavorite.setBackground(ColorGradient.getRedGradientBlackGray(this));
         } else {
-            btnFavorite.setText("FAVORITE");
+            btnFavorite.setText("Thích");
             btnFavorite.setBackground(ColorGradient.getRedGradient(this));
         }
 
@@ -92,11 +92,11 @@ public class DetailActivity extends AppCompatActivity {
 
     public void clickToFavorite(View view) {
         String text = (String) btnFavorite.getText();
-        if (text.equalsIgnoreCase("favorite")) {
-            btnFavorite.setText("UNFAVORITE");
+        if (text.equalsIgnoreCase("thích")) {
+            btnFavorite.setText("Bỏ Thích");
             btnFavorite.setBackground(ColorGradient.getRedGradientBlackGray(this));
         } else {
-            btnFavorite.setText("FAVORITE");
+            btnFavorite.setText("Thích");
             btnFavorite.setBackground(ColorGradient.getRedGradient(this));
         }
     }

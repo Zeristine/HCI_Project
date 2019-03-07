@@ -11,22 +11,28 @@ public class CalendarCal {
     public static String getCardAge(@NotNull Date createdDate) {
         Calendar calendar = Calendar.getInstance();
         Date current = calendar.getTime();
-        int seconds, minutes, hours;
+        int seconds = 0, minutes = 0, hours = 0;
         String secValue = "", minValue = "", hourValue = "";
+        String value = "";
 
         seconds = current.getSeconds() - createdDate.getSeconds();
-        secValue = seconds + "g";
+        secValue = seconds + " giây";
         if (seconds >= 60) {
             minutes = seconds / 60;
-            secValue = (seconds % 60) + "g";
-            minValue = minutes + "ph";
+            secValue = (seconds % 60) + " giây";
+            minValue = minutes + " phút";
             if (minutes >= 60) {
                 hours = minutes / 60;
-                minValue = (minutes % 60) + "ph";
-                hourValue = hours + "h";
+                secValue = "";
+                minValue = (minutes % 60) + " phút";
+                hourValue = hours + " tiếng";
             }
         }
-        return hourValue + minValue + secValue;
+        if(hours > 2){
+            minValue = "";
+        }
+        value = hourValue + minValue + secValue;
+        return value;
     }
 
 }

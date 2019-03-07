@@ -66,7 +66,7 @@ public class SearchResultActivity extends AppCompatActivity {
         recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
         recipes.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
         recipes.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
-
+        recipes.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
     }
 
     public void makeListForSuggestion() {

@@ -163,7 +163,9 @@ public class PickIngridientActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String value = (String) parent.getItemAtPosition(position);
-                switch (addToSelectedList(value, main, sub)) {
+                String result = addToSelectedList(value, main, sub);
+                value = value.substring(0,1).toUpperCase() + value.substring(1);
+                switch (result) {
                     case "already":
                         value = value + " đã được chọn";
                         break;
