@@ -33,11 +33,11 @@ public class FavoriteActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
-        recipes.add(new Recipe(1, "Rau muong xao toi", "HuyLM", "adada", date, "raumuong", null));
-        recipes.add(new Recipe(2, "Nui xao bo", "HuyLM", "adada", date, "nuixaobo", null));
-        recipes.add(new Recipe(3, "Che tran chau", "HuyLM", "adada", date, "chatranchau", null));
-        recipes.add(new Recipe(4, "Choco Ball", "HuyLM", "adada", date, "", null));
-        recipes.add(new Recipe(5, "Canh rau muong", "HuyLM", "adada", date, "", null));
+        recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
+        recipes.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
+        recipes.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
+        recipes.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
+        recipes.add(new Recipe(5, "Canh rau muống", "HuyLM", "adada", date, "canhraumuong", null));
 
         txtTitle.setTextSize((displayMetrics.widthPixels*1)/40);
         double row = recipes.size() / 2;

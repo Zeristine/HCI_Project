@@ -165,17 +165,17 @@ public class PickIngridientActivity extends AppCompatActivity {
                 String value = (String) parent.getItemAtPosition(position);
                 switch (addToSelectedList(value, main, sub)) {
                     case "already":
-                        value = "The ingredient " + value + " has already been selected";
+                        value = value + " đã được chọn";
                         break;
                     case "main":
                         initListViews(main, sub);
                         viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() - 1);
-                        value = "The ingredient " + value + " has been selected";
+                        value = value + " được chọn";
                         break;
                     case "sub":
                         initListViews(main, sub);
                         viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() + 1);
-                        value = "The ingredient " + value + " has been selected";
+                        value = value + " được chọn";
                         break;
                     default:
                         value = "Unknown Approach";
@@ -196,7 +196,7 @@ public class PickIngridientActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Toast.makeText(PickIngridientActivity.this,
-                            "No ingredient selected! Please choose at least one.", Toast.LENGTH_SHORT).show();
+                            "Không có nguyên liệu nào được chọn. Xin hãy chọn ít nhất một.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

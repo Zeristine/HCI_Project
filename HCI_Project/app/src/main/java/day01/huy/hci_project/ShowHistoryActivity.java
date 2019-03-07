@@ -32,11 +32,11 @@ public class ShowHistoryActivity extends AppCompatActivity {
         Date date = calendar.getTime();
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        recipes.add(new Recipe(1, "Rau muong xao toi", "HuyLM", "adada", date, "", null));
-        recipes.add(new Recipe(2, "Nui xao bo", "HuyLM", "adada", date, "", null));
-        recipes.add(new Recipe(3, "Che chan trau", "HuyLM", "adada", date, "", null));
-        recipes.add(new Recipe(4, "Choco Ball", "HuyLM", "adada", date, "", null));
-        recipes.add(new Recipe(5, "Canh rau muong", "HuyLM", "adada", date, "", null));
+        recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
+        recipes.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
+        recipes.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
+        recipes.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
+        recipes.add(new Recipe(5, "Canh rau muống", "HuyLM", "adada", date, "canhraumuong", null));
 
         txtTitle.setTextSize((displayMetrics.widthPixels * 1) / 25);
         double row = recipes.size() / 2;

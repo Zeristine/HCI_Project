@@ -63,9 +63,9 @@ public class SearchResultActivity extends AppCompatActivity {
         recipes = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
-        recipes.add(new Recipe(1, "Rau muong xao toi", "HuyLM", "adada", date, "", null));
-        recipes.add(new Recipe(2, "Nui xao bo", "HuyLM", "adada", date, "", null));
-        recipes.add(new Recipe(3, "Che chan trau", "HuyLM", "adada", date, "", null));
+        recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
+        recipes.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
+        recipes.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
 
     }
 
@@ -75,11 +75,11 @@ public class SearchResultActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
 
-        recipesS.add(new Recipe(1, "Rau muong xao toi", "HuyLM", "adada", date, "", null));
-        recipesS.add(new Recipe(2, "Nui xao bo", "HuyLM", "adada", date, "", null));
-        recipesS.add(new Recipe(3, "Che chan trau", "HuyLM", "adada", date, "", null));
-        recipesS.add(new Recipe(4, "Choco Ball", "HuyLM", "adada", date, "", null));
-        recipesS.add(new Recipe(5, "Canh rau muong", "HuyLM", "adada", date, "", null));
+        recipesS.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
+        recipesS.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
+        recipesS.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
+        recipesS.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
+        recipesS.add(new Recipe(5, "Canh rau muống", "HuyLM", "adada", date, "canhraumuong", null));
 
     }
 }
