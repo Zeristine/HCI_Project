@@ -6,54 +6,63 @@
     android:orientation="vertical"
     tools:context=".DetailActivity">
 
-    <RelativeLayout
-        android:id="@+id/layoutRecipeImage"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="206dp"
-        android:background="@drawable/image_food_frychicken">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/icons_arrow_return"
-            android:background="@color/transparent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:onClick="clickToFinish"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnFavorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="91dp"
-            android:textColor="@color/white"
-            android:background="@color/greenAccent"
-            android:onClick="clickToFavorite"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="Favorite" />
+            <RelativeLayout
+                android:id="@+id/layoutRecipeImage"
+                android:layout_width="match_parent"
+                android:layout_height="206dp"
+                android:background="@drawable/image_food_frychicken">
 
-    </RelativeLayout>
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/transparent"
+                    android:onClick="clickToFinish"
+                    android:src="@drawable/icons_arrow_return" />
 
-    <TextView
-        android:id="@+id/txtRecipeTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:text="Fried Larvae"
-        android:background="@color/red800"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:gravity="center_vertical"
-        android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btnFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="91dp"
+                    android:background="@color/greenAccent"
+                    android:onClick="clickToFavorite"
+                    android:text="Favorite"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/txtRecipeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/red800"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="Fried Larvae"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pagerRecipe"
-        android:layout_width="match_parent"
-        android:layout_height="549dp"
-        android:layout_marginTop="8dp"
-        />
-
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pagerRecipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

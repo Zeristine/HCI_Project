@@ -48,7 +48,8 @@ public class IngredientFragment extends Fragment {
         txtTitle.setText(title);
         txtTitle.setTextSize((displayMetrics.widthPixels * 1) / 25);
         for (String ingredient : ingredients) {
-            ItemGenerator.createCheckBoxItem(ingredient, mainLayout, getActivity(), selected);
+            ItemGenerator.createIngredientRow(ingredient,"", mainLayout, getActivity(), selected);
+            mainLayout.addView(ItemGenerator.createLine(getContext()));
         }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
                 4f);

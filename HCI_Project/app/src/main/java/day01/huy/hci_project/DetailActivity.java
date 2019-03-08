@@ -18,9 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import day01.huy.hci_project.custom.SlicePagerAdapter;
-import day01.huy.hci_project.fragments.PageFragment1;
-import day01.huy.hci_project.fragments.PageFragment2;
-import day01.huy.hci_project.fragments.PageFragment3;
+import day01.huy.hci_project.fragments.RecipeContentFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
 
 public class DetailActivity extends AppCompatActivity {
@@ -47,9 +45,9 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new PageFragment1());
-        fragmentList.add(new PageFragment2());
-        fragmentList.add(new PageFragment3());
+        fragmentList.add(new RecipeContentFragment());
+        fragmentList.add(new RecipeContentFragment());
+        fragmentList.add(new RecipeContentFragment());
         pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(pagerAdapter);
 

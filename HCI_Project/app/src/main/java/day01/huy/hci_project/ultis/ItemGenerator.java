@@ -2,8 +2,8 @@ package day01.huy.hci_project.ultis;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import day01.huy.hci_project.DetailActivity;
@@ -52,12 +51,12 @@ public class ItemGenerator {
         TextView txtTitle = recipeView.findViewById(R.id.txtRecipeTitle);
         TextView txtTimer = recipeView.findViewById(R.id.txtTimer);
         TextView txtAuthor = recipeView.findViewById(R.id.txtAuthor);
+        int resId = getResId("image_food_" + recipe.getImageLink() + "_small",
+                "drawable", context.getPackageName(), context);
 
-        if (recipe.getImageLink().length() == 0) {
+        if (resId == 0) {
             imgRecipe.setImageResource(R.drawable.icon_no_image);
         } else {
-            int resId = context.getResources()
-                    .getIdentifier("image_food_"+recipe.getImageLink()+"_small", "drawable",context.getPackageName());
             imgRecipe.setImageResource(resId);
         }
         txtTitle.setText(recipe.getTitle());
@@ -96,10 +95,9 @@ public class ItemGenerator {
             }
         });
         linearLayout.addView(checkBox);
-//        linearLayout.addView(createLine(context));
     }
 
-    public static View createLine(Context context){
+    public static View createLine(Context context) {
         View line = new View(context);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 2);
@@ -108,12 +106,42 @@ public class ItemGenerator {
         return line;
     }
 
-    public static int getResId(String resourceName, Class<?> c){
-        try{
-            Field field = c.getDeclaredField(resourceName);
-            return field.getInt(field);
-        }catch (Exception e){
+    public static int getResId(String resourceName, String type, String projectPackage, Context context) {
+        try {
+            return context.getResources()
+                    .getIdentifier(resourceName, type, projectPackage);
+        } catch (Exception e) {
             return 0;
         }
+    }
+
+    public static void createIngredientRow(final String text, final String imageLink, LinearLayout linearLayout, final Context context, @NotNull final List<String> selectedList) {
+        final LinearLayout ingredientRow = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_pick_ingredient_row, null);
+        final ImageView img = ingredientRow.findViewById(R.id.imgIngredient);
+        final TextView txt = ingredientRow.findViewById(R.id.txtIngredient);
+        int resId = getResId("image_icon_ingredient" + imageLink, "drawable", context.getPackageName(), context);
+        if (resId == 0) {
+            img.setImageResource(R.drawable.icon_no_image);
+        }else{
+            img.setImageResource(resId);
+        }
+        txt.setText(text);
+        ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
+        ingredientRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable background = v.getBackground();
+                if (background instanceof ColorDrawable){
+                    if(((ColorDrawable) background).getColor() == context.getResources().getColor(R.color.white)){
+                        ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.red400));
+                        txt.setTextColor(context.getResources().getColor(R.color.white));
+                    }else{
+                        ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
+                        txt.setTextColor(context.getResources().getColor(R.color.black));
+                    }
+                }
+            }
+        });
+        linearLayout.addView(ingredientRow);
     }
 }

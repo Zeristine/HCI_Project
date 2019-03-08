@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:weightSum="10">
+    <!--<CheckBox-->
+    <!--android:id="@+id/chkListItem"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:textSize="20dp"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:text="Ingredient here"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:textStyle="bold"-->
+    <!--/>-->
+    <ImageView
+        android:id="@+id/imgIngredient"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="2"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_no_image" />
+
+    <TextView
+        android:id="@+id/txtIngredient"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="8"
+        android:gravity="center_vertical"
+        android:text="AAAAAA"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</LinearLayout>
