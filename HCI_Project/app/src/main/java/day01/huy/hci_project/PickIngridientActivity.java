@@ -38,14 +38,14 @@ public class PickIngridientActivity extends AppCompatActivity {
     private final List<String> subMan = Arrays.asList("muối","đường","tiêu","tỏi","ớt","hành phi",
             "hành lá","hành tây");
 
-    private final List<String> mainChay = Arrays.asList("rau muống","tàu hủ", "cà rót", " nấm",
-            "khoai tây","bông cải", "gạo lức");
+    private final List<String> mainChay = Arrays.asList("rau muống","tàu hủ", "cà rốt", " nấm",
+            "khoai tây","bông cải", "gạo lứt");
     private final List<String> subChay = Arrays.asList("muối","đường","tiêu","tỏi","ớt","hành phi",
             "hành lá","hành tây");
     private final List<String> mainDrink = Arrays.asList("rượu đỏ", "rượu trắng", "champaign",
-            "Black Coffee","milk" );
+            "cà phê đen","sữa" );
     private final List<String> subDrink = Arrays.asList("dâu tây", "xoài", "chanh","mật ong","dưa hấu",
-    "bơ");
+            "bơ");
     private final List<String> selectedIngredients = new ArrayList<>();
 
     @Override
