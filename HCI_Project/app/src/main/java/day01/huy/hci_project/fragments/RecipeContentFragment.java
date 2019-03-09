@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import day01.huy.hci_project.R;
 
-public class PageFragment3 extends Fragment {
+public class RecipeContentFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.page3, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.layout_recipe_detail_content, container, false);
         return rootView;
     }
 }

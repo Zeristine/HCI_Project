@@ -35,9 +35,9 @@ public class TextAdapter extends ArrayAdapter<String> {
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.layout_list_view_simple_row, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_pick_ingredient_row, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.checkBox = convertView.findViewById(R.id.chkListItem);
+            viewHolder.checkBox = convertView.findViewById(R.id.imgIngredient);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
