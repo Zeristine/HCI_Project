@@ -17,6 +17,7 @@ import java.util.List;
 
 import day01.huy.hci_project.R;
 import day01.huy.hci_project.ultis.ItemGenerator;
+import day01.huy.hci_project.ultis.UnitConverter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,10 +44,8 @@ public class IngredientFragment extends Fragment {
         ImageButton btnForward = page.findViewById(R.id.imgPickIngredientIconFor);
         ImageButton btnBack = page.findViewById(R.id.imgPickIngredientIconBack);
         LinearLayout mainLayout = page.findViewById(R.id.mainLayout);
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         txtTitle.setText(title);
-        txtTitle.setTextSize((displayMetrics.widthPixels * 1) / 25);
+        txtTitle.setTextSize(UnitConverter.getPixelValue(15, getContext()));
         for (String ingredient : ingredients) {
             ItemGenerator.createIngredientRow(ingredient,"", mainLayout, getActivity(), selected);
             mainLayout.addView(ItemGenerator.createLine(getContext()));

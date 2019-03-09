@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,128 +10,65 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/red500"
-        android:orientation="horizontal"
-        android:weightSum="6">
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red500"
+            android:orientation="horizontal"
+            android:weightSum="6">
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@color/transparent"
-            android:onClick="clickToFinish"
-            android:src="@drawable/icons_arrow_return" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:onClick="clickToFinish"
+                android:src="@drawable/icons_arrow_return" />
 
-        <AutoCompleteTextView
-            android:id="@+id/txtIngredient"
-            android:layout_width="0dp"
+            <AutoCompleteTextView
+                android:id="@+id/txtIngredient"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:hint="Nhập nguyên liêu ở đây"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/btnSearch"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@color/transparent" />-->
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpIngredient"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:hint="Nhập nguyên liêu ở đây"
-            android:inputType="text"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-
-        <ImageButton
-            android:id="@+id/btnSearch"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/transparent" />
-
+            />
     </LinearLayout>
 
-    <!--<View-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="2dp"-->
-    <!--android:layout_marginTop="10dp"-->
-    <!--android:background="@color/black" />-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="70dp"-->
-    <!--android:background="@color/red700"-->
-    <!--android:onClick="clickToShowMainList"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:weightSum="6">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_weight="5"-->
-    <!--android:gravity="center_vertical"-->
-    <!--android:paddingLeft="15dp"-->
-    <!--android:text="Nguyên Liệu Chính"-->
-    <!--android:textColor="@color/white"-->
-    <!--android:textSize="30dp" />-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/imgIcon1"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_marginTop="15dp"-->
-    <!--android:layout_marginBottom="15dp"-->
-    <!--android:layout_weight="1" />-->
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-    <!--android:id="@+id/lstMainIngredient"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:orientation="vertical">-->
-
-    <!--</LinearLayout>-->
-
-    <!--<View-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="2dp"-->
-    <!--android:background="@color/black" />-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="70dp"-->
-    <!--android:background="@color/red700"-->
-    <!--android:onClick="clickToShowSubList"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:weightSum="6">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_weight="5"-->
-    <!--android:gravity="center_vertical"-->
-    <!--android:paddingLeft="15dp"-->
-    <!--android:text="Nguyên Liệu Phụ"-->
-    <!--android:textColor="@color/white"-->
-    <!--android:textSize="30dp" />-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/imgIcon2"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_marginTop="15dp"-->
-    <!--android:layout_marginBottom="15dp"-->
-    <!--android:layout_weight="1" />-->
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-    <!--android:id="@+id/lstSubIngredient"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:orientation="vertical">-->
-
-    <!--</LinearLayout>-->
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/black" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vpIngredient"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ImageButton
+        android:id="@+id/btnSearch"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="50sp"
+        android:layout_marginRight="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         />
-
-</LinearLayout>
+</RelativeLayout>
