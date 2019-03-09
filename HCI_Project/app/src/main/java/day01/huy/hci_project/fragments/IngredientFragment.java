@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import day01.huy.hci_project.R;
+import day01.huy.hci_project.dto.Ingredient;
 import day01.huy.hci_project.ultis.ItemGenerator;
 import day01.huy.hci_project.ultis.UnitConverter;
 
@@ -25,7 +26,7 @@ import day01.huy.hci_project.ultis.UnitConverter;
 public class IngredientFragment extends Fragment {
 
     private String title;
-    private List<String> ingredients;
+    private List<Ingredient> ingredients;
     private List<String> selected;
     private boolean isFirst, isMiddle, isLast;
     private ViewPager parentViewPager;
@@ -46,8 +47,9 @@ public class IngredientFragment extends Fragment {
         LinearLayout mainLayout = page.findViewById(R.id.mainLayout);
         txtTitle.setText(title);
         txtTitle.setTextSize(UnitConverter.getPixelValue(15, getContext()));
-        for (String ingredient : ingredients) {
-            ItemGenerator.createIngredientRow(ingredient,"", mainLayout, getActivity(), selected);
+        for (Ingredient ingredient : ingredients) {
+            ItemGenerator.createIngredientRow(ingredient.getName(),ingredient.getImageLink(),
+                    mainLayout, getActivity(), selected);
             mainLayout.addView(ItemGenerator.createLine(getContext()));
         }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -84,7 +86,7 @@ public class IngredientFragment extends Fragment {
         return page;
     }
 
-    public void setResource(String title, List<String> ingredients,
+    public void setResource(String title, List<Ingredient> ingredients,
                             List<String> selected, boolean isFirst, boolean isMiddle, boolean isLast,
                             ViewPager parentViewPager) {
         this.title = title;

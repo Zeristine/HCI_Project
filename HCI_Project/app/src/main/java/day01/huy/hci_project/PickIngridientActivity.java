@@ -1,14 +1,11 @@
 package day01.huy.hci_project;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +23,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import day01.huy.hci_project.custom.SlicePagerAdapter;
+import day01.huy.hci_project.data.RecipeData;
+import day01.huy.hci_project.dto.Ingredient;
 import day01.huy.hci_project.fragments.IngredientFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
 import day01.huy.hci_project.ultis.UnitConverter;
@@ -37,30 +36,7 @@ public class PickIngridientActivity extends AppCompatActivity {
     private AutoCompleteTextView txtIngredient;
     private ImageButton btnSearch;
     private ViewPager viewPagerIngredient;
-    private final List<String> mainMan = Arrays.asList("rau muống", "cà rốt", "củ cải trắng",
-            "khoai tây", "trứng", "thịt bò", "thịt heo", "thịt gà", "thịt cá", "thịt tôm",
-            "thịt cua");
-    private final List<String> subMan = Arrays.asList("muối", "đường", "tiêu", "tỏi", "ớt", "hành phi",
-            "hành lá", "hành tây");
-
-
-    private final List<String> mainChay = Arrays.asList("rau muống","tàu hủ", "cà rốt", " nấm",
-            "khoai tây","bông cải", "gạo lứt");
-    private final List<String> subChay = Arrays.asList("muối","đường","tiêu","tỏi","ớt","hành phi",
-            "hành lá","hành tây");
-    private final List<String> mainDrink = Arrays.asList("rượu đỏ", "rượu trắng", "champaign",
-            "cà phê đen","sữa" );
-    private final List<String> subDrink = Arrays.asList("dâu tây", "xoài", "chanh","mật ong","dưa hấu",
-
-    private final List<String> mainChay = Arrays.asList("rau muống", "tàu hủ", "cà rót", " nấm",
-            "khoai tây", "bông cải", "gạo lức");
-    private final List<String> subChay = Arrays.asList("muối", "đường", "tiêu", "tỏi", "ớt", "hành phi",
-            "hành lá", "hành tây");
-    private final List<String> mainDrink = Arrays.asList("rượu đỏ", "rượu trắng", "champaign",
-            "Black Coffee", "milk");
-    private final List<String> subDrink = Arrays.asList("dâu tây", "xoài", "chanh", "mật ong", "dưa hấu",
-
-            "bơ");
+    private final RecipeData recipeData = new RecipeData();
     private final List<String> selectedIngredients = new ArrayList<>();
 
     @Override
@@ -84,13 +60,16 @@ public class PickIngridientActivity extends AppCompatActivity {
         btnSearch.setImageResource(R.drawable.icons_search);
         switch (choiceValue) {
             case 1:
-                initAdapterForView(mainMan, subMan);
+                initAdapterForView(recipeData.getNonVegetarians().get("main"),
+                        recipeData.getNonVegetarians().get("sub"));
                 break;
             case 2:
-                initAdapterForView(mainChay, subChay);
+                initAdapterForView(recipeData.getVegetarians().get("main"),
+                        recipeData.getVegetarians().get("sub"));
                 break;
             case 3:
-                initAdapterForView(mainDrink, subDrink);
+                initAdapterForView(recipeData.getDrinks().get("main"),
+                        recipeData.getDrinks().get("sub"));
                 break;
             default:
                 initAdapterForView(null, null);
@@ -121,7 +100,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 //        resetSearchView();
     }
 
-    private void initListViews(List<String> main, List<String> sub) {
+    private void initListViews(List<Ingredient> main, List<Ingredient> sub) {
 //        initListView(main, lstMainIngredient);
 //        initListView(sub, lstSubIngredient);
         List<Fragment> list = new ArrayList<>();
@@ -138,7 +117,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 //        }
 //    }
 
-    private Fragment initIngredientFragment(String title, List<String> ingredients, boolean isFirst, boolean isMiddle, boolean isLast) {
+    private Fragment initIngredientFragment(String title, List<Ingredient> ingredients, boolean isFirst, boolean isMiddle, boolean isLast) {
         IngredientFragment fragment = new IngredientFragment();
         fragment.setResource(title, ingredients, selectedIngredients, isFirst, isMiddle, isLast, viewPagerIngredient);
         return fragment;
@@ -158,7 +137,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 //        list.setLayoutParams(layoutParams);
 //    }
 
-    private void initAdapterForView(final List<String> main, final List<String> sub) {
+    private void initAdapterForView(final List<Ingredient> main, final List<Ingredient> sub) {
         if (main == null || sub == null) {
             Toast.makeText(this, "Unknown Approach", Toast.LENGTH_SHORT).show();
             finish();
@@ -166,8 +145,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 
         initListViews(main, sub);
 
-        List<String> ingredients = new ArrayList<>(main);
-        ingredients.addAll(sub);
+        List<String> ingredients = recipeData.getIngredientOneType(main, sub);
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(PickIngridientActivity.this, android.R.layout.simple_dropdown_item_1line,
                         ingredients);
@@ -239,15 +217,15 @@ public class PickIngridientActivity extends AppCompatActivity {
 //    }
 
     @NotNull
-    private String addToSelectedList(String value, @NotNull List<String> main, List<String> sub) {
+    private String addToSelectedList(String value, @NotNull List<Ingredient> main, List<Ingredient> sub) {
         if (selectedIngredients.contains(value)) {
             return "already";
         }
-        if (main.contains(value)) {
+        if (recipeData.hasContain(main, value)) {
             selectedIngredients.add(value);
             return "main";
         }
-        if (sub.contains(value)) {
+        if (recipeData.hasContain(sub, value)) {
             selectedIngredients.add(value);
             return "sub";
         }

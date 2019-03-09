@@ -119,7 +119,7 @@ public class ItemGenerator {
         final LinearLayout ingredientRow = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_pick_ingredient_row, null);
         final ImageView img = ingredientRow.findViewById(R.id.imgIngredient);
         final TextView txt = ingredientRow.findViewById(R.id.txtIngredient);
-        int resId = getResId("image_icon_ingredient" + imageLink, "drawable", context.getPackageName(), context);
+        int resId = getResId("icon_ingre_" + imageLink + "_small", "drawable", context.getPackageName(), context);
         if (resId == 0) {
             img.setImageResource(R.drawable.icon_no_image);
         }else{
