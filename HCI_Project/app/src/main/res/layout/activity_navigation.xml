@@ -37,6 +37,7 @@
             android:layout_height="0dp"
             android:layout_weight="4"
             android:text="CHỌN NGUYÊN LIỆU"
+            android:textSize="25sp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginBottom="15dp"
@@ -51,27 +52,17 @@
             android:layout_marginBottom="40dp"
             android:orientation="horizontal"
             android:weightSum="2">
-            <Button
-                android:id="@+id/btnHistory"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="LỊCH SỬ"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="10dp"
-                android:textStyle="bold"
-                android:background="@color/greenPrimary"
-                android:textColor="@color/white"
-                />
+
 
             <Button
                 android:id="@+id/btnFavorite"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="ƯA THÍCH"
+                android:textSize="25sp"
                 android:layout_marginRight="40dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="40dp"
                 android:background="@color/greenPrimary"
                 android:textColor="@color/white"
                 android:textStyle="bold"
