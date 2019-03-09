@@ -1,11 +1,14 @@
 package day01.huy.hci_project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +16,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +27,8 @@ import java.util.List;
 
 import day01.huy.hci_project.custom.SlicePagerAdapter;
 import day01.huy.hci_project.fragments.IngredientFragment;
-import day01.huy.hci_project.ultis.ItemGenerator;
+import day01.huy.hci_project.ultis.ColorGradient;
+import day01.huy.hci_project.ultis.UnitConverter;
 
 public class PickIngridientActivity extends AppCompatActivity {
 
@@ -35,17 +40,17 @@ public class PickIngridientActivity extends AppCompatActivity {
     private final List<String> mainMan = Arrays.asList("rau muống", "cà rốt", "củ cải trắng",
             "khoai tây", "trứng", "thịt bò", "thịt heo", "thịt gà", "thịt cá", "thịt tôm",
             "thịt cua");
-    private final List<String> subMan = Arrays.asList("muối","đường","tiêu","tỏi","ớt","hành phi",
-            "hành lá","hành tây");
+    private final List<String> subMan = Arrays.asList("muối", "đường", "tiêu", "tỏi", "ớt", "hành phi",
+            "hành lá", "hành tây");
 
-    private final List<String> mainChay = Arrays.asList("rau muống","tàu hủ", "cà rót", " nấm",
-            "khoai tây","bông cải", "gạo lức");
-    private final List<String> subChay = Arrays.asList("muối","đường","tiêu","tỏi","ớt","hành phi",
-            "hành lá","hành tây");
+    private final List<String> mainChay = Arrays.asList("rau muống", "tàu hủ", "cà rót", " nấm",
+            "khoai tây", "bông cải", "gạo lức");
+    private final List<String> subChay = Arrays.asList("muối", "đường", "tiêu", "tỏi", "ớt", "hành phi",
+            "hành lá", "hành tây");
     private final List<String> mainDrink = Arrays.asList("rượu đỏ", "rượu trắng", "champaign",
-            "Black Coffee","milk" );
-    private final List<String> subDrink = Arrays.asList("dâu tây", "xoài", "chanh","mật ong","dưa hấu",
-    "bơ");
+            "Black Coffee", "milk");
+    private final List<String> subDrink = Arrays.asList("dâu tây", "xoài", "chanh", "mật ong", "dưa hấu",
+            "bơ");
     private final List<String> selectedIngredients = new ArrayList<>();
 
     @Override
@@ -56,9 +61,9 @@ public class PickIngridientActivity extends AppCompatActivity {
         int choiceValue = getIntent().getIntExtra("choice", 0);
 //        lstMainIngredient = findViewById(R.id.lstMainIngredient);
 //        lstSubIngredient = findViewById(R.id.lstSubIngredient);
-        txtIngredient = findViewById(R.id.txtIngredient);
 //        imgIcon1 = findViewById(R.id.imgIcon1);
 //        imgIcon2 = findViewById(R.id.imgIcon2);
+        txtIngredient = findViewById(R.id.txtIngredient);
         btnSearch = findViewById(R.id.btnSearch);
         viewPagerIngredient = findViewById(R.id.vpIngredient);
 
@@ -164,7 +169,7 @@ public class PickIngridientActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String value = (String) parent.getItemAtPosition(position);
                 String result = addToSelectedList(value, main, sub);
-                value = value.substring(0,1).toUpperCase() + value.substring(1);
+                value = value.substring(0, 1).toUpperCase() + value.substring(1);
                 switch (result) {
                     case "already":
                         value = value + " đã được chọn";
@@ -189,6 +194,15 @@ public class PickIngridientActivity extends AppCompatActivity {
             }
         });
 
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                UnitConverter.getPixelValue(50, this),
+                UnitConverter.getPixelValue(50, this));
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        params.rightMargin = UnitConverter.getPixelValue(30, this);
+        params.bottomMargin = UnitConverter.getPixelValue(30, this);
+        btnSearch.setLayoutParams(params);
+        btnSearch.setBackgroundDrawable(ColorGradient.getRedGradientCircle(this));
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

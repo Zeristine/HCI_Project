@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         imgTitle.setImageResource(R.drawable.image_title);
 
-        btnBegin.setBackground(ColorGradient.getRedGradient(this));
+        btnBegin.setBackground(ColorGradient.getRedGradientOrange(this));
         btnBegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

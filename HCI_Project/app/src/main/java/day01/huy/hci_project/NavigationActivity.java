@@ -7,10 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 import day01.huy.hci_project.ultis.ColorGradient;
+import day01.huy.hci_project.ultis.UnitConverter;
 
 public class NavigationActivity extends AppCompatActivity {
 
-    private Button btnPickIngredient, btnHistory, btnFavorite;
+    private Button btnPickIngredient, btnFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,22 +19,15 @@ public class NavigationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_navigation);
         btnPickIngredient = findViewById(R.id.btnPickIngredient);
         btnFavorite = findViewById(R.id.btnFavorite);
-        btnHistory = findViewById(R.id.btnHistory);
 
-        btnPickIngredient.setBackground(ColorGradient.getRedGradientDeep(this));
-        btnHistory.setBackground(ColorGradient.getRedGradientDeeper(this));
-        btnFavorite.setBackground(ColorGradient.getRedGradientDeeper(this));
+        btnPickIngredient.setBackground(ColorGradient.getRedGradientOrange(this));
+        btnPickIngredient.setTextSize(UnitConverter.getPixelValue(15, this));
+        btnFavorite.setBackground(ColorGradient.getRedGradientOrange(this));
+        btnFavorite.setTextSize(UnitConverter.getPixelValue(15, this));
         btnPickIngredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NavigationActivity.this, DishesTypeActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NavigationActivity.this, ShowHistoryActivity.class);
                 startActivity(intent);
             }
         });

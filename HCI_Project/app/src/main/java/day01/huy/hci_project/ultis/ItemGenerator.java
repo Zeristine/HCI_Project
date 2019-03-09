@@ -126,7 +126,13 @@ public class ItemGenerator {
             img.setImageResource(resId);
         }
         txt.setText(text);
-        ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
+        if(selectedList.contains(text)){
+            ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.red400));
+            txt.setTextColor(context.getResources().getColor(R.color.white));
+        }else{
+            ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
+            txt.setTextColor(context.getResources().getColor(R.color.black));
+        }
         ingredientRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,9 +141,13 @@ public class ItemGenerator {
                     if(((ColorDrawable) background).getColor() == context.getResources().getColor(R.color.white)){
                         ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.red400));
                         txt.setTextColor(context.getResources().getColor(R.color.white));
+                        selectedList.add(text);
                     }else{
                         ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
                         txt.setTextColor(context.getResources().getColor(R.color.black));
+                        if (selectedList.contains(text)) {
+                            selectedList.remove(text);
+                        }
                     }
                 }
             }

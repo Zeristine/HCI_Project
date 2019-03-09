@@ -2,14 +2,11 @@ package day01.huy.hci_project;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.GridLayout;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import org.jetbrains.annotations.NotNull;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,11 +15,12 @@ import java.util.List;
 
 import day01.huy.hci_project.dto.Recipe;
 import day01.huy.hci_project.ultis.ItemGenerator;
+import day01.huy.hci_project.ultis.UnitConverter;
 
 public class SearchResultActivity extends AppCompatActivity {
 
     private GridLayout resultGridLayout, suggestGridLayout;
-    private LinearLayout mainLayout;
+    private ImageButton btnBack;
     private List<Recipe> recipes, recipesS;
 
     @Override
@@ -32,10 +30,20 @@ public class SearchResultActivity extends AppCompatActivity {
 //        List<String> ingredients = getIntent().getStringArrayListExtra("ingredients");
         resultGridLayout = findViewById(R.id.glResult);
         suggestGridLayout = findViewById(R.id.glSuggest);
-        mainLayout = findViewById(R.id.mainLayout);
+        btnBack = findViewById(R.id.btnBack);
         makeListForResult();
         makeListForSuggestion();
 
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                UnitConverter.getPixelValue(50, this),
+                UnitConverter.getPixelValue(50, this));
+        params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        params.rightMargin = UnitConverter.getPixelValue(50, this);
+        params.bottomMargin = UnitConverter.getPixelValue(50, this);
+        btnBack.setLayoutParams(params);
+        btnBack.setImageResource(R.drawable.icons_arrow_return);
+        btnBack.setBackgroundResource(R.color.transparent);
         double row = recipes.size() / 2;
         int rowCount = (int) row;
         if ((row * 10) % 2 != 0) {
@@ -81,5 +89,9 @@ public class SearchResultActivity extends AppCompatActivity {
         recipesS.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
         recipesS.add(new Recipe(5, "Canh rau muống", "HuyLM", "adada", date, "canhraumuong", null));
 
+    }
+
+    public void clickToFinish(View view) {
+        finish();
     }
 }

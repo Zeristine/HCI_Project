@@ -30,10 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="LOẠI MÓN ĂN"
+            android:text="Hôm nay bạn ăn gì?"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="40dp"
+            android:textSize="30sp"
             android:textColor="@color/white"
             android:layout_centerInParent="true"/>
 

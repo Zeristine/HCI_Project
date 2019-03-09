@@ -25,4 +25,13 @@
     <color name="redA200">#ff5252</color>
     <color name="redA400">#ff1744</color>
     <color name="redA700">#d50000</color>
+    <color name="brown200">#bcaaa4</color>
+    <color name="brown300">#a1887f</color>
+    <color name="brown400">#8d6e63</color>
+    <color name="brown500">#795548</color>
+    <color name="brown600">#6d4c41</color>
+    <color name="brown700">#5d4037</color>
+    <color name="brown800">#4e342e</color>
+    <color name="brown900">#3e2723</color>
+    <color name="orange">#ff9100</color>
 </resources>
