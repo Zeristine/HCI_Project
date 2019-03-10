@@ -102,20 +102,19 @@ public class RecipeData {
         return drinks;
     }
 
-    public List<String> getIngredientOneType(List<Ingredient> main, List<Ingredient> sub){
+    public List<String> getIngredientOneType(List<Ingredient> main, List<Ingredient> sub) {
         List<String> list = new ArrayList<>();
-        for (Ingredient ingredient: main) {
-            list.add(ingredient.getName());
-        }
-        for (Ingredient ingredient: sub) {
+        List<Ingredient> ingredients = new ArrayList<>(main);
+        ingredients.addAll(sub);
+        for (Ingredient ingredient : ingredients) {
             list.add(ingredient.getName());
         }
         return list;
     }
 
-    public boolean hasContain(List<Ingredient> list, String value){
-        for (Ingredient ingredient: list) {
-            if(ingredient.getName().equalsIgnoreCase(value)){
+    public boolean hasContain(List<Ingredient> list, String value) {
+        for (Ingredient ingredient : list) {
+            if (ingredient.getName().equalsIgnoreCase(value)) {
                 return true;
             }
         }

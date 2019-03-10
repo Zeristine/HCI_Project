@@ -2,6 +2,7 @@ package day01.huy.hci_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,6 @@ import android.widget.Toast;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import day01.huy.hci_project.custom.SlicePagerAdapter;
@@ -36,6 +36,7 @@ public class PickIngridientActivity extends AppCompatActivity {
     private AutoCompleteTextView txtIngredient;
     private ImageButton btnSearch;
     private ViewPager viewPagerIngredient;
+    private TabLayout tabDots;
     private final RecipeData recipeData = new RecipeData();
     private final List<String> selectedIngredients = new ArrayList<>();
 
@@ -52,6 +53,7 @@ public class PickIngridientActivity extends AppCompatActivity {
         txtIngredient = findViewById(R.id.txtIngredient);
         btnSearch = findViewById(R.id.btnSearch);
         viewPagerIngredient = findViewById(R.id.vpIngredient);
+        tabDots = findViewById(R.id.tabDots);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -181,6 +183,8 @@ public class PickIngridientActivity extends AppCompatActivity {
                 txtIngredient.setText("");
             }
         });
+
+        tabDots.setupWithViewPager(viewPagerIngredient);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 UnitConverter.getPixelValue(50, this),

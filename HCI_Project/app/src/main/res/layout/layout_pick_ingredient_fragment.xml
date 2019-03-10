@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="40dp"
         android:background="@color/red700"
         android:orientation="horizontal"
         android:weightSum="6">
@@ -30,7 +30,7 @@
             android:paddingLeft="15dp"
             android:text="Nguyên Liệu Phụ"
             android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <ImageButton
             android:id="@+id/imgPickIngredientIconFor"

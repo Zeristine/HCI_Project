@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,8 +14,8 @@
         android:layout_height="match_parent"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,11 +42,11 @@
                 android:textColorHint="@color/white" />
 
             <!--<ImageButton-->
-                <!--android:id="@+id/btnSearch"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="@color/transparent" />-->
+            <!--android:id="@+id/btnSearch"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/transparent" />-->
 
         </LinearLayout>
 
@@ -58,17 +59,24 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/vpIngredient"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <ImageButton
         android:id="@+id/btnSearch"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="50sp"
-        android:layout_marginRight="50sp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="50sp"
+        android:layout_marginBottom="50sp" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabDots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:tabBackground="@drawable/tab_indicator"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
 </RelativeLayout>

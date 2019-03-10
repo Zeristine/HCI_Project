@@ -122,14 +122,14 @@ public class ItemGenerator {
         int resId = getResId("icon_ingre_" + imageLink + "_small", "drawable", context.getPackageName(), context);
         if (resId == 0) {
             img.setImageResource(R.drawable.icon_no_image);
-        }else{
+        } else {
             img.setImageResource(resId);
         }
         txt.setText(text);
-        if(selectedList.contains(text)){
+        if (selectedList.contains(text)) {
             ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.red400));
             txt.setTextColor(context.getResources().getColor(R.color.white));
-        }else{
+        } else {
             ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
             txt.setTextColor(context.getResources().getColor(R.color.black));
         }
@@ -137,12 +137,12 @@ public class ItemGenerator {
             @Override
             public void onClick(View v) {
                 Drawable background = v.getBackground();
-                if (background instanceof ColorDrawable){
-                    if(((ColorDrawable) background).getColor() == context.getResources().getColor(R.color.white)){
+                if (background instanceof ColorDrawable) {
+                    if (((ColorDrawable) background).getColor() == context.getResources().getColor(R.color.white)) {
                         ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.red400));
                         txt.setTextColor(context.getResources().getColor(R.color.white));
                         selectedList.add(text);
-                    }else{
+                    } else {
                         ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
                         txt.setTextColor(context.getResources().getColor(R.color.black));
                         if (selectedList.contains(text)) {

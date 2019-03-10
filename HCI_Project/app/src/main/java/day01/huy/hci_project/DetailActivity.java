@@ -2,6 +2,7 @@ package day01.huy.hci_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -29,6 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     private RelativeLayout layoutRecipeImage;
     private TextView txtRecipeTitle;
     private DisplayMetrics displayMetrics;
+    private TabLayout tabDots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class DetailActivity extends AppCompatActivity {
         layoutRecipeImage = findViewById(R.id.layoutRecipeImage);
         txtRecipeTitle = findViewById(R.id.txtRecipeTitle);
         btnFavorite = findViewById(R.id.btnFavorite);
+        tabDots = findViewById(R.id.tabDots);
         displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
@@ -52,27 +55,28 @@ public class DetailActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
 
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                (displayMetrics.heightPixels*3)/10);
+                (displayMetrics.heightPixels * 3) / 10);
         layoutRecipeImage.setLayoutParams(layoutParams);
         layoutRecipeImage.setBackgroundResource(getResources()
-                .getIdentifier("image_food_"+ intent.getStringExtra("image"), "drawable", getPackageName()));
+                .getIdentifier("image_food_" + intent.getStringExtra("image"), "drawable", getPackageName()));
         RelativeLayout.LayoutParams btnLayout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         btnLayout.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         btnLayout.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         btnLayout.bottomMargin = 10;
-        btnLayout.rightMargin = (displayMetrics.widthPixels*1)/30;
+        btnLayout.rightMargin = (displayMetrics.widthPixels * 1) / 30;
         btnFavorite.setLayoutParams(btnLayout);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                (displayMetrics.heightPixels*1)/10);
+                (displayMetrics.heightPixels * 1) / 10);
         txtRecipeTitle.setLayoutParams(layoutParams);
         txtRecipeTitle.setText(intent.getStringExtra("title"));
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                (displayMetrics.heightPixels*6)/10);
+                (displayMetrics.heightPixels * 6) / 10);
         layoutParams.leftMargin = 10;
         layoutParams.rightMargin = 10;
         viewPager.setLayoutParams(layoutParams);
 
+        tabDots.setupWithViewPager(viewPager);
 
         boolean like = false;
         if (intent.hasExtra("check")) {
