@@ -27,9 +27,11 @@ public class IngredientFragment extends Fragment {
 
     private String title;
     private List<Ingredient> ingredients;
+    private List<Ingredient> mainIngredients;
     private List<String> selected;
     private boolean isFirst, isMiddle, isLast;
     private ViewPager parentViewPager;
+    private ImageButton btnSearch;
 
     public IngredientFragment() {
         // Required empty public constructor
@@ -49,7 +51,7 @@ public class IngredientFragment extends Fragment {
         txtTitle.setTextSize(UnitConverter.getPixelValue(15, getContext()));
         for (Ingredient ingredient : ingredients) {
             ItemGenerator.createIngredientRow(ingredient.getName(),ingredient.getImageLink(),
-                    mainLayout, getActivity(), selected);
+                    mainLayout, getActivity(), selected, btnSearch, mainIngredients);
             mainLayout.addView(ItemGenerator.createLine(getContext()));
         }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -88,7 +90,9 @@ public class IngredientFragment extends Fragment {
 
     public void setResource(String title, List<Ingredient> ingredients,
                             List<String> selected, boolean isFirst, boolean isMiddle, boolean isLast,
-                            ViewPager parentViewPager) {
+                            ViewPager parentViewPager, ImageButton btnSearch,
+                            List<Ingredient> mainIngredients
+                            ) {
         this.title = title;
         this.ingredients = ingredients;
         this.selected = selected;
@@ -96,6 +100,8 @@ public class IngredientFragment extends Fragment {
         this.isMiddle = isMiddle;
         this.isLast = isLast;
         this.parentViewPager = parentViewPager;
+        this.btnSearch = btnSearch;
+        this.mainIngredients = mainIngredients;
     }
 
     private void clickToMove(int forwardValue, int backwardValue) {

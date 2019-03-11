@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,9 +21,13 @@ import java.util.List;
 
 import day01.huy.hci_project.DetailActivity;
 import day01.huy.hci_project.R;
+import day01.huy.hci_project.data.IngredientData;
+import day01.huy.hci_project.dto.Ingredient;
 import day01.huy.hci_project.dto.Recipe;
 
 public class ItemGenerator {
+
+    private static final IngredientData data = new IngredientData();
 
     public static void createCardView(@NotNull final Recipe recipe, GridLayout gridLayout, final Context context, int color) {
         CardView recipeCard = new CardView(context);
@@ -115,7 +120,10 @@ public class ItemGenerator {
         }
     }
 
-    public static void createIngredientRow(final String text, final String imageLink, LinearLayout linearLayout, final Context context, @NotNull final List<String> selectedList) {
+    public static void createIngredientRow(final String text, final String imageLink,
+                                           LinearLayout linearLayout, final Context context,
+                                           @NotNull final List<String> selectedList,
+                                           final ImageButton button, final List<Ingredient> main) {
         final LinearLayout ingredientRow = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_pick_ingredient_row, null);
         final ImageView img = ingredientRow.findViewById(R.id.imgIngredient);
         final TextView txt = ingredientRow.findViewById(R.id.txtIngredient);
@@ -127,8 +135,12 @@ public class ItemGenerator {
         }
         txt.setText(text);
         if (selectedList.contains(text)) {
-            ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.red400));
+            ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.brown400));
             txt.setTextColor(context.getResources().getColor(R.color.white));
+            if (data.hasContain(main, text)) {
+                button.setEnabled(true);
+                button.setBackground(ColorGradient.getRedGradientCircle(context));
+            }
         } else {
             ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
             txt.setTextColor(context.getResources().getColor(R.color.black));
@@ -142,11 +154,19 @@ public class ItemGenerator {
                         ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.red400));
                         txt.setTextColor(context.getResources().getColor(R.color.white));
                         selectedList.add(text);
+                        if (data.hasContain(main, text)) {
+                            button.setEnabled(true);
+                            button.setBackground(ColorGradient.getRedGradientCircle(context));
+                        }
                     } else {
                         ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
                         txt.setTextColor(context.getResources().getColor(R.color.black));
                         if (selectedList.contains(text)) {
                             selectedList.remove(text);
+                            if (!data.hasContainOneMainIngredient(main, selectedList)) {
+                                button.setEnabled(false);
+                                button.setBackground(ColorGradient.getGreyGradientCircle(context));
+                            }
                         }
                     }
                 }

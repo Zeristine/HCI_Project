@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import day01.huy.hci_project.custom.SlicePagerAdapter;
-import day01.huy.hci_project.data.RecipeData;
+import day01.huy.hci_project.data.IngredientData;
 import day01.huy.hci_project.dto.Ingredient;
 import day01.huy.hci_project.fragments.IngredientFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
@@ -37,7 +37,7 @@ public class PickIngridientActivity extends AppCompatActivity {
     private ImageButton btnSearch;
     private ViewPager viewPagerIngredient;
     private TabLayout tabDots;
-    private final RecipeData recipeData = new RecipeData();
+    private final IngredientData recipeData = new IngredientData();
     private final List<String> selectedIngredients = new ArrayList<>();
 
     @Override
@@ -59,7 +59,7 @@ public class PickIngridientActivity extends AppCompatActivity {
 
 //        imgIcon1.setImageResource(R.drawable.icons_arrow_expand);
 //        imgIcon2.setImageResource(R.drawable.icons_arrow_expand);
-        btnSearch.setImageResource(R.drawable.icons_search);
+        btnSearch.setImageResource(R.drawable.icons_right_arrow);
         switch (choiceValue) {
             case 1:
                 initAdapterForView(recipeData.getNonVegetarians().get("main"),
@@ -106,10 +106,11 @@ public class PickIngridientActivity extends AppCompatActivity {
 //        initListView(main, lstMainIngredient);
 //        initListView(sub, lstSubIngredient);
         List<Fragment> list = new ArrayList<>();
-        list.add(initIngredientFragment("Nguyên liệu chính", main, true, false, false));
-        list.add(initIngredientFragment("Nguyên liêu phụ", sub, false, false, true));
+        list.add(initIngredientFragment("Nguyên liệu chính", main, true, false, false, main));
+        list.add(initIngredientFragment("Nguyên liêu phụ", sub, false, false, true, main));
         SlicePagerAdapter pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), list);
         viewPagerIngredient.setAdapter(pagerAdapter);
+
     }
 
 //    private void initListView(@NotNull List<String> ingredients, @NotNull LinearLayout list) {
@@ -119,9 +120,10 @@ public class PickIngridientActivity extends AppCompatActivity {
 //        }
 //    }
 
-    private Fragment initIngredientFragment(String title, List<Ingredient> ingredients, boolean isFirst, boolean isMiddle, boolean isLast) {
+    private Fragment initIngredientFragment(String title, List<Ingredient> ingredients, boolean isFirst,
+                                            boolean isMiddle, boolean isLast, List<Ingredient> main) {
         IngredientFragment fragment = new IngredientFragment();
-        fragment.setResource(title, ingredients, selectedIngredients, isFirst, isMiddle, isLast, viewPagerIngredient);
+        fragment.setResource(title, ingredients, selectedIngredients, isFirst, isMiddle, isLast, viewPagerIngredient, btnSearch, main);
         return fragment;
     }
 
@@ -194,7 +196,8 @@ public class PickIngridientActivity extends AppCompatActivity {
         params.rightMargin = UnitConverter.getPixelValue(30, this);
         params.bottomMargin = UnitConverter.getPixelValue(30, this);
         btnSearch.setLayoutParams(params);
-        btnSearch.setBackgroundDrawable(ColorGradient.getRedGradientCircle(this));
+        btnSearch.setBackgroundDrawable(ColorGradient.getGreyGradientCircle(this));
+        btnSearch.setEnabled(false);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

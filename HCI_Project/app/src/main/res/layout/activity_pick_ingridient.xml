@@ -56,10 +56,14 @@
             android:layout_height="2dp"
             android:background="@color/black" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vpIngredient"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vpIngredient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
     </LinearLayout>
 
     <ImageButton
@@ -71,12 +75,4 @@
         android:layout_marginRight="50sp"
         android:layout_marginBottom="50sp" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabDots"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:tabBackground="@drawable/tab_indicator"
-        app:tabGravity="center"
-        app:tabIndicatorHeight="0dp" />
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package day01.huy.hci_project.data;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.Map;
 
 import day01.huy.hci_project.dto.Ingredient;
 
-public class RecipeData {
+public class IngredientData {
     private final Map<String, List<Ingredient>> vegetarians = new HashMap<>();
     private final Map<String, List<Ingredient>> nonVegetarians = new HashMap<>();
     private final Map<String, List<Ingredient>> drinks = new HashMap<>();
@@ -18,7 +20,7 @@ public class RecipeData {
     private final List<Ingredient> mainDrink = new ArrayList<>();
     private final List<Ingredient> subDrink = new ArrayList<>();
 
-    public RecipeData() {
+    public IngredientData() {
         initMapChay();
         initMapDrink();
         initMapMan();
@@ -119,5 +121,14 @@ public class RecipeData {
             }
         }
         return false;
+    }
+
+    public boolean hasContainOneMainIngredient(List<Ingredient> main, List<String> selected){
+        for (String value: selected) {
+            if(hasContain(main, value)){
+                return true;
+            }
+        }
+        return  false;
     }
 }

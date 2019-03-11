@@ -83,4 +83,16 @@ public class ColorGradient {
         gradientDrawable.setCornerRadius(90);
         return gradientDrawable;
     }
+
+    public static GradientDrawable getGreyGradientCircle(@NotNull Context context){
+        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
+                new int[]{
+                        context.getResources().getColor(R.color.grayLight),
+                        context.getResources().getColor(R.color.grayDark),
+                        context.getResources().getColor(R.color.grayDark),
+                        context.getResources().getColor(R.color.grayLight)
+                });
+        gradientDrawable.setCornerRadius(90);
+        return gradientDrawable;
+    }
 }
