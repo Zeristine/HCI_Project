@@ -5,10 +5,10 @@
 
     <string name="selected_tag">Selected Tag</string>
     <string name="search_result">Search Result</string>
-    <string name="Ingredients"> 4 cups flour\n2 garlic salt\n1 paprika\n3 pepper\n2 poultry seasoning
+    <string name="Ingredients">4 chén bột \n2 muỗng tỏi \n1 muỗng ớt bột \n3 muỗng tiêu \n2 giọt phẩm màu
     </string>
-    <string name="direction">In a large shallow dish, combine 2-2/3 cups flour, 2 tablespoons garlic salt, 1 tablespoon paprika, 2-1/2 teaspoons pepper and 2-1/2 teaspoons poultry seasoning.\n\nIn another shallow dish, beat eggs and 1-1/2 cups water; add 1 teaspoon salt and the remaining 1-1/3 cup flour and 1/2 teaspoon pepper. \n\nDip chicken in egg mixture, then place in the flour mixture, a few pieces at a time. Turn to coat.\n\nIn a deep-fat fryer, heat oil to 375°. Working in batches, fry chicken, several pieces at a time, until golden brown and a thermometer inserted into chicken reads 165° about 7-8 minutes on each side. Drain on paper towels. </string>
-    <string name="nutrition">5 ounces chicken: 543 calories\nflour: 33g fat (7g saturated fat), 137mg cholesterol.</string>
+    <string name="direction">Trong một đĩa nông lớn, kết hợp 2-2 / 3 chén bột, 2 muỗng muối tỏi, 1 muỗng canh ớt bột, 2/2 muỗng cà phê hạt tiêu và 2-1 / 2 muỗng cà phê gia vị gia vị. \N \nTrong một món ăn nông khác, đánh trứng và 1-1 / 2 cốc nước; thêm 1 muỗng cà phê muối và 1-1 / 3 chén bột còn lại và 1/2 muỗng cà phê tiêu. \n \nNhún gà trong hỗn hợp trứng, sau đó đặt vào hỗn hợp bột, một vài miếng mỗi lần. Chuyển sang áo khoác. \N \nTrong nồi chiên chất béo sâu, làm nóng dầu đến 375 °. Làm việc theo từng đợt, chiên gà, nhiều miếng cùng một lúc, cho đến khi vàng nâu và nhiệt kế đưa vào gà đọc 165 ° khoảng 7-8 phút mỗi bên. Để ráo nước trên khăn giấy. </string>
+    <string name="nutrition">Thịt gà 5 ounce: 543 calo \n bột: 33g chất béo (7g chất béo bão hòa), 137mg cholesterol.ol.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
