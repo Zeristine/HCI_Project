@@ -8,6 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import java.util.List;
 import day01.huy.hci_project.custom.SlicePagerAdapter;
 import day01.huy.hci_project.fragments.RecipeContentFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
+import day01.huy.hci_project.ultis.UnitConverter;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -71,7 +73,7 @@ public class DetailActivity extends AppCompatActivity {
         txtRecipeTitle.setLayoutParams(layoutParams);
         txtRecipeTitle.setText(intent.getStringExtra("title"));
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                (displayMetrics.heightPixels * 6) / 10);
+                UnitConverter.getPixelValue(700, this));
         layoutParams.leftMargin = 10;
         layoutParams.rightMargin = 10;
         viewPager.setLayoutParams(layoutParams);

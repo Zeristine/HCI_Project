@@ -1,20 +1,23 @@
 package day01.huy.hci_project;
 
+import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
@@ -22,21 +25,20 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import day01.huy.hci_project.custom.SlicePagerAdapter;
 import day01.huy.hci_project.data.IngredientData;
 import day01.huy.hci_project.dto.Ingredient;
 import day01.huy.hci_project.fragments.IngredientFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
+import day01.huy.hci_project.ultis.ItemGenerator;
 import day01.huy.hci_project.ultis.UnitConverter;
 
-public class PickIngridientActivity extends AppCompatActivity {
+public class PickIngridientActivity extends TabActivity {
 
-    private LinearLayout lstMainIngredient, lstSubIngredient;
-    private ImageView imgIcon1, imgIcon2;
     private AutoCompleteTextView txtIngredient;
     private ImageButton btnSearch;
     private ViewPager viewPagerIngredient;
-    private TabLayout tabDots;
+    private LinearLayout mainLayout, subLayout;
+    private TabHost tabHost;
     private final IngredientData recipeData = new IngredientData();
     private final List<String> selectedIngredients = new ArrayList<>();
 
@@ -46,19 +48,15 @@ public class PickIngridientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pick_ingridient);
 
         int choiceValue = getIntent().getIntExtra("choice", 0);
-//        lstMainIngredient = findViewById(R.id.lstMainIngredient);
-//        lstSubIngredient = findViewById(R.id.lstSubIngredient);
-//        imgIcon1 = findViewById(R.id.imgIcon1);
-//        imgIcon2 = findViewById(R.id.imgIcon2);
         txtIngredient = findViewById(R.id.txtIngredient);
         btnSearch = findViewById(R.id.btnSearch);
-        viewPagerIngredient = findViewById(R.id.vpIngredient);
-        tabDots = findViewById(R.id.tabDots);
+        mainLayout = findViewById(R.id.mainLayout);
+        subLayout = findViewById(R.id.subLayout);
+        tabHost = getTabHost();
+//        viewPagerIngredient = findViewById(R.id.vpIngredient);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-//        imgIcon1.setImageResource(R.drawable.icons_arrow_expand);
-//        imgIcon2.setImageResource(R.drawable.icons_arrow_expand);
         btnSearch.setImageResource(R.drawable.icons_right_arrow);
         switch (choiceValue) {
             case 1:
@@ -79,46 +77,31 @@ public class PickIngridientActivity extends AppCompatActivity {
         }
     }
 
-
-//    public void clickToShowMainList(View view) {
-//        ViewGroup.LayoutParams layoutParams = lstSubIngredient.getLayoutParams();
-//        if (layoutParams.height != 0) {
-//            resizeListView(imgIcon2, lstSubIngredient);
-//        }
-//        resizeListView(imgIcon1, lstMainIngredient);
-//    }
-
-//    public void clickToShowSubList(View view) {
-//        ViewGroup.LayoutParams layoutParams = lstMainIngredient.getLayoutParams();
-//        if (layoutParams.height != 0) {
-//            resizeListView(imgIcon1, lstMainIngredient);
-//        }
-//        resizeListView(imgIcon2, lstSubIngredient);
-//    }
-
     @Override
     protected void onResume() {
         super.onResume();
-//        resetSearchView();
     }
 
     private void initListViews(List<Ingredient> main, List<Ingredient> sub) {
-//        initListView(main, lstMainIngredient);
-//        initListView(sub, lstSubIngredient);
         List<Fragment> list = new ArrayList<>();
-        list.add(initIngredientFragment("Nguyên liệu chính", main, true, false, false, main));
-        list.add(initIngredientFragment("Nguyên liêu phụ", sub, false, false, true, main));
-        SlicePagerAdapter pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), list);
-        viewPagerIngredient.setAdapter(pagerAdapter);
+        mainLayout.addView(createView(main, main, true, false, false));
+        subLayout.addView(createView(sub, main, false, false, true));
+//        SlicePagerAdapter pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), list);
+//        viewPagerIngredient.setAdapter(pagerAdapter);
+        TabHost.TabSpec spec = tabHost.newTabSpec("Chính");
+        spec.setIndicator("Nguyên liệu chính");
+        spec.setContent(R.id.mainLayout);
+        tabHost.addTab(spec);
+        spec = tabHost.newTabSpec("Phụ");
+        spec.setIndicator("Nguyên liệu\nphụ");
+        spec.setContent(R.id.subLayout);
+        tabHost.addTab(spec);
+        for (int i = 0; i < tabHost.getTabWidget().getTabCount(); i++) {
 
+            TextView tv = tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            tv.setGravity(Gravity.CENTER);
+        }
     }
-
-//    private void initListView(@NotNull List<String> ingredients, @NotNull LinearLayout list) {
-//        list.removeAllViews();
-//        for (String ingredient : ingredients) {
-//            ItemGenerator.createCheckBoxItem(ingredient, list, this, selectedIngredients);
-//        }
-//    }
 
     private Fragment initIngredientFragment(String title, List<Ingredient> ingredients, boolean isFirst,
                                             boolean isMiddle, boolean isLast, List<Ingredient> main) {
@@ -127,19 +110,54 @@ public class PickIngridientActivity extends AppCompatActivity {
         return fragment;
     }
 
-//    private void resetSearchView() {
-//        txtIngredient.setText("");
-//        imgIcon1.setImageResource(R.drawable.icons_arrow_expand);
-//        imgIcon2.setImageResource(R.drawable.icons_arrow_expand);
-//        setListHeight(lstMainIngredient, 0);
-//        setListHeight(lstSubIngredient, 0);
-//    }
+    private View createView(@NotNull List<Ingredient> ingredients, List<Ingredient> main,
+                            boolean isFirst, boolean isMiddle, boolean isLast) {
+        LinearLayout page = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.layout_pick_ingredient_fragment, null);
 
-//    private void setListHeight(@NotNull LinearLayout list, int value) {
-//        ViewGroup.LayoutParams layoutParams = list.getLayoutParams();
-//        layoutParams.height = value;
-//        list.setLayoutParams(layoutParams);
-//    }
+//        TextView txtTitle = page.findViewById(R.id.txtTitle);
+//        ImageButton btnForward = page.findViewById(R.id.imgPickIngredientIconFor);
+//        ImageButton btnBack = page.findViewById(R.id.imgPickIngredientIconBack);
+        LinearLayout mainLayout = page.findViewById(R.id.mainLayout);
+//        txtTitle.setText(title);
+//        txtTitle.setTextSize(UnitConverter.getPixelValue(15, this));
+        for (Ingredient ingredient : ingredients) {
+            ItemGenerator.createIngredientRow(ingredient.getName(), ingredient.getImageLink(),
+                    mainLayout, PickIngridientActivity.this, selectedIngredients, btnSearch, main);
+            mainLayout.addView(ItemGenerator.createLine(this));
+        }
+//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
+//                4f);
+//        layoutParams.gravity = Gravity.CENTER;
+
+//        if (isFirst == true && isMiddle == false && isLast == false) {
+//            btnBack.setVisibility(View.GONE);
+//            btnForward.setVisibility(View.VISIBLE);
+//            layoutParams.weight = 5f;
+//        }
+//        if (isFirst == false && isMiddle == true && isLast == false) {
+//            btnBack.setVisibility(View.VISIBLE);
+//            btnForward.setVisibility(View.VISIBLE);
+//        }
+//        if (isFirst == false && isMiddle == false && isLast == true) {
+//            btnBack.setVisibility(View.VISIBLE);
+//            btnForward.setVisibility(View.GONE);
+//            layoutParams.weight = 5f;
+//        }
+//        txtTitle.setLayoutParams(layoutParams);
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                clickToMove(0, 1);
+//            }
+//        });
+//        btnForward.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                clickToMove(1, 0);
+//            }
+//        });
+        return page;
+    }
 
     private void initAdapterForView(final List<Ingredient> main, final List<Ingredient> sub) {
         if (main == null || sub == null) {
@@ -186,8 +204,6 @@ public class PickIngridientActivity extends AppCompatActivity {
             }
         });
 
-        tabDots.setupWithViewPager(viewPagerIngredient);
-
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 UnitConverter.getPixelValue(50, this),
                 UnitConverter.getPixelValue(50, this));
@@ -212,16 +228,6 @@ public class PickIngridientActivity extends AppCompatActivity {
             }
         });
     }
-
-//    private void resizeListView(@NotNull ImageView icon, LinearLayout list) {
-//        if (icon.getDrawable().getConstantState().equals(getDrawable(R.drawable.icons_arrow_expand).getConstantState())) {
-//            setListHeight(list, LinearLayout.LayoutParams.WRAP_CONTENT);
-//            icon.setImageResource(R.drawable.icons_arrow_collapse);
-//        } else {
-//            setListHeight(list, 0);
-//            icon.setImageResource(R.drawable.icons_arrow_expand);
-//        }
-//    }
 
     @NotNull
     private String addToSelectedList(String value, @NotNull List<Ingredient> main, List<Ingredient> sub) {

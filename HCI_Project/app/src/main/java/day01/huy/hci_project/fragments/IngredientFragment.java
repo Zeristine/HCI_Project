@@ -43,48 +43,48 @@ public class IngredientFragment extends Fragment {
                              Bundle savedInstanceState) {
         LinearLayout page = (LinearLayout) inflater.inflate(R.layout.layout_pick_ingredient_fragment, null);
 
-        TextView txtTitle = page.findViewById(R.id.txtTitle);
-        ImageButton btnForward = page.findViewById(R.id.imgPickIngredientIconFor);
-        ImageButton btnBack = page.findViewById(R.id.imgPickIngredientIconBack);
-        LinearLayout mainLayout = page.findViewById(R.id.mainLayout);
-        txtTitle.setText(title);
-        txtTitle.setTextSize(UnitConverter.getPixelValue(15, getContext()));
-        for (Ingredient ingredient : ingredients) {
-            ItemGenerator.createIngredientRow(ingredient.getName(),ingredient.getImageLink(),
-                    mainLayout, getActivity(), selected, btnSearch, mainIngredients);
-            mainLayout.addView(ItemGenerator.createLine(getContext()));
-        }
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
-                4f);
-        layoutParams.gravity = Gravity.CENTER;
-
-        if (isFirst == true && isMiddle == false && isLast == false) {
-            btnBack.setVisibility(View.GONE);
-            btnForward.setVisibility(View.VISIBLE);
-            layoutParams.weight = 5f;
-        }
-        if (isFirst == false && isMiddle == true && isLast == false) {
-            btnBack.setVisibility(View.VISIBLE);
-            btnForward.setVisibility(View.VISIBLE);
-        }
-        if (isFirst == false && isMiddle == false && isLast == true) {
-            btnBack.setVisibility(View.VISIBLE);
-            btnForward.setVisibility(View.GONE);
-            layoutParams.weight = 5f;
-        }
-        txtTitle.setLayoutParams(layoutParams);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickToMove(0, 1);
-            }
-        });
-        btnForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickToMove(1, 0);
-            }
-        });
+//        TextView txtTitle = page.findViewById(R.id.txtTitle);
+//        ImageButton btnForward = page.findViewById(R.id.imgPickIngredientIconFor);
+//        ImageButton btnBack = page.findViewById(R.id.imgPickIngredientIconBack);
+//        LinearLayout mainLayout = page.findViewById(R.id.mainLayout);
+//        txtTitle.setText(title);
+//        txtTitle.setTextSize(UnitConverter.getPixelValue(15, getContext()));
+//        for (Ingredient ingredient : ingredients) {
+//            ItemGenerator.createIngredientRow(ingredient.getName(),ingredient.getImageLink(),
+//                    mainLayout, getActivity(), selected, btnSearch, mainIngredients);
+//            mainLayout.addView(ItemGenerator.createLine(getContext()));
+//        }
+//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
+//                4f);
+//        layoutParams.gravity = Gravity.CENTER;
+//
+//        if (isFirst == true && isMiddle == false && isLast == false) {
+//            btnBack.setVisibility(View.GONE);
+//            btnForward.setVisibility(View.VISIBLE);
+//            layoutParams.weight = 5f;
+//        }
+//        if (isFirst == false && isMiddle == true && isLast == false) {
+//            btnBack.setVisibility(View.VISIBLE);
+//            btnForward.setVisibility(View.VISIBLE);
+//        }
+//        if (isFirst == false && isMiddle == false && isLast == true) {
+//            btnBack.setVisibility(View.VISIBLE);
+//            btnForward.setVisibility(View.GONE);
+//            layoutParams.weight = 5f;
+//        }
+//        txtTitle.setLayoutParams(layoutParams);
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                clickToMove(0, 1);
+//            }
+//        });
+//        btnForward.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                clickToMove(1, 0);
+//            }
+//        });
         return page;
     }
 
