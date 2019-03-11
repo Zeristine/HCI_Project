@@ -13,7 +13,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <RelativeLayout
                 android:id="@+id/layoutRecipeImage"
@@ -48,7 +49,7 @@
                 android:id="@+id/txtRecipeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/red800"
+                android:background="@color/brown400"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
                 android:text="Fried Larvae"

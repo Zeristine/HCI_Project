@@ -25,6 +25,8 @@
     <color name="redA200">#ff5252</color>
     <color name="redA400">#ff1744</color>
     <color name="redA700">#d50000</color>
+    <color name="brown50">#efebe9</color>
+    <color name="brown100">#d7ccc8</color>
     <color name="brown200">#bcaaa4</color>
     <color name="brown300">#a1887f</color>
     <color name="brown400">#8d6e63</color>
