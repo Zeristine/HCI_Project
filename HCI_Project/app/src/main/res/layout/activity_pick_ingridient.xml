@@ -18,9 +18,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/red500"
+            android:background="@color/brown400"
             android:orientation="horizontal"
-            android:weightSum="6">
+            android:weightSum="6"
+            >
 
             <ImageButton
                 android:layout_width="0dp"
@@ -89,6 +90,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="50sp"
-        android:layout_marginBottom="50sp" />
+        android:layout_marginBottom="50sp"
+        android:background="@color/brown400"/>
 
 </RelativeLayout>

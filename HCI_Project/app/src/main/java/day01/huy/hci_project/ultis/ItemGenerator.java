@@ -135,8 +135,8 @@ public class ItemGenerator {
         }
         txt.setText(text);
         if (selectedList.contains(text)) {
-            ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.brown400));
-            txt.setTextColor(context.getResources().getColor(R.color.white));
+            ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.brown100));
+            txt.setTextColor(context.getResources().getColor(R.color.black));
             if (data.hasContain(main, text)) {
                 button.setEnabled(true);
                 button.setBackground(ColorGradient.getRedGradientCircle(context));
