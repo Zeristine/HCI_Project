@@ -30,7 +30,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
-                        android:text="Ingredients:"
+                        android:text="Nguyên liệu gồm:"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
 
@@ -52,7 +52,7 @@
                         android:id="@+id/textView6"
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
-                        android:text="Nutrition Facts:"
+                        android:text="Giá trị dinh dưỡng:"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
 
@@ -70,7 +70,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Directions:"
+                android:text="Hướng dẫn:"
                 android:textColor="@color/black"
                 android:textSize="24dp" />
 
