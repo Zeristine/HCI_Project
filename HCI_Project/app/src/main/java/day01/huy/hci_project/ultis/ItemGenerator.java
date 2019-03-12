@@ -36,9 +36,7 @@ public class ItemGenerator {
         recipeCard.setCardBackgroundColor(color);
         GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f)
                 , GridLayout.spec(GridLayout.UNDEFINED, 1f));
-        layoutParams.leftMargin = 5;
-        layoutParams.rightMargin = 5;
-        layoutParams.bottomMargin = 10;
+        layoutParams.setMargins(20, 20, 20, 20);
         recipeCard.setLayoutParams(layoutParams);
         recipeCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,7 +137,7 @@ public class ItemGenerator {
             txt.setTextColor(context.getResources().getColor(R.color.black));
             if (data.hasContain(main, text)) {
                 button.setEnabled(true);
-                button.setBackground(ColorGradient.getRedGradientCircle(context));
+                button.setBackground(ColorGradient.getOrangeGradientCircle(context));
             }
         } else {
             ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
@@ -151,12 +149,12 @@ public class ItemGenerator {
                 Drawable background = v.getBackground();
                 if (background instanceof ColorDrawable) {
                     if (((ColorDrawable) background).getColor() == context.getResources().getColor(R.color.white)) {
-                        ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.red400));
+                        ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.brown100));
                         txt.setTextColor(context.getResources().getColor(R.color.white));
                         selectedList.add(text);
                         if (data.hasContain(main, text)) {
                             button.setEnabled(true);
-                            button.setBackground(ColorGradient.getRedGradientCircle(context));
+                            button.setBackground(ColorGradient.getOrangeGradientCircle(context));
                         }
                     } else {
                         ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));

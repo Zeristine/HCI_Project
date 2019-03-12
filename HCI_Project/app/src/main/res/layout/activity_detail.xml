@@ -72,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:tabBackground="@drawable/tab_indicator"
+        app:tabBackground="@drawable/tab_dot_indicator"
         app:tabGravity="center"
         app:tabIndicatorHeight="0dp" />
 

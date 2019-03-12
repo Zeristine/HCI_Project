@@ -47,7 +47,7 @@ public class ShowHistoryActivity extends AppCompatActivity {
         glHistory.setColumnCount(2);
         glHistory.setRowCount(rowCount);
         for (Recipe recipe : recipes) {
-            ItemGenerator.createCardView(recipe, glHistory, this, getResources().getColor(R.color.red600));
+            ItemGenerator.createCardView(recipe, glHistory, this, getResources().getColor(R.color.transparent));
         }
     }
 

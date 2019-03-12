@@ -89,16 +89,19 @@ public class PickIngridientActivity extends TabActivity {
 //        SlicePagerAdapter pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), list);
 //        viewPagerIngredient.setAdapter(pagerAdapter);
         TabHost.TabSpec spec = tabHost.newTabSpec("Chính");
-        spec.setIndicator("Nguyên liệu chính");
+        spec.setIndicator("Nguyên liệu\nchính");
         spec.setContent(R.id.mainLayout);
         tabHost.addTab(spec);
         spec = tabHost.newTabSpec("Phụ");
         spec.setIndicator("Nguyên liệu\nphụ");
         spec.setContent(R.id.subLayout);
         tabHost.addTab(spec);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         for (int i = 0; i < tabHost.getTabWidget().getTabCount(); i++) {
-
+            View v = tabHost.getTabWidget().getChildTabViewAt(i);
+            v.setBackgroundResource(R.drawable.tab_indicator);
             TextView tv = tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            tv.setLayoutParams(layoutParams);
             tv.setGravity(Gravity.CENTER);
         }
     }
