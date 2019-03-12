@@ -54,6 +54,22 @@ public class PickIngridientActivity extends TabActivity {
         subLayout = findViewById(R.id.subLayout);
         tabHost = getTabHost();
 //        viewPagerIngredient = findViewById(R.id.vpIngredient);
+        TabHost.TabSpec spec = tabHost.newTabSpec("Chính");
+        spec.setIndicator("Nguyên liệu\nchính");
+        spec.setContent(R.id.mainLayout);
+        tabHost.addTab(spec);
+        spec = tabHost.newTabSpec("Phụ");
+        spec.setIndicator("Nguyên liệu\nphụ");
+        spec.setContent(R.id.subLayout);
+        tabHost.addTab(spec);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        for (int i = 0; i < tabHost.getTabWidget().getTabCount(); i++) {
+            View v = tabHost.getTabWidget().getChildTabViewAt(i);
+            v.setBackgroundResource(R.drawable.tab_indicator);
+            TextView tv = tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            tv.setLayoutParams(layoutParams);
+            tv.setGravity(Gravity.CENTER);
+        }
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -83,27 +99,15 @@ public class PickIngridientActivity extends TabActivity {
     }
 
     private void initListViews(List<Ingredient> main, List<Ingredient> sub) {
-        List<Fragment> list = new ArrayList<>();
+//        List<Fragment> list = new ArrayList<>();
+        mainLayout.removeAllViews();
+        subLayout.removeAllViews();
         mainLayout.addView(createView(main, main, true, false, false));
         subLayout.addView(createView(sub, main, false, false, true));
 //        SlicePagerAdapter pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), list);
 //        viewPagerIngredient.setAdapter(pagerAdapter);
-        TabHost.TabSpec spec = tabHost.newTabSpec("Chính");
-        spec.setIndicator("Nguyên liệu\nchính");
-        spec.setContent(R.id.mainLayout);
-        tabHost.addTab(spec);
-        spec = tabHost.newTabSpec("Phụ");
-        spec.setIndicator("Nguyên liệu\nphụ");
-        spec.setContent(R.id.subLayout);
-        tabHost.addTab(spec);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        for (int i = 0; i < tabHost.getTabWidget().getTabCount(); i++) {
-            View v = tabHost.getTabWidget().getChildTabViewAt(i);
-            v.setBackgroundResource(R.drawable.tab_indicator);
-            TextView tv = tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
-            tv.setLayoutParams(layoutParams);
-            tv.setGravity(Gravity.CENTER);
-        }
+
+
     }
 
     private Fragment initIngredientFragment(String title, List<Ingredient> ingredients, boolean isFirst,
@@ -126,7 +130,7 @@ public class PickIngridientActivity extends TabActivity {
         for (Ingredient ingredient : ingredients) {
             ItemGenerator.createIngredientRow(ingredient.getName(), ingredient.getImageLink(),
                     mainLayout, PickIngridientActivity.this, selectedIngredients, btnSearch, main);
-            mainLayout.addView(ItemGenerator.createLine(this));
+           mainLayout.addView(ItemGenerator.createLine(this));
         }
 //        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
 //                4f);
@@ -189,12 +193,14 @@ public class PickIngridientActivity extends TabActivity {
                         break;
                     case "main":
                         initListViews(main, sub);
-                        viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() - 1);
+//                        viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() - 1);
+                        tabHost.setCurrentTab(0);
                         value = value + " được chọn";
                         break;
                     case "sub":
                         initListViews(main, sub);
-                        viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() + 1);
+//                        viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() + 1);
+                        tabHost.setCurrentTab(1);
                         value = value + " được chọn";
                         break;
                     default:

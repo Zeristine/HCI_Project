@@ -21,9 +21,9 @@ public class NavigationActivity extends AppCompatActivity {
         btnFavorite = findViewById(R.id.btnFavorite);
 
         btnPickIngredient.setBackground(ColorGradient.getRedGradientOrange(this));
-        btnPickIngredient.setTextSize(UnitConverter.getPixelValue(15, this));
+//        btnPickIngredient.setTextSize(UnitConverter.getPixelValue(15, this));
         btnFavorite.setBackground(ColorGradient.getRedGradientOrange(this));
-        btnFavorite.setTextSize(UnitConverter.getPixelValue(15, this));
+//        btnFavorite.setTextSize(UnitConverter.getPixelValue(15, this));
         btnPickIngredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

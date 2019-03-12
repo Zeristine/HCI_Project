@@ -103,7 +103,7 @@ public class ItemGenerator {
     public static View createLine(Context context) {
         View line = new View(context);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                2);
+                1);
         line.setLayoutParams(layoutParams);
         line.setBackgroundColor(context.getResources().getColor(R.color.black));
         return line;
@@ -134,7 +134,7 @@ public class ItemGenerator {
         txt.setText(text);
         if (selectedList.contains(text)) {
             ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.brown100));
-            txt.setTextColor(context.getResources().getColor(R.color.black));
+            txt.setTextColor(context.getResources().getColor(R.color.white));
             if (data.hasContain(main, text)) {
                 button.setEnabled(true);
                 button.setBackground(ColorGradient.getOrangeGradientCircle(context));

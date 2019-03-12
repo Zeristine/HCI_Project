@@ -21,7 +21,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Result"
+                android:text="Kết quả"
+                android:background="@color/brown200"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="20dp" />
             <GridLayout
@@ -35,7 +37,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Suggestion"
+                android:text="Các gợi ý khác"
+                android:background="@color/brown200"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="20dp" />
             <GridLayout

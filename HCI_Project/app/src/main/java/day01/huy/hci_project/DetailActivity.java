@@ -89,7 +89,7 @@ public class DetailActivity extends AppCompatActivity {
             btnFavorite.setBackground(ColorGradient.getRedGradientBlackGray(this));
         } else {
             btnFavorite.setText("Thích");
-            btnFavorite.setBackground(ColorGradient.getRedGradient(this));
+            btnFavorite.setBackground(ColorGradient.getRedGradientOrange(this));
         }
 
     }
@@ -101,7 +101,7 @@ public class DetailActivity extends AppCompatActivity {
             btnFavorite.setBackground(ColorGradient.getRedGradientBlackGray(this));
         } else {
             btnFavorite.setText("Thích");
-            btnFavorite.setBackground(ColorGradient.getRedGradient(this));
+            btnFavorite.setBackground(ColorGradient.getRedGradientOrange(this));
         }
     }
 

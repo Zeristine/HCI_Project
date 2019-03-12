@@ -18,7 +18,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/red800"
+                android:background="@color/brown400"
                 android:layout_marginBottom="10dp"
                 >
 

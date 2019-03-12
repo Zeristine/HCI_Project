@@ -57,12 +57,12 @@ public class ColorGradient {
     public static GradientDrawable getRedGradientBlackGray(@NotNull Context context) {
         GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{
-                        context.getResources().getColor(R.color.red300),
+//                        context.getResources().getColor(R.color.red300),
                         context.getResources().getColor(R.color.grayDark),
                         context.getResources().getColor(R.color.grayDark),
                         context.getResources().getColor(R.color.grayDark),
                         context.getResources().getColor(R.color.grayDark),
-                        context.getResources().getColor(R.color.red300)
+//                        context.getResources().getColor(R.color.red300)
                 });
         gradientDrawable.setCornerRadius(10);
         return gradientDrawable;

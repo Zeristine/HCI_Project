@@ -48,7 +48,7 @@ public class FavoriteActivity extends AppCompatActivity {
         glFavorite.setColumnCount(2);
         glFavorite.setRowCount(rowCount);
         for (Recipe recipe : recipes) {
-            ItemGenerator.createCardView(recipe, glFavorite, this, getResources().getColor(R.color.brown100));
+            ItemGenerator.createCardView(recipe, glFavorite, this, getResources().getColor(R.color.white));
         }
     }
 
