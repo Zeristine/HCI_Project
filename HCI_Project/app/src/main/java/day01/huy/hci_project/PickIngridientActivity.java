@@ -36,10 +36,10 @@ public class PickIngridientActivity extends TabActivity {
 
     private AutoCompleteTextView txtIngredient;
     private ImageButton btnSearch;
-    private ViewPager viewPagerIngredient;
     private LinearLayout mainLayout, subLayout;
     private TabHost tabHost;
     private final IngredientData recipeData = new IngredientData();
+    private String mainIngredient ;
     private final List<String> selectedIngredients = new ArrayList<>();
 
     @Override
@@ -106,16 +106,14 @@ public class PickIngridientActivity extends TabActivity {
         subLayout.addView(createView(sub, main, false, false, true));
 //        SlicePagerAdapter pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), list);
 //        viewPagerIngredient.setAdapter(pagerAdapter);
-
-
     }
 
-    private Fragment initIngredientFragment(String title, List<Ingredient> ingredients, boolean isFirst,
-                                            boolean isMiddle, boolean isLast, List<Ingredient> main) {
-        IngredientFragment fragment = new IngredientFragment();
-        fragment.setResource(title, ingredients, selectedIngredients, isFirst, isMiddle, isLast, viewPagerIngredient, btnSearch, main);
-        return fragment;
-    }
+//    private Fragment initIngredientFragment(String title, List<Ingredient> ingredients, boolean isFirst,
+//                                            boolean isMiddle, boolean isLast, List<Ingredient> main) {
+//        IngredientFragment fragment = new IngredientFragment();
+//        fragment.setResource(title, ingredients, selectedIngredients, isFirst, isMiddle, isLast, viewPagerIngredient, btnSearch, main);
+//        return fragment;
+//    }
 
     private View createView(@NotNull List<Ingredient> ingredients, List<Ingredient> main,
                             boolean isFirst, boolean isMiddle, boolean isLast) {

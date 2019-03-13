@@ -52,7 +52,6 @@ public class ItemGenerator {
         View recipeView = LayoutInflater.from(context).inflate(R.layout.layout_card_view_recipe, null);
         ImageView imgRecipe = recipeView.findViewById((R.id.imgRecipeImage));
         TextView txtTitle = recipeView.findViewById(R.id.txtRecipeTitle);
-        TextView txtTimer = recipeView.findViewById(R.id.txtTimer);
         TextView txtAuthor = recipeView.findViewById(R.id.txtAuthor);
         int resId = getResId("image_food_" + recipe.getImageLink() + "_small",
                 "drawable", context.getPackageName(), context);
@@ -63,41 +62,10 @@ public class ItemGenerator {
             imgRecipe.setImageResource(resId);
         }
         txtTitle.setText(recipe.getTitle());
-        txtTimer.setText(CalendarCal.getCardAge(recipe.getCreatedDate()));
         txtAuthor.setText(recipe.getAuthor());
 
         recipeCard.addView(recipeView);
         gridLayout.addView(recipeCard);
-    }
-
-    public static void createCheckBoxItem(final String text, LinearLayout linearLayout, final Context context, @NotNull final List<String> selectedList) {
-
-        final CheckBox checkBox = new CheckBox(context);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                60);
-        checkBox.setLayoutParams(layoutParams);
-        checkBox.setTextSize(20);
-        checkBox.setTextColor(context.getResources().getColor(R.color.black));
-
-        checkBox.setText(text);
-        if (selectedList.contains(text)) {
-            checkBox.setChecked(true);
-        } else {
-            checkBox.setChecked(false);
-        }
-        checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!checkBox.isChecked()) {
-                    if (selectedList.contains(text)) {
-                        selectedList.remove(text);
-                    }
-                } else {
-                    selectedList.add(text);
-                }
-            }
-        });
-        linearLayout.addView(checkBox);
     }
 
     public static View createLine(Context context) {

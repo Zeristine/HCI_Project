@@ -8,19 +8,17 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
+import day01.huy.hci_project.data.RecipeData;
 import day01.huy.hci_project.dto.Recipe;
 import day01.huy.hci_project.ultis.ItemGenerator;
 
 public class FavoriteActivity extends AppCompatActivity {
 
     private GridLayout glFavorite;
-    private List<Recipe> recipes;
     private TextView txtTitle;
-
+    private final RecipeData recipeData = new RecipeData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +26,11 @@ public class FavoriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorite);
         glFavorite = findViewById(R.id.glFavorite);
         txtTitle = findViewById(R.id.txtTitle);
-        recipes = new ArrayList<>();
+        List<Recipe> recipes = recipeData.getFavorites();
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
-        recipes.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
-        recipes.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
-        recipes.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
-        recipes.add(new Recipe(5, "Canh rau muống", "HuyLM", "adada", date, "canhraumuong", null));
 
-        txtTitle.setTextSize((displayMetrics.widthPixels*1)/40);
+        txtTitle.setTextSize((displayMetrics.widthPixels * 1) / 40);
         double row = recipes.size() / 2;
         int rowCount = (int) row;
         if ((row * 10) % 2 != 0) {

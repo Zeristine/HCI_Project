@@ -8,22 +8,30 @@ public class Recipe {
     private String title;
     private String author;
     private String content;
-    private Date createdDate;
     private String imageLink;
+    private float rate;
     private List<String> ingredients;
 
-    public Recipe(long id, String title, String author, String content, Date createdDate, String imageLink, List<String> ingredients) {
+    public Recipe(long id, String title, String author, String content, String imageLink, float rate, List<String> ingredients) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.content = content;
-        this.createdDate = createdDate;
         this.imageLink = imageLink;
+        this.rate = rate;
         this.ingredients = ingredients;
     }
 
     public long getId() {
         return id;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 
     public void setId(long id) {
@@ -52,14 +60,6 @@ public class Recipe {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
     }
 
     public List<String> getIngredients() {
