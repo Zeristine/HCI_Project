@@ -2,6 +2,9 @@ package day01.huy.hci_project;
 
 import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -130,7 +133,7 @@ public class PickIngridientActivity extends TabActivity {
         for (Ingredient ingredient : ingredients) {
             ItemGenerator.createIngredientRow(ingredient.getName(), ingredient.getImageLink(),
                     mainLayout, PickIngridientActivity.this, selectedIngredients, btnSearch, main);
-           mainLayout.addView(ItemGenerator.createLine(this));
+            mainLayout.addView(ItemGenerator.createLine(this));
         }
 //        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
 //                4f);
@@ -222,24 +225,35 @@ public class PickIngridientActivity extends TabActivity {
         params.bottomMargin = UnitConverter.getPixelValue(30, this);
         btnSearch.setLayoutParams(params);
         btnSearch.setBackgroundDrawable(ColorGradient.getGreyGradientCircle(this));
-        btnSearch.setEnabled(false);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!selectedIngredients.isEmpty()) {
-                    Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
-                    intent.putStringArrayListExtra("ingredients", (ArrayList<String>) selectedIngredients);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(PickIngridientActivity.this,
-                            "Không có nguyên liệu nào được chọn. Xin hãy chọn ít nhất một.", Toast.LENGTH_SHORT).show();
+//                if (!selectedIngredients.isEmpty()) {
+//                    Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
+//                    intent.putStringArrayListExtra("ingredients", (ArrayList<String>) selectedIngredients);
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(PickIngridientActivity.this,
+//                            "Không có nguyên liệu nào được chọn. Xin hãy chọn ít nhất một.", Toast.LENGTH_SHORT).show();
+//                }
+                Drawable background = v.getBackground();
+                if (background instanceof GradientDrawable) {
+                    if ((GradientDrawable) background == ColorGradient.getOrangeGradientCircle(PickIngridientActivity.this)) {
+                        Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
+                        intent.putStringArrayListExtra("ingredients", (ArrayList<String>) selectedIngredients);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(PickIngridientActivity.this,
+                                "Không có nguyên liệu chính nào được chọn. Xin hãy chọn ít nhất một.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
     }
 
     @NotNull
-    private String addToSelectedList(String value, @NotNull List<Ingredient> main, List<Ingredient> sub) {
+    private String addToSelectedList(String
+                                             value, @NotNull List<Ingredient> main, List<Ingredient> sub) {
         if (selectedIngredients.contains(value)) {
             return "already";
         }
