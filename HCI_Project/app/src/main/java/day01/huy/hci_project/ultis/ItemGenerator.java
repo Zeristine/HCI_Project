@@ -153,7 +153,6 @@ public class ItemGenerator {
                         txt.setTextColor(context.getResources().getColor(R.color.white));
                         selectedList.add(text);
                         if (data.hasContain(main, text)) {
-                            button.setEnabled(true);
                             button.setBackground(ColorGradient.getOrangeGradientCircle(context));
                         }
                     } else {
@@ -162,7 +161,6 @@ public class ItemGenerator {
                         if (selectedList.contains(text)) {
                             selectedList.remove(text);
                             if (!data.hasContainOneMainIngredient(main, selectedList)) {
-                                button.setEnabled(false);
                                 button.setBackground(ColorGradient.getGreyGradientCircle(context));
                             }
                         }
