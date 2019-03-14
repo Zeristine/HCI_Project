@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.iarcuschin.simpleratingbar.SimpleRatingBar;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -51,6 +53,7 @@ public class ItemGenerator {
         TextView txtTitle = recipeView.findViewById(R.id.txtRecipeTitle);
         TextView txtRating = recipeView.findViewById(R.id.txtRating);
         TextView txtAuthor = recipeView.findViewById(R.id.txtAuthor);
+        SimpleRatingBar ratingBar = recipeView.findViewById(R.id.srbRecipe);
         int resId = getResId("image_food_" + recipe.getImageLink() + "_small",
                 "drawable", context.getPackageName(), context);
 
@@ -61,6 +64,7 @@ public class ItemGenerator {
         }
         txtTitle.setText(recipe.getTitle());
         txtRating.setText("⭐:" + recipe.getRate() + "/5.0");
+        ratingBar.setRating((float) recipe.getRate());
         txtAuthor.setText("Bởi " + recipe.getAuthor());
 
         recipeCard.addView(recipeView);
