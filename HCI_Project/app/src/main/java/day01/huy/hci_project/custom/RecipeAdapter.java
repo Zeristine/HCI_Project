@@ -56,7 +56,7 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
         shortenedTitle = recipe.getTitle().length() > 12 ? recipe.getTitle().substring(0, 11) + "..." : recipe.getTitle();
         viewHolder.txtTitle.setText(shortenedTitle);
         viewHolder.txtAuthor.setText(recipe.getAuthor());
-        viewHolder.txtCreateDate.setText(CalendarCal.getCardAge(recipe.getCreatedDate()));
+//        viewHolder.txtCreateDate.setText(CalendarCal.getCardAge(recipe.getCreatedDate()));
         return convertView;
     }
 

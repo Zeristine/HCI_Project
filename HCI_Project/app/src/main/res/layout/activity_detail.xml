@@ -19,7 +19,7 @@
                 android:id="@+id/layoutRecipeImage"
                 android:layout_width="match_parent"
                 android:layout_height="206dp"
-                android:background="@drawable/image_food_frychicken">
+                android:background="@drawable/image_food_garan">
 
                 <ImageButton
                     android:layout_width="50dp"

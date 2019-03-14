@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,9 +41,7 @@ public class ItemGenerator {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("check", false);
-                intent.putExtra("image", recipe.getImageLink());
-                intent.putExtra("title", recipe.getTitle());
+                intent.putExtra("id", recipe.getId());
                 context.startActivity(intent);
             }
         });
@@ -52,6 +49,7 @@ public class ItemGenerator {
         View recipeView = LayoutInflater.from(context).inflate(R.layout.layout_card_view_recipe, null);
         ImageView imgRecipe = recipeView.findViewById((R.id.imgRecipeImage));
         TextView txtTitle = recipeView.findViewById(R.id.txtRecipeTitle);
+        TextView txtRating = recipeView.findViewById(R.id.txtRating);
         TextView txtAuthor = recipeView.findViewById(R.id.txtAuthor);
         int resId = getResId("image_food_" + recipe.getImageLink() + "_small",
                 "drawable", context.getPackageName(), context);
@@ -62,7 +60,8 @@ public class ItemGenerator {
             imgRecipe.setImageResource(resId);
         }
         txtTitle.setText(recipe.getTitle());
-        txtAuthor.setText(recipe.getAuthor());
+        txtRating.setText("⭐:" + recipe.getRate() + "/5.0");
+        txtAuthor.setText("Bởi " + recipe.getAuthor());
 
         recipeCard.addView(recipeView);
         gridLayout.addView(recipeCard);

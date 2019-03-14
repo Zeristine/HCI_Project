@@ -2,15 +2,12 @@ package day01.huy.hci_project;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayout;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import day01.huy.hci_project.dto.Recipe;
@@ -69,25 +66,25 @@ public class SearchResultActivity extends AppCompatActivity {
 
     public void makeListForResult() {
         recipes = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
-        recipes.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
-        recipes.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
-        recipes.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
+//        Calendar calendar = Calendar.getInstance();
+//        Date date = calendar.getTime();
+//        recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
+//        recipes.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
+//        recipes.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
+//        recipes.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
     }
 
     public void makeListForSuggestion() {
 
         recipesS = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-
-        recipesS.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
-        recipesS.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
-        recipesS.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
-        recipesS.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
-        recipesS.add(new Recipe(5, "Canh rau muống", "HuyLM", "adada", date, "canhraumuong", null));
+//        Calendar calendar = Calendar.getInstance();
+//        Date date = calendar.getTime();
+//
+//        recipesS.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
+//        recipesS.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
+//        recipesS.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
+//        recipesS.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
+//        recipesS.add(new Recipe(5, "Canh rau muống", "HuyLM", "adada", date, "canhraumuong", null));
 
     }
 

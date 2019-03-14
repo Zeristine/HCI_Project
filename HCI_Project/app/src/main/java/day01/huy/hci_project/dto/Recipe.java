@@ -9,10 +9,10 @@ public class Recipe {
     private String author;
     private String content;
     private String imageLink;
-    private float rate;
+    private double rate;
     private List<String> ingredients;
 
-    public Recipe(long id, String title, String author, String content, String imageLink, float rate, List<String> ingredients) {
+    public Recipe(long id, String title, String author, String content, String imageLink, double rate, List<String> ingredients) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -26,11 +26,11 @@ public class Recipe {
         return id;
     }
 
-    public float getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(float rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 

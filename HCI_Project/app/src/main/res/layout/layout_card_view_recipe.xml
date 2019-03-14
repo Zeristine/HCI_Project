@@ -7,37 +7,35 @@
     <ImageView
         android:id="@+id/imgRecipeImage"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="150sp"
         android:layout_gravity="center"
         android:background="@color/white"
         android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/txtRecipeTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_gravity="center"
         android:text="AAAAAAAA"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txtTimer"
+        android:id="@+id/txtRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="30 phút"
+        android:gravity="center"
+        android:text="⭐: 4/4.5"
         android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/txtAuthor"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="By HUYLM"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:layout_gravity="center"
+        android:text="Đầu Bếp HUYLM"
+        android:textColor="@color/black" />
 
 </LinearLayout>

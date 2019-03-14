@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchResultActivity"
     android:orientation="vertical"
-    >
+    tools:context=".SearchResultActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,36 +20,36 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/brown200"
                 android:gravity="center"
                 android:text="Kết quả"
-                android:background="@color/brown200"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="20dp" />
-            <GridLayout
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.GridLayout
                 android:id="@+id/glResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alignmentMode="alignMargins"
-                >
-            </GridLayout>
+                app:alignmentMode="alignMargins"
+                app:columnCount="2" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/brown200"
                 android:gravity="center"
                 android:text="Các gợi ý khác"
-                android:background="@color/brown200"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="20dp" />
-            <GridLayout
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.GridLayout
                 android:id="@+id/glSuggest"
-                android:columnCount="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alignmentMode="alignMargins"
-                >
-            </GridLayout>
+                app:alignmentMode="alignMargins"
+                app:columnCount="2" />
 
         </LinearLayout>
     </ScrollView>
@@ -58,10 +58,9 @@
         android:id="@+id/btnBack"
         android:layout_width="50sp"
         android:layout_height="50sp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="10sp"
-        android:onClick="clickToFinish"
-        />
+        android:onClick="clickToFinish" />
 
 </RelativeLayout>
