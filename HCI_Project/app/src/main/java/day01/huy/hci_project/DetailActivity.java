@@ -8,7 +8,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +28,17 @@ import day01.huy.hci_project.fragments.ChefFragment;
 import day01.huy.hci_project.fragments.RecipeContentFragment;
 import day01.huy.hci_project.fragments.SuggestionFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
+import day01.huy.hci_project.ultis.ItemGenerator;
 import day01.huy.hci_project.ultis.UnitConverter;
 
 public class DetailActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
-    private Button btnFavorite;
+    private LinearLayout layoutSuggest, layoutChef;
+    private Button btnFavorite, btnRate;
     private RelativeLayout layoutRecipeImage;
-    private TextView txtRecipeTitle;
+    private TextView txtRecipeTitle, txtChef, txtRating;
     private DisplayMetrics displayMetrics;
     private TabLayout tabDots;
     private final RecipeData recipeData = new RecipeData();
@@ -52,13 +55,18 @@ public class DetailActivity extends AppCompatActivity {
         txtRecipeTitle = findViewById(R.id.txtRecipeTitle);
         btnFavorite = findViewById(R.id.btnFavorite);
         tabDots = findViewById(R.id.tabDots);
+        txtChef = findViewById(R.id.txtChef);
+        txtRating = findViewById(R.id.txtRating);
+        btnRate = findViewById(R.id.btnRate);
+        layoutSuggest = findViewById(R.id.layoutSuggest);
+        layoutChef = findViewById(R.id.layoutChef);
         displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         Intent intent = getIntent();
-        recipe = recipeData.findRecipeById(intent.getLongExtra("id",0));
+        recipe = recipeData.findRecipeById(intent.getLongExtra("id", 0));
 
-        if(recipe == null){
+        if (recipe == null) {
             Toast.makeText(this, "Unknown Recipe", Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -103,6 +111,9 @@ public class DetailActivity extends AppCompatActivity {
             btnFavorite.setBackground(ColorGradient.getRedGradientOrange(this));
         }
 
+        List<Recipe> chefRecipes = recipeData.getRecipesSameChef(recipe.getAuthor(), 5);
+
+        initHorizontalCardsView(chefRecipes, layoutChef);
     }
 
     public void clickToFavorite(View view) {
@@ -120,5 +131,11 @@ public class DetailActivity extends AppCompatActivity {
 
     public void clickToFinish(View view) {
         finish();
+    }
+
+    private void initHorizontalCardsView(@NotNull List<Recipe> list, LinearLayout layout) {
+        for (Recipe recipe : list) {
+            ItemGenerator.createCardViewLinearLayout(recipe, layout, this, R.color.white);
+        }
     }
 }

@@ -101,4 +101,17 @@ public class RecipeData {
         }
         return null;
     }
+
+    public List<Recipe> getRecipesSameChef(String chef, int limit){
+        List<Recipe> recipeList = new ArrayList<>();
+        for (Recipe recipe: recipes) {
+            if(recipe.getAuthor().equals(chef)){
+                recipeList.add(recipe);
+                if(recipeList.size() == limit){
+                    break;
+                }
+            }
+        }
+        return recipeList;
+    }
 }

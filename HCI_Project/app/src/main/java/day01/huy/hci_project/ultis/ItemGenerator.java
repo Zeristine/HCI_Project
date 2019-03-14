@@ -30,7 +30,7 @@ public class ItemGenerator {
 
     private static final IngredientData data = new IngredientData();
 
-    public static void createCardView(@NotNull final Recipe recipe, GridLayout gridLayout, final Context context, int color) {
+    public static CardView createCardView(@NotNull final Recipe recipe, final Context context, int color) {
         CardView recipeCard = new CardView(context);
         recipeCard.setCardElevation(8);
         recipeCard.setRadius(10);
@@ -68,7 +68,15 @@ public class ItemGenerator {
         txtAuthor.setText("Bởi " + recipe.getAuthor());
 
         recipeCard.addView(recipeView);
-        gridLayout.addView(recipeCard);
+        return recipeCard;
+    }
+
+    public static void createCardViewGridLayout(@NotNull final Recipe recipe, @NotNull GridLayout gridLayout, final Context context, int color){
+        gridLayout.addView(createCardView(recipe,context, color));
+    }
+
+    public static void createCardViewLinearLayout(@NotNull final Recipe recipe, @NotNull LinearLayout linearLayout, final Context context, int color){
+        linearLayout.addView(createCardView(recipe,context, color));
     }
 
     public static View createLine(Context context) {
