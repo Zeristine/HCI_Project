@@ -1,29 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
-    android:weightSum="20"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imgTitle"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="16"/>
-    <Button
-        android:id="@+id/btnBegin"
-        android:layout_width="165dp"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:text="BẮT ĐẦU"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:background="@color/greenPrimary"
-        />
-</LinearLayout>
+        android:layout_height="450sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-125sp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/image_title_no_text" />
+
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/layoutLoginChoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="10sp"
+        android:visibility="invisible"
+        app:alignmentMode="alignMargins"
+        app:columnCount="1"
+        app:columnOrderPreserved="true"
+        app:rowCount="3">
+
+        <LinearLayout
+            android:layout_margin="5sp"
+            android:background="@drawable/shape_button"
+            android:orientation="horizontal"
+            android:weightSum="20"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="16"
+                android:background="@color/transparent"
+                android:text="Log In With Google" />
+
+            <ImageView
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:adjustViewBounds="true"
+                android:src="@drawable/icons_google" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="5sp"
+            android:background="@drawable/shape_button"
+            android:orientation="horizontal"
+            android:weightSum="20"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1">
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="16"
+                android:background="@color/transparent"
+                android:text="Log In With Facebook" />
+
+            <ImageView
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:adjustViewBounds="true"
+                android:src="@drawable/icons_facebook" />
+        </LinearLayout>
+
+        <Button
+            android:layout_margin="5sp"
+            android:background="@drawable/shape_button"
+            android:onClick="clickToLogin"
+            android:text="Normal Log in"
+            app:layout_columnWeight="1"
+            app:layout_rowWeight="1" />
+    </android.support.v7.widget.GridLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutNormalLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="10sp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/lblUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username:" />
+
+        <EditText
+            android:id="@+id/txtUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username" />
+
+        <TextView
+            android:id="@+id/lblPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username:" />
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:inputType="textPassword" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_margin="5sp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_button"
+                android:onClick="clickToBack"
+                android:text="Back" />
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_margin="5sp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_button"
+                android:onClick="clickToRegister"
+                android:text="Register"
+                />
+
+            <Button
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_margin="5sp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_button"
+                android:onClick="clickToLogin"
+                android:text="Login"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutNormalRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="10sp"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/lblRUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username:" />
+
+        <EditText
+            android:id="@+id/txtRUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username" />
+
+        <TextView
+            android:id="@+id/lblRPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password:" />
+
+        <EditText
+            android:id="@+id/txtRPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password" />
+
+        <TextView
+            android:id="@+id/lblRConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm Password:" />
+
+        <EditText
+            android:id="@+id/txtRConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password" />
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:columnCount="2"
+            app:rowCount="1">
+
+            <Button
+                android:layout_margin="5sp"
+                android:background="@drawable/shape_button"
+                android:onClick="clickToBack"
+                android:text="Back"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                android:layout_margin="5sp"
+                android:background="@drawable/shape_button"
+                android:onClick="clickToRegister"
+                android:text="Register"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+        </android.support.v7.widget.GridLayout>
+    </LinearLayout>
+
+</RelativeLayout>
