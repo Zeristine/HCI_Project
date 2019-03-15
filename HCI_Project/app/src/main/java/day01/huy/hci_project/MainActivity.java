@@ -60,10 +60,14 @@ public class MainActivity extends AppCompatActivity {
         //Login
         if (layoutNormalLogin.getVisibility() == View.VISIBLE) {
             //Do Login
+                if(txtUsername.getText().toString().trim().equals("") || txtPassword.getText().toString().trim().equals("")){
+                    Toast.makeText(this, "Bạn cần điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(this,NavigationActivity.class);
+                    startActivityForResult(intent,0);
+                    Toast.makeText(this, "Chào mừng, "+txtUsername.getText().toString(), Toast.LENGTH_SHORT).show();
+                }
 
-            Intent intent = new Intent(this,NavigationActivity.class);
-            startActivityForResult(intent,0);
-            Toast.makeText(this, "Chào mừng, "+txtUsername.getText().toString(), Toast.LENGTH_SHORT).show();
         }
     }
 
