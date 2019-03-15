@@ -17,33 +17,45 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-        btnPickIngredient = findViewById(R.id.btnPickIngredient);
-        btnFavorite = findViewById(R.id.btnFavorite);
+//        btnPickIngredient = findViewById(R.id.btnPickIngredient);
+//        btnFavorite = findViewById(R.id.btnFavorite);
+//
+//        btnPickIngredient.setBackground(ColorGradient.getRedGradientOrange(this));
+////        btnPickIngredient.setTextSize(UnitConverter.getPixelValue(15, this));
+//        btnFavorite.setBackground(ColorGradient.getRedGradientOrange(this));
+////        btnFavorite.setTextSize(UnitConverter.getPixelValue(15, this));
+//        btnPickIngredient.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(NavigationActivity.this, DishesTypeActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        btnFavorite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(NavigationActivity.this, FavoriteActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
-        btnPickIngredient.setBackground(ColorGradient.getRedGradientOrange(this));
-//        btnPickIngredient.setTextSize(UnitConverter.getPixelValue(15, this));
-        btnFavorite.setBackground(ColorGradient.getRedGradientOrange(this));
-//        btnFavorite.setTextSize(UnitConverter.getPixelValue(15, this));
-        btnPickIngredient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NavigationActivity.this, DishesTypeActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NavigationActivity.this, FavoriteActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+    }
+
+    public void clickToProfile(View view) {
+    }
+
+    public void clicToAddMeal(View view) {
+    }
+
+    public void clicToPickIngredient(View view) {
+        Intent intent = new Intent(this,DishesTypeActivity.class);
+        startActivity(intent);
     }
 }
 
