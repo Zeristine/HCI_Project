@@ -121,9 +121,10 @@
                 app:columnOrderPreserved="false" />
 
             <ImageView
+                android:id="@+id/imgNotFound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_list_notfound"/>
+                android:src="@drawable/icon_list_not_found"/>
         </LinearLayout>
     </ScrollView>
 

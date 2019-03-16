@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:weightSum="10"
     tools:context=".ProfileActivity">
 
@@ -42,14 +42,18 @@
                     android:textSize="25dp"
                     android:textStyle="bold" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:id="@+id/layoutProfileChoice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1sp"
@@ -58,26 +62,13 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10sp"
                         android:layout_marginHorizontal="15sp"
+                        android:layout_marginVertical="10sp"
                         android:background="@drawable/shape_button"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:text="Cập nhật hồ sơ của bạn"
                         android:onClick="clickToUpdateProfile"
-                        />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="10sp"
-                        android:layout_marginHorizontal="15sp"
-                        android:background="@drawable/shape_button"
+                        android:text="Hồ sơ của bạn"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:text="Các bài đăng của bạn"
-                        android:onClick="clickToShowPostedRecipe"
-                        />
+                        android:textSize="20sp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -87,40 +78,142 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10sp"
                         android:layout_marginHorizontal="15sp"
+                        android:layout_marginVertical="10sp"
                         android:background="@drawable/shape_button"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:text="Đăng xuất"
                         android:onClick="clickToLogout"
-                        />
+                        android:text="Đăng xuất"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1sp"
                         android:background="@color/black" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/layoutUpdateProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
 
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/layoutPostedRecipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10sp"
+                        android:background="@color/brown400"
+                        android:gravity="center"
+                        android:paddingVertical="10sp"
+                        android:text="Các bài đăng của bạn"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
                     <android.support.v7.widget.GridLayout
                         android:id="@+id/glPostedRecipe"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:alignmentMode="alignMargins"
                         app:columnOrderPreserved="false" />
+
+                    <ImageView
+                        android:id="@+id/imgNotFound"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_list_not_found" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layoutUpdateProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15sp"
+                        android:layout_marginVertical="10sp"
+                        android:background="@drawable/shape_button"
+                        android:onClick="clickToBack"
+                        android:text="Trở về"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10sp"
+                        android:text="- Username"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txtUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10sp"
+                        android:text="- Password"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txtPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10sp"
+                            android:text="- Confirm Password"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/txtConfirm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10sp"
+                        android:layout_marginTop="5sp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <Button
+                            android:id="@+id/btnCancel"
+                            android:layout_width="0sp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_button"
+                            android:text="Hủy Bỏ"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:onClick="clickToCancel"
+                            />
+
+                        <Button
+                            android:id="@+id/btnUpdate"
+                            android:layout_width="0sp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5sp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_button"
+                            android:text="Cập nhật"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:onClick="clickToUpdate"
+                            />
+                    </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

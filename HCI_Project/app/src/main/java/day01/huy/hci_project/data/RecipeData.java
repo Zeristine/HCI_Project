@@ -57,6 +57,7 @@ public class RecipeData {
         }
         return removeFromFavorite(recipe);
     }
+
     public String removeFromFavorite(Recipe recipe) {
         Recipe target = isContainedInFavorite(recipe);
         if (target != null) {
@@ -85,22 +86,24 @@ public class RecipeData {
         return null;
     }
 
-    public Recipe isContainedInFavorite(Recipe target){
-        for (Recipe recipe: favorites) {
-            if(recipe.getId() == target.getId()){
+    public Recipe isContainedInFavorite(Recipe target) {
+        for (Recipe recipe : favorites) {
+            if (recipe.getId() == target.getId()) {
                 return recipe;
             }
         }
         return null;
     }
 
-    public List<Recipe> getRecipesSameChef(String chef, int limit){
+    public List<Recipe> getRecipesSameChef(String chef, int limit) {
         List<Recipe> recipeList = new ArrayList<>();
-        for (Recipe recipe: recipes) {
-            if(recipe.getAuthor().equals(chef)){
+        for (Recipe recipe : recipes) {
+            if (recipe.getAuthor().equals(chef)) {
                 recipeList.add(recipe);
-                if(recipeList.size() == limit){
-                    break;
+                if (limit != 0) {
+                    if (recipeList.size() == limit) {
+                        break;
+                    }
                 }
             }
         }

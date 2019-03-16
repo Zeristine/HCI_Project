@@ -2,7 +2,6 @@ package day01.huy.hci_project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
 import android.view.View;
@@ -12,8 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import day01.huy.hci_project.data.SessionData;
+import day01.huy.hci_project.data.UserData;
+
 public class MainActivity extends AppCompatActivity {
 
+    private final UserData userData = new UserData();
     private GridLayout layoutLoginChoice;
     private LinearLayout layoutNormalLogin, layoutNormalRegister;
     private TextView lblUsername, lblPassword, lblRUsername, lblRPassword, lblRConfirm;
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             if (txtUsername.getText().toString().trim().equals("") || txtPassword.getText().toString().trim().equals("")) {
                 Toast.makeText(this, "Bạn cần điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             } else {
+                SessionData.setUsername(txtUsername.getText().toString());
                 Toast.makeText(this, "Chào mừng, " + txtUsername.getText().toString(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, NavigationActivity.class);
                 startActivity(intent);
@@ -91,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Bạn chưa lập lại đúng mật khẩu", Toast.LENGTH_SHORT).show();
                 return;
             } else {
+                userData.register(username, password);
                 txtUsername.setText(username);
                 txtPassword.setText(password);
                 txtRUsername.setText("");

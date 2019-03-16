@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -17,13 +18,14 @@ public class NavigationActivity extends AppCompatActivity {
     private final RecipeData recipeData = new RecipeData();
     private GridLayout glFavorite;
     private List<Recipe> favorites;
+    private ImageView imgNotFound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         glFavorite = findViewById(R.id.glFavorite);
-
+        imgNotFound = findViewById(R.id.imgNotFound);
         setUpFavoriteRecipes();
     }
 
@@ -57,6 +59,7 @@ public class NavigationActivity extends AppCompatActivity {
         favorites = recipeData.getFavorites();
         glFavorite.removeAllViews();
         if (favorites.isEmpty()) {
+            imgNotFound.setVisibility(View.VISIBLE);
             glFavorite.setVisibility(View.INVISIBLE);
         } else {
             double row = favorites.size() / 2;
@@ -69,6 +72,7 @@ public class NavigationActivity extends AppCompatActivity {
             for (Recipe recipe : favorites) {
                 ItemGenerator.createCardViewGridLayout(recipe, glFavorite, this, getResources().getColor(R.color.white));
             }
+            imgNotFound.setVisibility(View.INVISIBLE);
             glFavorite.setVisibility(View.VISIBLE);
         }
     }
