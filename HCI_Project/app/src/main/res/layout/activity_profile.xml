@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:weightSum="10"
+    tools:context=".ProfileActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:background="@color/brown400">
+
+                <ImageButton
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/transparent"
+                    android:onClick="clickToFinish"
+                    android:src="@drawable/icon_arrow_return" />
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="Hồ sơ của bạn"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/layoutProfileChoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:background="@color/black" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10sp"
+                        android:layout_marginHorizontal="15sp"
+                        android:background="@drawable/shape_button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="Cập nhật hồ sơ của bạn"
+                        android:onClick="clickToUpdateProfile"
+                        />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10sp"
+                        android:layout_marginHorizontal="15sp"
+                        android:background="@drawable/shape_button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="Các bài đăng của bạn"
+                        android:onClick="clickToShowPostedRecipe"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:background="@color/black" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10sp"
+                        android:layout_marginHorizontal="15sp"
+                        android:background="@drawable/shape_button"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="Đăng xuất"
+                        android:onClick="clickToLogout"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:background="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layoutUpdateProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layoutPostedRecipe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <android.support.v7.widget.GridLayout
+                        android:id="@+id/glPostedRecipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:alignmentMode="alignMargins"
+                        app:columnOrderPreserved="false" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -11,11 +11,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".DishesTypeActivity" />
-        <activity android:name=".ShowHistoryActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".SearchResultActivity" />
         <activity android:name=".NavigationActivity" />
-        <activity android:name=".PickIngridientActivity" />
-        <activity android:name=".FavoriteActivity" />
+        <activity android:name=".PickIngredientActivity" />
+        <activity android:name=".PostRecipeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

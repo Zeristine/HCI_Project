@@ -39,7 +39,7 @@ public class SearchResultActivity extends AppCompatActivity {
         params.rightMargin = UnitConverter.getPixelValue(50, this);
         params.bottomMargin = UnitConverter.getPixelValue(50, this);
         btnBack.setLayoutParams(params);
-        btnBack.setImageResource(R.drawable.icons_arrow_return);
+        btnBack.setImageResource(R.drawable.icon_arrow_return);
         btnBack.setBackgroundResource(R.color.transparent);
         double row = recipes.size() / 2;
         int rowCount = (int) row;

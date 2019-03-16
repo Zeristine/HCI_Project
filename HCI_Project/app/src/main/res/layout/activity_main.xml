@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="450sp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="-50sp"
+        android:layout_marginTop="-100sp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/image_title_no_text" />
@@ -20,20 +20,21 @@
     <android.support.v7.widget.GridLayout
         android:id="@+id/layoutLoginChoice"
         android:layout_width="match_parent"
-        android:layout_height="300sp"
+        android:layout_height="210sp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:layout_marginBottom="10sp"
-        android:visibility="invisible"
+        android:onClick="clickToSocial"
+        android:visibility="visible"
         app:alignmentMode="alignMargins"
         app:columnCount="1"
         app:columnOrderPreserved="true"
         app:rowCount="3">
 
         <LinearLayout
-            android:layout_margin="5sp"
             android:layout_height="50sp"
+            android:layout_margin="5sp"
             android:background="@drawable/shape_button"
             android:orientation="horizontal"
             android:weightSum="20"
@@ -45,27 +46,28 @@
                 android:layout_height="match_parent"
                 android:layout_weight="16"
                 android:background="@color/transparent"
-                android:textColor="@color/white"
-                android:text="Đăng nhập bằng Google"
                 android:onClick="clickToSocial"
-                />
+                android:text="Đăng nhập bằng Google"
+                android:textAlignment="textStart"
+                android:paddingLeft="25sp"
+                android:textColor="@color/white" />
 
             <ImageView
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
+                android:layout_marginRight="30sp"
                 android:layout_weight="4"
-                android:layout_marginRight="25sp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/icons_google"
-                />
+                android:src="@drawable/icon_google" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_height="50sp"
             android:layout_margin="5sp"
             android:background="@drawable/shape_button"
+            android:onClick="clickToSocial"
             android:orientation="horizontal"
             android:weightSum="20"
-            android:layout_height="50sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
@@ -74,26 +76,27 @@
                 android:layout_height="match_parent"
                 android:layout_weight="16"
                 android:background="@color/transparent"
-                android:textColor="@color/white"
                 android:text="Đăng nhập bằng Facebook"
-                android:onClick="clickToSocial"/>
+                android:textAlignment="textStart"
+                android:paddingLeft="25sp"
+                android:textColor="@color/white" />
 
 
             <ImageView
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
+                android:layout_marginRight="30sp"
                 android:layout_weight="4"
-                android:layout_marginRight="25sp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/icons_facebook" />
+                android:src="@drawable/icon_facebook" />
         </LinearLayout>
 
         <Button
             android:layout_margin="5sp"
             android:background="@drawable/shape_button"
             android:onClick="clickToLogin"
-            android:textColor="@color/white"
             android:text="Đăng nhập bằng YOCO"
+            android:textColor="@color/white"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
     </android.support.v7.widget.GridLayout>
@@ -107,7 +110,7 @@
         android:layout_marginRight="20sp"
         android:layout_marginBottom="10sp"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/lblUsername"
@@ -147,8 +150,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:onClick="clickToBack"
-                android:textColor="@color/white"
-                android:text="Trở về" />
+                android:text="Trở về"
+                android:textColor="@color/white" />
 
             <Button
                 android:layout_width="0sp"
@@ -157,9 +160,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:onClick="clickToRegister"
-                android:textColor="@color/white"
                 android:text="Đăng ký"
-                />
+                android:textColor="@color/white" />
 
             <Button
                 android:layout_width="0sp"
@@ -168,9 +170,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:onClick="clickToLogin"
-                android:textColor="@color/white"
                 android:text="Đăng nhập"
-                />
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 
@@ -241,8 +242,8 @@
                 android:background="@drawable/shape_button"
                 android:onClick="clickToRegister"
                 android:text="Đăng ký"
-                app:layout_columnWeight="1"
                 android:textColor="@color/white"
+                app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
         </android.support.v7.widget.GridLayout>
     </LinearLayout>

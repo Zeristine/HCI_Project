@@ -8,7 +8,6 @@ import android.support.v7.widget.GridLayout;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,21 +59,14 @@ public class MainActivity extends AppCompatActivity {
         //Login
         if (layoutNormalLogin.getVisibility() == View.VISIBLE) {
             //Do Login
-                if(txtUsername.getText().toString().trim().equals("") || txtPassword.getText().toString().trim().equals("")){
-                    Toast.makeText(this, "Bạn cần điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
-                }else{
-                    Intent intent = new Intent(this,NavigationActivity.class);
-                    startActivityForResult(intent,0);
-                    Toast.makeText(this, "Chào mừng, "+txtUsername.getText().toString(), Toast.LENGTH_SHORT).show();
-                }
-
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==0 && resultCode==RESULT_OK){
+            if (txtUsername.getText().toString().trim().equals("") || txtPassword.getText().toString().trim().equals("")) {
+                Toast.makeText(this, "Bạn cần điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Chào mừng, " + txtUsername.getText().toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, NavigationActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
         }
     }
@@ -92,15 +84,15 @@ public class MainActivity extends AppCompatActivity {
             String username = txtRUsername.getText().toString().trim();
             String password = txtRPassword.getText().toString().trim();
             String confirm = txtRConfirm.getText().toString().trim();
-            if(username.equals("") || password.equals("") || confirm.equals("")){
+            if (username.equals("") || password.equals("") || confirm.equals("")) {
                 Toast.makeText(this, "Bạn cần điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 return;
-            }else if(!password.equals(confirm)){
+            } else if (!password.equals(confirm)) {
                 Toast.makeText(this, "Bạn chưa lập lại đúng mật khẩu", Toast.LENGTH_SHORT).show();
                 return;
-            }else{
-                txtUsername.setText(txtRUsername.getText().toString());
-                txtPassword.setText(txtRPassword.getText().toString());
+            } else {
+                txtUsername.setText(username);
+                txtPassword.setText(password);
                 txtRUsername.setText("");
                 txtRPassword.setText("");
                 txtRConfirm.setText("");
@@ -136,8 +128,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickToSocial(View view) {
-        Intent intent = new Intent(this,NavigationActivity.class);
-        startActivityForResult(intent,0);
+        Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

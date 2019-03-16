@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PostRecipeActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:paddingVertical="5sp"
+                android:background="@color/brown400">
+
+                <ImageButton
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/transparent"
+                    android:onClick="clickToFinish"
+                    android:src="@drawable/icon_arrow_return" />
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="Đăng món ăn"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xong"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5sp"
+                    android:background="@drawable/shape_button"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                >
+                <ImageButton
+                    android:id="@+id/btnAddImage"
+                    android:layout_width="50sp"
+                    android:layout_height="80sp"
+                    android:src="@drawable/icon_camera"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_centerInParent="true"
+                    android:background="@color/transparent"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tải hình ảnh món ăn"
+                    android:layout_alignBottom="@+id/btnAddImage"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/black"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2sp"
+                android:background="@drawable/shape_divider"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

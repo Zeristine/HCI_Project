@@ -1,95 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NavigationActivity"
     android:background="@color/brown100"
-    >
-    <LinearLayout
+    tools:context=".NavigationActivity">
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="100sp"
-        android:background="@color/white"></LinearLayout>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="160sp"
-        android:background="@color/transparent"
-        android:gravity="top"
-        android:weightSum="3"
-        android:layout_marginTop="20sp"
-        >
         <LinearLayout
-            android:layout_width="0sp"
-            android:layout_height="150sp"
-            android:layout_weight="1"
-            android:layout_margin="7sp"
-            android:background="@drawable/shape_button"
-            android:orientation="vertical"
-            android:onClick="clicToPickIngredient">
-            <ImageView
-                android:layout_width="75sp"
-                android:layout_height="75sp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_nav_timkiemnguyenlieu"
-                />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160sp"
+                android:layout_marginTop="20sp"
+                android:background="@color/transparent"
+                android:gravity="top"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0sp"
+                    android:layout_height="150sp"
+                    android:layout_margin="7sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_button"
+                    android:onClick="clickToPickIngredient"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="75sp"
+                        android:layout_height="75sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_nav_timkiemnguyenlieu" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Chọn nguyên liệu"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0sp"
+                    android:layout_height="150sp"
+                    android:layout_margin="7sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_button"
+                    android:onClick="clickToAddMeal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="75sp"
+                        android:layout_height="75sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_nav_dangmonan" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Đăng món ăn"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0sp"
+                    android:layout_height="150sp"
+                    android:layout_margin="7sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_button"
+                    android:onClick="clickToProfile"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="75sp"
+                        android:layout_height="75sp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_nav_thongtincanhan" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Thông tin của bạn"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chọn nguyên liệu"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="15sp"
+                android:background="@color/brown400"
+                android:gravity="center"
+                android:text="Món ăn ưa thích"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0sp"
-            android:layout_height="150sp"
-            android:layout_weight="1"
-            android:layout_margin="7sp"
-            android:background="@drawable/shape_button"
-            android:orientation="vertical"
-            android:onClick="clicToAddMeal">
-            <ImageView
-                android:layout_width="75sp"
-                android:layout_height="75sp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_nav_dangmonan"
-                />
-            <TextView
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.GridLayout
+                android:id="@+id/glFavorite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Đăng món ăn"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0sp"
-            android:layout_height="150sp"
-            android:layout_weight="1"
-            android:layout_margin="7sp"
-            android:background="@drawable/shape_button"
-            android:orientation="vertical"
-            android:onClick="clickToProfile">
+                app:alignmentMode="alignMargins"
+                app:columnOrderPreserved="false" />
+
             <ImageView
-                android:layout_width="75sp"
-                android:layout_height="75sp"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_nav_thongtincanhan"
-                />
-            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Thông tin của bạn"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:gravity="center"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
-
-
-
-
-</FrameLayout>
+</RelativeLayout>

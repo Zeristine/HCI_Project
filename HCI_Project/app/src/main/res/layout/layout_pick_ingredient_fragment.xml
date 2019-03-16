@@ -4,54 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:background="@color/brown500"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:weightSum="6">-->
-
-        <!--<ImageButton-->
-            <!--android:id="@+id/imgPickIngredientIconBack"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_marginTop="15dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@color/transparent"-->
-            <!--android:src="@drawable/icons_arrow_back" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/txtTitle"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="4"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:paddingLeft="15dp"-->
-            <!--android:text="Nguyên Liệu Phụ"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textSize="30sp" />-->
-
-        <!--<ImageButton-->
-            <!--android:id="@+id/imgPickIngredientIconFor"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_marginTop="15dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@color/transparent"-->
-            <!--android:src="@drawable/icons_arrow_forward" />-->
-    <!--</LinearLayout>-->
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/mainLayout"
-            android:background="@color/brown200"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/brown200"
             android:orientation="vertical"></LinearLayout>
     </ScrollView>
 

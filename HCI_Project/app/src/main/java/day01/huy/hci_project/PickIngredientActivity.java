@@ -3,8 +3,6 @@ package day01.huy.hci_project;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +25,11 @@ import java.util.List;
 
 import day01.huy.hci_project.data.IngredientData;
 import day01.huy.hci_project.dto.Ingredient;
-import day01.huy.hci_project.fragments.IngredientFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
 import day01.huy.hci_project.ultis.ItemGenerator;
 import day01.huy.hci_project.ultis.UnitConverter;
 
-public class PickIngridientActivity extends TabActivity {
+public class PickIngredientActivity extends TabActivity {
 
     private AutoCompleteTextView txtIngredient;
     private ImageButton btnSearch;
@@ -45,7 +42,7 @@ public class PickIngridientActivity extends TabActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_ingridient);
+        setContentView(R.layout.activity_pick_ingredient);
 
         int choiceValue = getIntent().getIntExtra("choice", 0);
         txtIngredient = findViewById(R.id.txtIngredient);
@@ -73,7 +70,7 @@ public class PickIngridientActivity extends TabActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        btnSearch.setImageResource(R.drawable.icons_right_arrow);
+        btnSearch.setImageResource(R.drawable.icon_right_arrow);
         switch (choiceValue) {
             case 1:
                 initAdapterForView(recipeData.getNonVegetarians().get("main"),
@@ -127,7 +124,7 @@ public class PickIngridientActivity extends TabActivity {
 //        txtTitle.setTextSize(UnitConverter.getPixelValue(15, this));
         for (Ingredient ingredient : ingredients) {
             ItemGenerator.createIngredientRow(ingredient.getName(), ingredient.getImageLink(),
-                    mainLayout, PickIngridientActivity.this, selectedIngredients, btnSearch, main);
+                    mainLayout, PickIngredientActivity.this, selectedIngredients, btnSearch, main);
             mainLayout.addView(ItemGenerator.createLine(this));
         }
 //        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -174,7 +171,7 @@ public class PickIngridientActivity extends TabActivity {
 
         List<String> ingredients = recipeData.getIngredientOneType(main, sub);
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(PickIngridientActivity.this, android.R.layout.simple_dropdown_item_1line,
+                new ArrayAdapter<>(PickIngredientActivity.this, android.R.layout.simple_dropdown_item_1line,
                         ingredients);
         txtIngredient.setAdapter(adapter);
         txtIngredient.setThreshold(1);
@@ -205,7 +202,7 @@ public class PickIngridientActivity extends TabActivity {
                         value = "Unknown Approach";
                         finish();
                 }
-                Toast.makeText(PickIngridientActivity.this,
+                Toast.makeText(PickIngredientActivity.this,
                         value, Toast.LENGTH_SHORT).show();
                 txtIngredient.setText("");
             }
@@ -225,15 +222,15 @@ public class PickIngridientActivity extends TabActivity {
             public void onClick(View v) {
                 if (!selectedIngredients.isEmpty()) {
                     if (recipeData.hasContainOneMainIngredient(main, selectedIngredients)) {
-                        Intent intent = new Intent(PickIngridientActivity.this, SearchResultActivity.class);
+                        Intent intent = new Intent(PickIngredientActivity.this, SearchResultActivity.class);
                         intent.putStringArrayListExtra("ingredients", (ArrayList<String>) selectedIngredients);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(PickIngridientActivity.this,
+                        Toast.makeText(PickIngredientActivity.this,
                                 "Không có nguyên liệu chính nào được chọn. Xin hãy chọn ít nhất một.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(PickIngridientActivity.this,
+                    Toast.makeText(PickIngredientActivity.this,
                             "Không có nguyên liệu chính nào được chọn. Xin hãy chọn ít nhất một.", Toast.LENGTH_SHORT).show();
                 }
             }

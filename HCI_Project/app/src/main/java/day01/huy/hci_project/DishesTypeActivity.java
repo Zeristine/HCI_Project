@@ -33,7 +33,7 @@ public class DishesTypeActivity extends AppCompatActivity {
         btnChay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DishesTypeActivity.this, PickIngridientActivity.class);
+                Intent intent = new Intent(DishesTypeActivity.this, PickIngredientActivity.class);
                 intent.putExtra("choice", 2);
                 startActivity(intent);
             }
@@ -41,7 +41,7 @@ public class DishesTypeActivity extends AppCompatActivity {
         btnMan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DishesTypeActivity.this, PickIngridientActivity.class);
+                Intent intent = new Intent(DishesTypeActivity.this, PickIngredientActivity.class);
                 intent.putExtra("choice", 1);
                 startActivity(intent);
             }
@@ -49,7 +49,7 @@ public class DishesTypeActivity extends AppCompatActivity {
         btnDrinks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DishesTypeActivity.this, PickIngridientActivity.class);
+                Intent intent = new Intent(DishesTypeActivity.this, PickIngredientActivity.class);
                 intent.putExtra("choice", 3);
                 startActivity(intent);
             }
