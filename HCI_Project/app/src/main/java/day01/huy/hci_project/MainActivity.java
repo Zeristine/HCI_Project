@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 SessionData.setUsername(txtUsername.getText().toString());
                 Toast.makeText(this, "Chào mừng, " + txtUsername.getText().toString(), Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(this, NavigationActivity.class);
                 startActivity(intent);
                 finish();

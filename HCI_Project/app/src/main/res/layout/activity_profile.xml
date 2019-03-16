@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,37 +55,59 @@
                     android:orientation="vertical"
                     android:visibility="invisible">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="@color/black" />
-
-                    <Button
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="15sp"
-                        android:layout_marginVertical="10sp"
-                        android:background="@drawable/shape_button"
-                        android:onClick="clickToUpdateProfile"
-                        android:text="Hồ sơ của bạn"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:paddingLeft="20sp">
+                            <ImageView
+                                android:id="@+id/imageViewAvatar"
+                                android:layout_width="130sp"
+                                android:layout_height="130sp"
+                                android:background="@drawable/shape_image"
+                                android:src="@drawable/icon_user_avatar"
+                                android:onClick="clickToUploadImage"
+                                android:padding="5sp"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="@color/black" />
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="15sp"
+                                android:layout_marginVertical="10sp"
+                                android:background="@drawable/shape_button"
+                                android:onClick="clickToUpdateProfile"
+                                android:text="Hồ sơ của bạn"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="15sp"
-                        android:layout_marginVertical="10sp"
-                        android:background="@drawable/shape_button"
-                        android:onClick="clickToLogout"
-                        android:text="Đăng xuất"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
+
+
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="15sp"
+                                android:layout_marginVertical="10sp"
+                                android:background="@drawable/shape_button"
+                                android:onClick="clickToLogout"
+                                android:text="Đăng xuất"
+                                android:textColor="@color/white"
+                                android:textSize="20sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
 
                     <View
                         android:layout_width="match_parent"
@@ -122,7 +145,8 @@
                     android:id="@+id/layoutUpdateProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <Button
                         android:layout_width="match_parent"
