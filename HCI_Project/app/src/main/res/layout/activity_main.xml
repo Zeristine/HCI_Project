@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="450sp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="-125sp"
+        android:layout_marginTop="-50sp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/image_title_no_text" />
@@ -20,7 +20,7 @@
     <android.support.v7.widget.GridLayout
         android:id="@+id/layoutLoginChoice"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300sp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
@@ -33,6 +33,7 @@
 
         <LinearLayout
             android:layout_margin="5sp"
+            android:layout_height="50sp"
             android:background="@drawable/shape_button"
             android:orientation="horizontal"
             android:weightSum="20"
@@ -44,14 +45,19 @@
                 android:layout_height="match_parent"
                 android:layout_weight="16"
                 android:background="@color/transparent"
-                android:text="Log In With Google" />
+                android:textColor="@color/white"
+                android:text="Đăng nhập bằng Google"
+                android:onClick="clickToSocial"
+                />
 
             <ImageView
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
+                android:layout_marginRight="25sp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/icons_google" />
+                android:src="@drawable/icons_google"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -59,6 +65,7 @@
             android:background="@drawable/shape_button"
             android:orientation="horizontal"
             android:weightSum="20"
+            android:layout_height="50sp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
@@ -67,12 +74,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="16"
                 android:background="@color/transparent"
-                android:text="Log In With Facebook" />
+                android:textColor="@color/white"
+                android:text="Đăng nhập bằng Facebook"
+                android:onClick="clickToSocial"/>
+
 
             <ImageView
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
+                android:layout_marginRight="25sp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/icons_facebook" />
         </LinearLayout>
@@ -81,7 +92,8 @@
             android:layout_margin="5sp"
             android:background="@drawable/shape_button"
             android:onClick="clickToLogin"
-            android:text="Normal Log in"
+            android:textColor="@color/white"
+            android:text="Đăng nhập bằng YOCO"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
     </android.support.v7.widget.GridLayout>
@@ -101,25 +113,25 @@
             android:id="@+id/lblUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username:" />
+            android:text="Tên đăng nhập:" />
 
         <EditText
             android:id="@+id/txtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username" />
+            android:hint="Tên đăng nhập" />
 
         <TextView
             android:id="@+id/lblPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username:" />
+            android:text="Mật khẩu:" />
 
         <EditText
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            android:hint="Mật khẩu"
             android:inputType="textPassword" />
 
         <LinearLayout
@@ -135,7 +147,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:onClick="clickToBack"
-                android:text="Back" />
+                android:textColor="@color/white"
+                android:text="Trở về" />
 
             <Button
                 android:layout_width="0sp"
@@ -144,7 +157,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:onClick="clickToRegister"
-                android:text="Register"
+                android:textColor="@color/white"
+                android:text="Đăng ký"
                 />
 
             <Button
@@ -154,7 +168,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:onClick="clickToLogin"
-                android:text="Login"
+                android:textColor="@color/white"
+                android:text="Đăng nhập"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -174,37 +189,37 @@
             android:id="@+id/lblRUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username:" />
+            android:text="Tên đăng nhập:" />
 
         <EditText
             android:id="@+id/txtRUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username" />
+            android:hint="Tên đăng nhập" />
 
         <TextView
             android:id="@+id/lblRPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password:" />
+            android:text="Mật khẩu:" />
 
         <EditText
             android:id="@+id/txtRPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
+            android:hint="Mật khẩu" />
 
         <TextView
             android:id="@+id/lblRConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm Password:" />
+            android:text="Lập lại Mật khẩu:" />
 
         <EditText
             android:id="@+id/txtRConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password" />
+            android:hint="Lập lại Mật khẩu" />
 
         <android.support.v7.widget.GridLayout
             android:layout_width="match_parent"
@@ -216,7 +231,8 @@
                 android:layout_margin="5sp"
                 android:background="@drawable/shape_button"
                 android:onClick="clickToBack"
-                android:text="Back"
+                android:text="Trở về"
+                android:textColor="@color/white"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" />
 
@@ -224,8 +240,9 @@
                 android:layout_margin="5sp"
                 android:background="@drawable/shape_button"
                 android:onClick="clickToRegister"
-                android:text="Register"
+                android:text="Đăng ký"
                 app:layout_columnWeight="1"
+                android:textColor="@color/white"
                 app:layout_rowWeight="1" />
         </android.support.v7.widget.GridLayout>
     </LinearLayout>

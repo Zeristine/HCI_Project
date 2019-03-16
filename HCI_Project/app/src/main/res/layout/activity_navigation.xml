@@ -5,71 +5,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NavigationActivity"
+    android:background="@color/brown100"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:background="@color/white"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/brown200">
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/image_title_no_text" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="2"
-        android:rowCount="2"
-        android:gravity="bottom"
-        android:orientation="vertical"
-        android:weightSum="20"
+        android:layout_height="160sp"
+        android:background="@color/transparent"
+        android:gravity="top"
+        android:weightSum="3"
+        android:layout_marginTop="20sp"
         >
-
-        <Button
-            android:id="@+id/btnPickIngredient"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:text="CHỌN NGUYÊN LIỆU"
-            android:textSize="25sp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="15dp"
-            android:background="@color/greenPrimary"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3.25"
-            android:layout_marginBottom="40dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-
-            <Button
-                android:id="@+id/btnFavorite"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="ƯA THÍCH"
-                android:textSize="25sp"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
-                android:background="@color/greenPrimary"
-                android:textColor="@color/white"
-                android:textStyle="bold"
+            android:layout_width="0sp"
+            android:layout_height="150sp"
+            android:layout_weight="1"
+            android:layout_margin="7sp"
+            android:background="@drawable/shape_button"
+            android:orientation="vertical"
+            android:onClick="clicToPickIngredient">
+            <ImageView
+                android:layout_width="75sp"
+                android:layout_height="75sp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_nav_timkiemnguyenlieu"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chọn nguyên liệu"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:gravity="center"/>
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_height="150sp"
+            android:layout_weight="1"
+            android:layout_margin="7sp"
+            android:background="@drawable/shape_button"
+            android:orientation="vertical"
+            android:onClick="clicToAddMeal">
+            <ImageView
+                android:layout_width="75sp"
+                android:layout_height="75sp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_nav_dangmonan"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đăng món ăn"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_height="150sp"
+            android:layout_weight="1"
+            android:layout_margin="7sp"
+            android:background="@drawable/shape_button"
+            android:orientation="vertical"
+            android:onClick="clickToProfile">
+            <ImageView
+                android:layout_width="75sp"
+                android:layout_height="75sp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_nav_thongtincanhan"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông tin của bạn"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
+
+
+
 
 
 </FrameLayout>
