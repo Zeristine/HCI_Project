@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
-                    android:text="Hồ sơ của bạn"
+                    android:text="Thông tin của bạn"
                     android:textColor="@color/white"
                     android:textSize="25dp"
                     android:textStyle="bold" />

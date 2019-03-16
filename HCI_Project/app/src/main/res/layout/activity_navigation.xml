@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/brown100"
+    android:background="@color/white"
     tools:context=".NavigationActivity">
 
     <ScrollView
@@ -25,6 +25,7 @@
                 android:weightSum="3">
 
                 <LinearLayout
+
                     android:layout_width="0sp"
                     android:layout_height="150sp"
                     android:layout_margin="7sp"
@@ -45,7 +46,8 @@
                         android:gravity="center"
                         android:text="Chọn nguyên liệu"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="23sp"
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -69,7 +71,8 @@
                         android:gravity="center"
                         android:text="Đăng món ăn"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -93,7 +96,8 @@
                         android:gravity="center"
                         android:text="Thông tin của bạn"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -118,7 +122,8 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_list_notfound"/>
         </LinearLayout>
     </ScrollView>
 
