@@ -214,64 +214,19 @@
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine" />
 
-                    <!--<LinearLayout
-                        android:id="@+id/layoutConfirmPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="10sp"
-                            android:text="- Confirm Password"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/txtConfirm"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPassword" />
-                    </LinearLayout>
-                    android:inputType="textPassword"
-                    android:paddingLeft="10sp" />-->
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10sp"
-                    android:layout_marginTop="5sp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <!--<Button
-                        android:id="@+id/btnCancel"
-                        android:layout_width="0sp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5sp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape_button"
-                        android:onClick="clickToCancel"
-                        android:text="Hủy Bỏ"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:onClick="clickToCancel"
-                        />
-                        android:textStyle="bold" />-->
-
                     <Button
                         android:id="@+id/btnUpdate"
-                        android:layout_width="0sp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5sp"
-                        android:layout_weight="1"
                         android:background="@drawable/shape_button"
                         android:onClick="clickToUpdate"
                         android:text="Cập nhật"
                         android:textColor="@color/white"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
+
                 </LinearLayout>
+
+
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

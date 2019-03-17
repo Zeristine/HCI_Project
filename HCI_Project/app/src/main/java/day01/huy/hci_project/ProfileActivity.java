@@ -100,15 +100,15 @@ public class ProfileActivity extends AppCompatActivity {
     public void clickToUpdateProfile(View view) {
         layoutUpdateProfile.setVisibility(View.VISIBLE);
         layoutProfileChoice.setVisibility(View.INVISIBLE);
-        user = userData.getAccountByUsername(SessionData.getUsername());
-        if (user != null) {
-            txtUsername.setText(user.getUsername());
-            txtPassword.setText(user.getPassword());
-        }
-        txtUsername.setEnabled(false);
-        txtPassword.setEnabled(false);
-        layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2);
-        btnUpdate.setLayoutParams(layoutParams);
+//        user = userData.getAccountByUsername(SessionData.getUsername());
+//        if (user != null) {
+//            txtUsername.setText(user.getUsername());
+//            txtPassword.setText(user.getPassword());
+//        }
+//        txtUsername.setEnabled(false);
+//        txtPassword.setEnabled(false);
+//        layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2);
+//        btnUpdate.setLayoutParams(layoutParams);
 //        layoutConfirmPassword.setVisibility(View.GONE);
 //        btnCancel.setVisibility(View.GONE);
     }
