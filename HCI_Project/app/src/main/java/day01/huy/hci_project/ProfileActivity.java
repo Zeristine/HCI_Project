@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
+import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -20,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import day01.huy.hci_project.data.RecipeData;
 import day01.huy.hci_project.data.SessionData;
@@ -100,17 +102,6 @@ public class ProfileActivity extends AppCompatActivity {
     public void clickToUpdateProfile(View view) {
         layoutUpdateProfile.setVisibility(View.VISIBLE);
         layoutProfileChoice.setVisibility(View.INVISIBLE);
-//        user = userData.getAccountByUsername(SessionData.getUsername());
-//        if (user != null) {
-//            txtUsername.setText(user.getUsername());
-//            txtPassword.setText(user.getPassword());
-//        }
-//        txtUsername.setEnabled(false);
-//        txtPassword.setEnabled(false);
-//        layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2);
-//        btnUpdate.setLayoutParams(layoutParams);
-//        layoutConfirmPassword.setVisibility(View.GONE);
-//        btnCancel.setVisibility(View.GONE);
     }
 
     private void createYourRecipesView() {
@@ -140,40 +131,29 @@ public class ProfileActivity extends AppCompatActivity {
         layoutProfileChoice.setVisibility(View.VISIBLE);
     }
 
-//    public void clickToCancel(View view) {
-//        layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2);
-//        btnUpdate.setLayoutParams(layoutParams);
-////        layoutConfirmPassword.setVisibility(View.GONE);
-////        btnCancel.setVisibility(View.GONE);
-//    }
 
     public void clickToUpdate(View view) {
         txtEmail = findViewById(R.id.txtEmail);
+        txtAddress = findViewById(R.id.txtAddress);
+        txtDescription = findViewById(R.id.txtDescription);
+        txtDisplayName = findViewById(R.id.txtDisplayName);
         //set EditText to String
-        email = txtEmail.toString().trim();
-        if (!email.equals("")) {
-            if (!email.matches("^(.+)@(.+)$")) {
-                Toast.makeText(this, "Email không hợp lệ vui lòng nhập lại.", Toast.LENGTH_SHORT).show();
-            }
+        email = txtEmail.getText().toString().trim();
+        displayName = txtDisplayName.getText().toString().trim();
+        description = txtDescription.getText().toString().trim();
+        address = txtAddress.getText().toString().trim();
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        if (!email.equals("") && pattern.matcher(email).matches()==false) {
+            Toast.makeText(this, "Email không hợp lệ vui lòng nhập lại.", Toast.LENGTH_SHORT).show();
+
         } else {
+            txtEmail.setText(email);
+            txtDisplayName.setText(displayName);
+            txtDescription.setText(description);
+            txtAddress.setText(address);
             Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
             layoutUpdateProfile.setVisibility(View.INVISIBLE);
             layoutProfileChoice.setVisibility(View.VISIBLE);
-//            if (btnCancel.getVisibility() == View.GONE) {
-//                layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-//                btnCancel.setLayoutParams(layoutParams);
-//                btnUpdate.setLayoutParams(layoutParams);
-//                txtPassword.setText("");
-//                txtPassword.setEnabled(true);
-//                layoutConfirmPassword.setVisibility(View.VISIBLE);
-//                btnCancel.setVisibility(View.VISIBLE);
-//            } else {
-//                String password = txtPassword.getText().toString();
-//                String confirm = txtConfirm.getText().toString();
-//                if (password.equals(confirm)) {
-//
-//                }
-//            }
         }
     }
 
