@@ -163,11 +163,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10sp"
-                        android:text="- Username"
+                        android:text="- Tên hiển thị"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/txtUsername"
+                        android:id="@+id/txtDisplayName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -175,16 +175,42 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10sp"
-                        android:text="- Password"
+                        android:text="- Email"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/txtPassword"
+                        android:id="@+id/txtEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword" />
+                        android:inputType="textEmailAddress" />
 
-                    <LinearLayout
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10sp"
+                        android:text="- Địa chỉ của bạn"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txtAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10sp"
+                        android:text="- Vài dòng mô tả về bạn"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txtDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine" />
+
+                    <!--<LinearLayout
                         android:id="@+id/layoutConfirmPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -202,7 +228,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPassword" />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -212,7 +238,7 @@
                         android:orientation="horizontal"
                         android:weightSum="2">
 
-                        <Button
+                        <!--<Button
                             android:id="@+id/btnCancel"
                             android:layout_width="0sp"
                             android:layout_height="wrap_content"
@@ -223,7 +249,7 @@
                             android:textColor="@color/white"
                             android:textStyle="bold"
                             android:onClick="clickToCancel"
-                            />
+                            />-->
 
                         <Button
                             android:id="@+id/btnUpdate"

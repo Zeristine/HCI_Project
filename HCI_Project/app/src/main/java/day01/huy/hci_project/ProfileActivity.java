@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -12,8 +13,10 @@ import android.support.v7.widget.GridLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.net.URI;
 import java.util.List;
@@ -36,6 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
     private LinearLayout layoutUpdateProfile, layoutProfileChoice, layoutConfirmPassword;
     private Button btnCancel, btnUpdate;
     private LinearLayout.LayoutParams layoutParams;
+    private EditText txtDisplayName, txtEmail, txtAddress, txtDescription;
+    String displayName, email, address, description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +51,8 @@ public class ProfileActivity extends AppCompatActivity {
         glYourRecipes = findViewById(R.id.glPostedRecipe);
         layoutProfileChoice = findViewById(R.id.layoutProfileChoice);
         layoutUpdateProfile = findViewById(R.id.layoutUpdateProfile);
-        layoutConfirmPassword = findViewById(R.id.layoutConfirmPassword);
-        btnCancel = findViewById(R.id.btnCancel);
+//        layoutConfirmPassword = findViewById(R.id.layoutConfirmPassword);
+//        btnCancel = findViewById(R.id.btnCancel);
         btnUpdate = findViewById(R.id.btnUpdate);
         layoutUpdateProfile.setVisibility(View.INVISIBLE);
         layoutProfileChoice.setVisibility(View.VISIBLE);
@@ -92,8 +97,8 @@ public class ProfileActivity extends AppCompatActivity {
         user = userData.getAccountByUsername(SessionData.getUsername());
         layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2);
         btnUpdate.setLayoutParams(layoutParams);
-        layoutConfirmPassword.setVisibility(View.GONE);
-        btnCancel.setVisibility(View.GONE);
+//        layoutConfirmPassword.setVisibility(View.GONE);
+//        btnCancel.setVisibility(View.GONE);
     }
 
     private void createYourRecipesView() {
@@ -123,36 +128,44 @@ public class ProfileActivity extends AppCompatActivity {
         layoutProfileChoice.setVisibility(View.VISIBLE);
     }
 
-    public void clickToCancel(View view) {
-        layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2);
-        btnUpdate.setLayoutParams(layoutParams);
-        layoutConfirmPassword.setVisibility(View.GONE);
-        btnCancel.setVisibility(View.GONE);
-    }
+//    public void clickToCancel(View view) {
+//        layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2);
+//        btnUpdate.setLayoutParams(layoutParams);
+////        layoutConfirmPassword.setVisibility(View.GONE);
+////        btnCancel.setVisibility(View.GONE);
+//    }
 
     public void clickToUpdate(View view) {
-        layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-        btnCancel.setLayoutParams(layoutParams);
-        btnUpdate.setLayoutParams(layoutParams);
-        layoutConfirmPassword.setVisibility(View.VISIBLE);
-        btnCancel.setVisibility(View.VISIBLE);
+        txtEmail = findViewById(R.id.txtEmail);
+        //set EditText to String
+        email = txtEmail.toString().trim();
+        if (!email.equals("")) {
+            if (!email.matches("^(.+)@(.+)$")) {
+                Toast.makeText(this, "Email không hợp lệ vui lòng nhập lại.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
+            layoutUpdateProfile.setVisibility(View.INVISIBLE);
+            layoutProfileChoice.setVisibility(View.VISIBLE);
+        }
     }
 
     public void clickToUploadImage(View view) {
         openGallery();
     }
 
-    private void openGallery(){
+    private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery,101);
+        startActivityForResult(gallery, 101);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK && requestCode == 101){
+        if (resultCode == RESULT_OK && requestCode == 101) {
             Uri imageUri = data.getData();
             imageViewAvatar.setImageURI(imageUri);
         }
     }
+
 }
