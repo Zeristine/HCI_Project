@@ -60,21 +60,25 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:weightSum="4">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
                             android:paddingLeft="20sp">
+
                             <ImageView
                                 android:id="@+id/imageViewAvatar"
                                 android:layout_width="130sp"
                                 android:layout_height="130sp"
+                                android:adjustViewBounds="true"
                                 android:background="@drawable/shape_image"
-                                android:src="@drawable/icon_user_avatar"
                                 android:onClick="clickToUploadImage"
                                 android:padding="5sp"
-                                />
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/icon_user_avatar" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -91,7 +95,6 @@
                                 android:text="Hồ sơ của bạn"
                                 android:textColor="@color/white"
                                 android:textSize="20sp" />
-
 
 
                             <Button
@@ -169,7 +172,8 @@
                     <EditText
                         android:id="@+id/txtUsername"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -182,7 +186,8 @@
                         android:id="@+id/txtPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:paddingLeft="10sp" />
 
                     <LinearLayout
                         android:id="@+id/layoutConfirmPassword"
@@ -201,7 +206,8 @@
                             android:id="@+id/txtConfirm"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword" />
+                            android:inputType="textPassword"
+                            android:paddingLeft="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -219,11 +225,10 @@
                             android:layout_marginRight="5sp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_button"
+                            android:onClick="clickToCancel"
                             android:text="Hủy Bỏ"
                             android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:onClick="clickToCancel"
-                            />
+                            android:textStyle="bold" />
 
                         <Button
                             android:id="@+id/btnUpdate"
@@ -232,11 +237,10 @@
                             android:layout_marginLeft="5sp"
                             android:layout_weight="1"
                             android:background="@drawable/shape_button"
+                            android:onClick="clickToUpdate"
                             android:text="Cập nhật"
                             android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:onClick="clickToUpdate"
-                            />
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>

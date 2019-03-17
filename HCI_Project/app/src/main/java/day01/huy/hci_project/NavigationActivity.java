@@ -60,7 +60,7 @@ public class NavigationActivity extends AppCompatActivity {
         glFavorite.removeAllViews();
         if (favorites.isEmpty()) {
             imgNotFound.setVisibility(View.VISIBLE);
-            glFavorite.setVisibility(View.INVISIBLE);
+            glFavorite.setVisibility(View.GONE);
         } else {
             double row = favorites.size() / 2;
             int rowCount = (int) row;
@@ -72,7 +72,7 @@ public class NavigationActivity extends AppCompatActivity {
             for (Recipe recipe : favorites) {
                 ItemGenerator.createCardViewGridLayout(recipe, glFavorite, this, getResources().getColor(R.color.white));
             }
-            imgNotFound.setVisibility(View.INVISIBLE);
+            imgNotFound.setVisibility(View.GONE);
             glFavorite.setVisibility(View.VISIBLE);
         }
     }

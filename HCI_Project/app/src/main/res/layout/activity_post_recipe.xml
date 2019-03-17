@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,8 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
-                android:paddingVertical="5sp"
-                android:background="@color/brown400">
+                android:background="@color/brown400"
+                android:paddingVertical="5sp">
 
                 <ImageButton
                     android:layout_width="50sp"
@@ -42,46 +42,109 @@
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Xong"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5sp"
                     android:background="@drawable/shape_button"
-                    />
+                    android:text="Xong" />
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/layoutRecipeImage"
                 android:layout_width="match_parent"
-                android:layout_height="100sp"
-                >
+                android:layout_height="100sp">
+
                 <ImageButton
                     android:id="@+id/btnAddImage"
                     android:layout_width="50sp"
                     android:layout_height="80sp"
-                    android:src="@drawable/icon_camera"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
                     android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
                     android:background="@color/transparent"
-                    />
+                    android:scaleType="fitCenter"
+                    android:onClick="clickToAddImage"
+                    android:src="@drawable/icon_camera" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tải hình ảnh món ăn"
                     android:layout_alignBottom="@+id/btnAddImage"
                     android:layout_centerHorizontal="true"
-                    android:textColor="@color/black"
-                    />
+                    android:text="Tải hình ảnh món ăn"
+                    android:textColor="@color/black" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2sp"
-                android:background="@drawable/shape_divider"
+                android:background="@drawable/shape_divider" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:text="- Tên món ăn:" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Điền tên món..."
+                android:paddingLeft="15sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Giới thiệu về món ăn này..."
+                android:paddingLeft="15sp" />
+
+
+            <Spinner
+                android:id="@+id/ddlDishType"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginHorizontal="50sp"
+                android:textAlignment="center"
+                android:spinnerMode="dialog"
                 />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="15sp"
+                    android:text="- Tên món ăn:" />
+
+                <Button
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_button"
+                    android:onClick="clickToOpenIngredientDialog"
+                    android:paddingRight="10sp"
+                    android:text="Thêm nguyên liệu" />
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="300sp"
+                android:layout_marginHorizontal="10sp">
+
+                <LinearLayout
+                    android:id="@+id/layoutAddIngredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" />
+            </ScrollView>
         </LinearLayout>
     </ScrollView>
 

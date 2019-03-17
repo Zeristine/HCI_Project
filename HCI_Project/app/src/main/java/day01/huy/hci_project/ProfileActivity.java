@@ -11,11 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.net.URI;
 import java.util.List;
 
 import day01.huy.hci_project.data.RecipeData;
@@ -34,6 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView imgNotFound, imageViewAvatar;
     private GridLayout glYourRecipes;
     private LinearLayout layoutUpdateProfile, layoutProfileChoice, layoutConfirmPassword;
+    private EditText txtUsername, txtPassword, txtConfirm;
     private Button btnCancel, btnUpdate;
     private LinearLayout.LayoutParams layoutParams;
 
@@ -49,8 +51,13 @@ public class ProfileActivity extends AppCompatActivity {
         layoutConfirmPassword = findViewById(R.id.layoutConfirmPassword);
         btnCancel = findViewById(R.id.btnCancel);
         btnUpdate = findViewById(R.id.btnUpdate);
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPassword = findViewById(R.id.txtPassword);
+        txtConfirm = findViewById(R.id.txtConfirm);
         layoutUpdateProfile.setVisibility(View.INVISIBLE);
         layoutProfileChoice.setVisibility(View.VISIBLE);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         createYourRecipesView();
     }
 
@@ -90,6 +97,12 @@ public class ProfileActivity extends AppCompatActivity {
         layoutUpdateProfile.setVisibility(View.VISIBLE);
         layoutProfileChoice.setVisibility(View.INVISIBLE);
         user = userData.getAccountByUsername(SessionData.getUsername());
+        if (user != null) {
+            txtUsername.setText(user.getUsername());
+            txtPassword.setText(user.getPassword());
+        }
+        txtUsername.setEnabled(false);
+        txtPassword.setEnabled(false);
         layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2);
         btnUpdate.setLayoutParams(layoutParams);
         layoutConfirmPassword.setVisibility(View.GONE);
@@ -131,26 +144,36 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void clickToUpdate(View view) {
-        layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-        btnCancel.setLayoutParams(layoutParams);
-        btnUpdate.setLayoutParams(layoutParams);
-        layoutConfirmPassword.setVisibility(View.VISIBLE);
-        btnCancel.setVisibility(View.VISIBLE);
+        if (btnCancel.getVisibility() == View.GONE) {
+            layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+            btnCancel.setLayoutParams(layoutParams);
+            btnUpdate.setLayoutParams(layoutParams);
+            txtPassword.setText("");
+            txtPassword.setEnabled(true);
+            layoutConfirmPassword.setVisibility(View.VISIBLE);
+            btnCancel.setVisibility(View.VISIBLE);
+        } else {
+            String password = txtPassword.getText().toString();
+            String confirm = txtConfirm.getText().toString();
+            if (password.equals(confirm)) {
+
+            }
+        }
     }
 
     public void clickToUploadImage(View view) {
         openGallery();
     }
 
-    private void openGallery(){
+    private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery,101);
+        startActivityForResult(gallery, 101);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK && requestCode == 101){
+        if (resultCode == RESULT_OK && requestCode == 101) {
             Uri imageUri = data.getData();
             imageViewAvatar.setImageURI(imageUri);
         }
