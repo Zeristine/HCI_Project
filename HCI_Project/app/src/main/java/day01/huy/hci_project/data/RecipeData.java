@@ -6,7 +6,7 @@ import java.util.List;
 import day01.huy.hci_project.dto.Recipe;
 
 public class RecipeData {
-    private final List<Recipe> recipes = new ArrayList<>();
+    private static final List<Recipe> recipes = new ArrayList<>();
     private static final List<Recipe> favorites = new ArrayList<>();
 
     public RecipeData() {

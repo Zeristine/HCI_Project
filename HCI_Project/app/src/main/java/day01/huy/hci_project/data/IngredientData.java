@@ -114,6 +114,14 @@ public class IngredientData {
         return list;
     }
 
+    public List<String> getIngredientListOfString(List<Ingredient> list){
+        List<String> stringList = new ArrayList<>();
+        for (Ingredient ingredient: list) {
+            stringList.add(ingredient.getName());
+        }
+        return stringList;
+    }
+
     public boolean hasContain(List<Ingredient> list, String value) {
         for (Ingredient ingredient : list) {
             if (ingredient.getName().equalsIgnoreCase(value)) {

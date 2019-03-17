@@ -12,13 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.net.URI;
 import java.util.List;
 
 import day01.huy.hci_project.data.RecipeData;
@@ -37,6 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView imgNotFound, imageViewAvatar;
     private GridLayout glYourRecipes;
     private LinearLayout layoutUpdateProfile, layoutProfileChoice, layoutConfirmPassword;
+    private EditText txtUsername, txtPassword, txtConfirm;
     private Button btnCancel, btnUpdate;
     private LinearLayout.LayoutParams layoutParams;
     private EditText txtDisplayName, txtEmail, txtAddress, txtDescription;
@@ -54,8 +55,13 @@ public class ProfileActivity extends AppCompatActivity {
 //        layoutConfirmPassword = findViewById(R.id.layoutConfirmPassword);
 //        btnCancel = findViewById(R.id.btnCancel);
         btnUpdate = findViewById(R.id.btnUpdate);
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPassword = findViewById(R.id.txtPassword);
+//        txtConfirm = findViewById(R.id.txtConfirm);
         layoutUpdateProfile.setVisibility(View.INVISIBLE);
         layoutProfileChoice.setVisibility(View.VISIBLE);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         createYourRecipesView();
     }
 
@@ -95,6 +101,12 @@ public class ProfileActivity extends AppCompatActivity {
         layoutUpdateProfile.setVisibility(View.VISIBLE);
         layoutProfileChoice.setVisibility(View.INVISIBLE);
         user = userData.getAccountByUsername(SessionData.getUsername());
+        if (user != null) {
+            txtUsername.setText(user.getUsername());
+            txtPassword.setText(user.getPassword());
+        }
+        txtUsername.setEnabled(false);
+        txtPassword.setEnabled(false);
         layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 2);
         btnUpdate.setLayoutParams(layoutParams);
 //        layoutConfirmPassword.setVisibility(View.GONE);
@@ -147,6 +159,21 @@ public class ProfileActivity extends AppCompatActivity {
             Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
             layoutUpdateProfile.setVisibility(View.INVISIBLE);
             layoutProfileChoice.setVisibility(View.VISIBLE);
+//            if (btnCancel.getVisibility() == View.GONE) {
+//                layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+//                btnCancel.setLayoutParams(layoutParams);
+//                btnUpdate.setLayoutParams(layoutParams);
+//                txtPassword.setText("");
+//                txtPassword.setEnabled(true);
+//                layoutConfirmPassword.setVisibility(View.VISIBLE);
+//                btnCancel.setVisibility(View.VISIBLE);
+//            } else {
+//                String password = txtPassword.getText().toString();
+//                String confirm = txtConfirm.getText().toString();
+//                if (password.equals(confirm)) {
+//
+//                }
+//            }
         }
     }
 
@@ -169,3 +196,4 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 }
+
