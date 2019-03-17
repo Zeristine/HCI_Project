@@ -38,6 +38,7 @@
             android:background="@drawable/shape_button"
             android:orientation="horizontal"
             android:weightSum="20"
+            android:onClick="clickToSocial"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1">
 
@@ -46,7 +47,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="16"
                 android:background="@color/transparent"
-                android:onClick="clickToSocial"
                 android:text="Đăng nhập bằng Google"
                 android:textAlignment="textStart"
                 android:paddingLeft="25sp"
@@ -208,7 +208,8 @@
             android:id="@+id/txtRPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mật khẩu" />
+            android:hint="Mật khẩu"
+            android:inputType="textPassword"/>
 
         <TextView
             android:id="@+id/lblRConfirm"
@@ -220,7 +221,8 @@
             android:id="@+id/txtRConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Lập lại Mật khẩu" />
+            android:hint="Lập lại Mật khẩu"
+            android:inputType="textPassword"/>
 
         <android.support.v7.widget.GridLayout
             android:layout_width="match_parent"
