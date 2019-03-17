@@ -15,19 +15,18 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import day01.huy.hci_project.data.IngredientData;
 import day01.huy.hci_project.data.RecipeData;
 import day01.huy.hci_project.dto.Ingredient;
+import day01.huy.hci_project.ultis.ItemGenerator;
 
 public class PostRecipeActivity extends AppCompatActivity {
 
@@ -35,17 +34,19 @@ public class PostRecipeActivity extends AppCompatActivity {
     private final RecipeData recipeData = new RecipeData();
     private final int REQUEST_CAMERA = 102, REQUEST_GALLERY = 101;
     private RelativeLayout layoutRecipeImage;
-    private Spinner spinner;
+    private LinearLayout layoutAddIngredient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_recipe);
-        spinner = findViewById(R.id.ddlDishType);
         layoutRecipeImage = findViewById(R.id.layoutRecipeImage);
+        layoutAddIngredient = findViewById(R.id.layoutAddIngredient);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        final String[] dishTypes = new String[]{"Chọn loại món ăn", "Món mặn", "Món chay", "Thức uống"};
-        spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, dishTypes));
+
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ 1");
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ 2");
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ 3");
     }
 
     @Override
@@ -59,73 +60,73 @@ public class PostRecipeActivity extends AppCompatActivity {
     }
 
     public void clickToOpenIngredientDialog(View view) {
-        String dishType = spinner.getSelectedItem().toString();
-        final List<Ingredient> main = new ArrayList<>();
-        final List<Ingredient> sub = new ArrayList<>();
-        if (dishType.equals("Chọn loại món ăn")) {
-            Toast.makeText(this, "Xin hãy chọn loại món trước!", Toast.LENGTH_SHORT).show();
-        } else {
-            switch (dishType) {
-                case "Món mặn":
-                    main.addAll(ingredientData.getNonVegetarians().get("main"));
-                    sub.addAll(ingredientData.getNonVegetarians().get("sub"));
-                    break;
-                case "Món chay":
-                    main.addAll(ingredientData.getVegetarians().get("main"));
-                    sub.addAll(ingredientData.getVegetarians().get("sub"));
-                    break;
-                case "Thức uóng":
-                    main.addAll(ingredientData.getDrinks().get("main"));
-                    sub.addAll(ingredientData.getDrinks().get("sub"));
-                    break;
-            }
-            final Dialog chooseDialog = new Dialog(this);
-            chooseDialog.setContentView(R.layout.layout_dialog_choose_option);
-            TextView title = chooseDialog.findViewById(R.id.txtTitle);
-            ListView lvOption = chooseDialog.findViewById(R.id.lvOption);
-            title.setText("Chọn loại nguyên Liệu");
-            String[] ingredientTypes = new String[]{"Nguyên Liệu Chính", "Nguyên Liệu Phụ", "Trở về"};
-            lvOption.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ingredientTypes));
-            lvOption.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    chooseDialog.dismiss();
-                    switch (position) {
-                        case 0:
-                            getDialogIngredient(main);
-                            break;
-                        case 1:
-                            getDialogIngredient(sub);
-                            break;
-                    }
-                }
-            });
-            chooseDialog.show();
-        }
+//        final List<Ingredient> main = new ArrayList<>();
+//        final List<Ingredient> sub = new ArrayList<>();
+//        if (dishType.equals("Chọn loại món ăn")) {
+//            Toast.makeText(this, "Xin hãy chọn loại món trước!", Toast.LENGTH_SHORT).show();
+//        } else {
+//            switch (dishType) {
+//                case "Món mặn":
+//                    main.addAll(ingredientData.getNonVegetarians().get("main"));
+//                    sub.addAll(ingredientData.getNonVegetarians().get("sub"));
+//                    break;
+//                case "Món chay":
+//                    main.addAll(ingredientData.getVegetarians().get("main"));
+//                    sub.addAll(ingredientData.getVegetarians().get("sub"));
+//                    break;
+//                case "Thức uóng":
+//                    main.addAll(ingredientData.getDrinks().get("main"));
+//                    sub.addAll(ingredientData.getDrinks().get("sub"));
+//                    break;
+//            }
+//            final  chooseDialog = new Dialog(this);
+//            chooseDialog.setContentView(R.layout.layout_dialog_choose_option);
+//            TextView title = chooseDialog.findViewById(R.id.txtTitle);
+//            ListView lvOption = chooseDialog.findViewById(R.id.lvOption);
+//            title.setText("Chọn loại nguyên Liệu");
+//            String[] ingredientTypes = new String[]{"Nguyên Liệu Chính", "Nguyên Liệu Phụ", "Trở về"};
+//            lvOption.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ingredientTypes));
+//            lvOption.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    chooseDialog.dismiss();
+//                    switch (position) {
+//                        case 0:
+//                            getDialogIngredient(main);
+//                            break;
+//                        case 1:
+//                            getDialogIngredient(sub);
+//                            break;
+//                    }
+//                }
+//            });
+//            chooseDialog.show();
+//        }
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "");
     }
 
     private void getDialogIngredient(List<Ingredient> list) {
-        List<String> stringList = ingredientData.getIngredientListOfString(list);
-        stringList.add("Trở về");
-        final Dialog chooseDialog = new Dialog(this);
-        chooseDialog.setContentView(R.layout.layout_dialog_choose_option);
-        TextView title = chooseDialog.findViewById(R.id.txtTitle);
-        final ListView lvOption = chooseDialog.findViewById(R.id.lvOption);
-
-        title.setText("Chọn nguyên Liệu");
-
-        lvOption.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringList));
-        lvOption.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                chooseDialog.dismiss();
-                String selectedValue = lvOption.getItemAtPosition(position).toString();
-                if (!selectedValue.equals("Trở về")) {
-                    Toast.makeText(PostRecipeActivity.this, selectedValue, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        chooseDialog.show();
+//        List<String> stringList = ingredientData.getIngredientListOfString(list);
+//        stringList.add("Trở về");
+//        final Dialog chooseDialog = new Dialog(this);
+//        chooseDialog.setContentView(R.layout.layout_dialog_choose_option);
+//        TextView title = chooseDialog.findViewById(R.id.txtTitle);
+//        final ListView lvOption = chooseDialog.findViewById(R.id.lvOption);
+//
+//        title.setText("Chọn nguyên Liệu");
+//
+//        lvOption.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringList));
+//        lvOption.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                chooseDialog.dismiss();
+//                String selectedValue = lvOption.getItemAtPosition(position).toString();
+//                if (!selectedValue.equals("Trở về")) {
+//                    Toast.makeText(PostRecipeActivity.this, selectedValue, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//        chooseDialog.show();
     }
 
     public void clickToAddImage(View view) {
@@ -167,7 +168,7 @@ public class PostRecipeActivity extends AppCompatActivity {
                 }
                 break;
             case REQUEST_CAMERA:
-                if(resultCode ==RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     BitmapDrawable drawable = new BitmapDrawable(imageBitmap);

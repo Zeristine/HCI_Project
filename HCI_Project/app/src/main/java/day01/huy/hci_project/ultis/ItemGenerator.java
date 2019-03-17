@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -71,12 +72,12 @@ public class ItemGenerator {
         return recipeCard;
     }
 
-    public static void createCardViewGridLayout(@NotNull final Recipe recipe, @NotNull GridLayout gridLayout, final Context context, int color){
-        gridLayout.addView(createCardView(recipe,context, color));
+    public static void createCardViewGridLayout(@NotNull final Recipe recipe, @NotNull GridLayout gridLayout, final Context context, int color) {
+        gridLayout.addView(createCardView(recipe, context, color));
     }
 
-    public static void createCardViewLinearLayout(@NotNull final Recipe recipe, @NotNull LinearLayout linearLayout, final Context context, int color){
-        linearLayout.addView(createCardView(recipe,context, color));
+    public static void createCardViewLinearLayout(@NotNull final Recipe recipe, @NotNull LinearLayout linearLayout, final Context context, int color) {
+        linearLayout.addView(createCardView(recipe, context, color));
     }
 
     public static View createLine(Context context) {
@@ -148,5 +149,52 @@ public class ItemGenerator {
             }
         });
         linearLayout.addView(ingredientRow);
+    }
+
+    public static void createAddIngredientRow(Context context, final LinearLayout layout, @NotNull String value) {
+        final View view = LayoutInflater.from(context).inflate(R.layout.layout_edit_text_with_cancel, layout, false);
+        final TextView textView = view.findViewById(R.id.lblIngredient);
+        final EditText editText = view.findViewById(R.id.txtIngredient);
+        ImageButton button = view.findViewById(R.id.btnCancel);
+        if (!value.isEmpty()) {
+            editText.setText(value);
+            textView.setText(value);
+            editText.setSelection(value.length());
+            editText.setVisibility(View.INVISIBLE);
+            textView.setVisibility(View.VISIBLE);
+        }
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String value = editText.getText().toString();
+                    if (value.isEmpty()) {
+                        layout.removeView(view);
+                    } else {
+                        textView.setText(value);
+                        editText.setVisibility(View.INVISIBLE);
+                        textView.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText.setVisibility(View.VISIBLE);
+                textView.setVisibility(View.INVISIBLE);
+                editText.requestFocus();
+            }
+        });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout.removeView(view);
+            }
+        });
+        layout.addView(view);
+        if (value.isEmpty()) {
+            editText.requestFocus();
+        }
     }
 }
