@@ -4,11 +4,9 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,10 +20,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,6 +40,7 @@ public class PostRecipeActivity extends AppCompatActivity {
     private final RecipeData recipeData = new RecipeData();
     private final int REQUEST_CAMERA = 102, REQUEST_GALLERY = 101;
     private ImageView layoutRecipeImage;
+    private Spinner spDishType;
     private LinearLayout layoutAddIngredient;
 
     @Override
@@ -50,11 +49,14 @@ public class PostRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_recipe);
         layoutRecipeImage = findViewById(R.id.layoutRecipeImage);
         layoutAddIngredient = findViewById(R.id.layoutAddIngredient);
+        spDishType = findViewById(R.id.spDishType);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ 1");
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ 2");
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ 3");
+        String[] dishTypes = new String[]{"Chọn loại món ăn", "Món chay", "Món Mặn", "Thức uống"};
+        spDishType.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, dishTypes));
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột");
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột");
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột");
     }
 
     @Override
@@ -151,9 +153,9 @@ public class PostRecipeActivity extends AppCompatActivity {
                 chooseDialog.dismiss();
                 switch (position) {
                     case 0:
-                        if(ActivityCompat.checkSelfPermission(PostRecipeActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                        if (ActivityCompat.checkSelfPermission(PostRecipeActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             Toast.makeText(PostRecipeActivity.this, "Không có sự cho phép đọc dữ liệu điện thoại của bạn", Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
                             Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                             startActivityForResult(galleryIntent, REQUEST_GALLERY);
                         }
@@ -181,14 +183,14 @@ public class PostRecipeActivity extends AppCompatActivity {
                         inputStream = getContentResolver().openInputStream(imageUri);
                         imageBitmap = BitmapFactory.decodeStream(inputStream);
                         layoutRecipeImage.setImageBitmap(imageBitmap);
-                    }catch(FileNotFoundException ex){
+                    } catch (FileNotFoundException ex) {
                         Toast.makeText(this, "Có chuyện xảy ra khi tải hình từ thự viện",
                                 Toast.LENGTH_SHORT).show();
-                    }finally{
-                        if(inputStream != null){
+                    } finally {
+                        if (inputStream != null) {
                             try {
                                 inputStream.close();
-                            }catch(IOException ex){
+                            } catch (IOException ex) {
 
                             }
                         }

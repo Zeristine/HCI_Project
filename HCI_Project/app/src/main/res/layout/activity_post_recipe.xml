@@ -89,6 +89,14 @@
                 android:layout_height="2sp"
                 android:background="@drawable/shape_divider" />
 
+            <Spinner
+                android:id="@+id/spDishType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="45sp"
+                android:spinnerMode="dropdown"
+                />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
