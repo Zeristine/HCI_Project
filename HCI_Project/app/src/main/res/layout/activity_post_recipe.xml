@@ -53,9 +53,9 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutRecipeImage"
                 android:layout_width="match_parent"
-                android:layout_height="200sp">
+                android:layout_height="200sp"
+                android:id="@+id/layoutRecipeImage">
 
                 <ImageButton
                     android:id="@+id/btnAddImage"

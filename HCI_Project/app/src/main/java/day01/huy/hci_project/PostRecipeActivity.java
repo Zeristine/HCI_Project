@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -30,6 +31,7 @@ import day01.huy.hci_project.ultis.ItemGenerator;
 
 public class PostRecipeActivity extends AppCompatActivity {
 
+    private ImageView imageViewRecipe;
     private final IngredientData ingredientData = new IngredientData();
     private final RecipeData recipeData = new RecipeData();
     private final int REQUEST_CAMERA = 102, REQUEST_GALLERY = 101;
@@ -40,13 +42,13 @@ public class PostRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_recipe);
-        layoutRecipeImage = findViewById(R.id.layoutRecipeImage);
+//        layoutRecipeImage = findViewById(R.id.layoutRecipeImage);
         layoutAddIngredient = findViewById(R.id.layoutAddIngredient);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ 1");
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ 2");
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ 3");
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột");
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột");
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột");
     }
 
     @Override
@@ -163,6 +165,7 @@ public class PostRecipeActivity extends AppCompatActivity {
             case REQUEST_GALLERY:
                 if (resultCode == RESULT_OK) {
                     Uri imageUri = data.getData();
+//                    imageViewRecipe.setImageURI(imageUri);
                     File imageFile = new File(getRealPathFromURI(imageUri));
                     layoutRecipeImage.setBackground(Drawable.createFromPath(imageFile.getAbsolutePath()));
                 }
@@ -172,6 +175,7 @@ public class PostRecipeActivity extends AppCompatActivity {
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     BitmapDrawable drawable = new BitmapDrawable(imageBitmap);
+//                    imageViewRecipe.setImageBitmap(imageBitmap);
                     layoutRecipeImage.setBackground(drawable);
                 }
                 break;
