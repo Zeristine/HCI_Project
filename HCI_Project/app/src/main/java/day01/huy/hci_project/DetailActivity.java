@@ -24,7 +24,6 @@ import java.util.List;
 import day01.huy.hci_project.custom.SlicePagerAdapter;
 import day01.huy.hci_project.data.RecipeData;
 import day01.huy.hci_project.dto.Recipe;
-import day01.huy.hci_project.fragments.ChefFragment;
 import day01.huy.hci_project.fragments.RecipeContentFragment;
 import day01.huy.hci_project.fragments.SuggestionFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
@@ -70,12 +69,12 @@ public class DetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Unknown Recipe", Toast.LENGTH_SHORT).show();
             finish();
         }
+        txtChef.setText(recipe.getAuthor() + "'s Other Recipes");
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new RecipeContentFragment());
         fragmentList.add(new RecipeContentFragment());
         fragmentList.add(new RecipeContentFragment());
         fragmentList.add(new SuggestionFragment());
-        fragmentList.add(new ChefFragment());
         pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(pagerAdapter);
 
@@ -114,6 +113,7 @@ public class DetailActivity extends AppCompatActivity {
         List<Recipe> chefRecipes = recipeData.getRecipesSameChef(recipe.getAuthor(), 5);
 
         initHorizontalCardsView(chefRecipes, layoutChef);
+        initHorizontalCardsView(recipeData.getFavorites(), layoutSuggest);
     }
 
     public void clickToFavorite(View view) {
@@ -135,7 +135,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void initHorizontalCardsView(@NotNull List<Recipe> list, LinearLayout layout) {
         for (Recipe recipe : list) {
-            ItemGenerator.createCardViewLinearLayout(recipe, layout, this, R.color.white);
+            ItemGenerator.createCardViewLinearLayout(recipe, layout, this, getResources().getColor(R.color.white));
         }
     }
 }

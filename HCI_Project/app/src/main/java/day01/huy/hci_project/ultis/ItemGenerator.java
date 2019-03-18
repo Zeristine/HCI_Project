@@ -36,10 +36,6 @@ public class ItemGenerator {
         recipeCard.setCardElevation(8);
         recipeCard.setRadius(10);
         recipeCard.setCardBackgroundColor(color);
-        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                , GridLayout.spec(GridLayout.UNDEFINED, 1f));
-        layoutParams.setMargins(20, 20, 20, 20);
-        recipeCard.setLayoutParams(layoutParams);
         recipeCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,11 +69,20 @@ public class ItemGenerator {
     }
 
     public static void createCardViewGridLayout(@NotNull final Recipe recipe, @NotNull GridLayout gridLayout, final Context context, int color) {
-        gridLayout.addView(createCardView(recipe, context, color));
+        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                , GridLayout.spec(GridLayout.UNDEFINED, 1f));
+        layoutParams.setMargins(20, 20, 20, 20);
+        CardView cardView = createCardView(recipe, context, color);
+        cardView.setLayoutParams(layoutParams);
+        gridLayout.addView(cardView);
     }
 
     public static void createCardViewLinearLayout(@NotNull final Recipe recipe, @NotNull LinearLayout linearLayout, final Context context, int color) {
-        linearLayout.addView(createCardView(recipe, context, color));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(200, 375);
+        layoutParams.setMargins(20, 20, 20, 20);
+        CardView cardView = createCardView(recipe, context, color);
+        cardView.setLayoutParams(layoutParams);
+        linearLayout.addView(cardView);
     }
 
     public static View createLine(Context context) {

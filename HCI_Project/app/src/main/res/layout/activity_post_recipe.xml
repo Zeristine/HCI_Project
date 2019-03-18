@@ -54,16 +54,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200sp"
-                android:id="@+id/layoutRecipeImage">
+                android:layout_height="200sp">
 
                 <ImageView
                     android:id="@+id/layoutRecipeImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    />
+                    android:scaleType="fitCenter" />
 
                 <ImageButton
                     android:id="@+id/btnAddImage"
@@ -95,15 +93,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="45sp"
-                android:spinnerMode="dropdown"
-                />
+                android:spinnerMode="dropdown" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="15sp"
-                android:textStyle="bold"
-                android:text="- Tên món ăn:" />
+                android:text="- Tên món ăn:"
+                android:textStyle="bold" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -122,14 +119,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="15sp"
-                android:textStyle="bold"
-                android:text="- Danh sách nguyên liệu:" />
+                android:text="- Danh sách nguyên liệu:"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/layoutAddIngredient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+                android:orientation="vertical" />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,8 +136,25 @@
                 android:background="@drawable/shape_button"
                 android:onClick="clickToOpenIngredientDialog"
                 android:paddingRight="10sp"
-                android:textColor="@color/white"
-                android:text="Thêm nguyên liệu" />
+                android:text="Thêm nguyên liệu"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:text="- Độ dinh dưỡng(không bắt buộc) :"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="150sp"
+                android:layout_marginHorizontal="25sp"
+                android:layout_marginVertical="15sp"
+                android:gravity="top"
+                android:inputType="text|textMultiLine"
+                android:hint="Chất đạm 50 \n Chất Vitamin C, A, D, 100"
+                android:scrollbars="vertical" />
         </LinearLayout>
     </ScrollView>
 
