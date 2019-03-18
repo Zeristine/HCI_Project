@@ -1,7 +1,10 @@
 package day01.huy.hci_project;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
 import android.view.View;
@@ -10,6 +13,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import day01.huy.hci_project.data.SessionData;
 import day01.huy.hci_project.data.UserData;
@@ -25,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+        List<String> permissions = new ArrayList<>();
+        checkPermission(permissions, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (!permissions.isEmpty()) {
+            Intent intent = new Intent(this, GetPermissionActivity.class);
+            intent.putStringArrayListExtra("permissions", (ArrayList<String>) permissions);
+            startActivity(intent);
+            finish();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -139,5 +153,11 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    private void checkPermission(List<String> permissions, String permission) {
+        if (ActivityCompat.checkSelfPermission(this, permission)
+                != PackageManager.PERMISSION_GRANTED) {
+            permissions.add(permission);
+        }
+    }
 }
 

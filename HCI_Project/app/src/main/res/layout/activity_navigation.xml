@@ -46,7 +46,7 @@
                         android:gravity="center"
                         android:text="Chọn nguyên liệu"
                         android:textColor="@color/white"
-                        android:textSize="23sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"/>
                 </LinearLayout>
 
@@ -71,7 +71,7 @@
                         android:gravity="center"
                         android:text="Đăng món ăn"
                         android:textColor="@color/white"
-                        android:textSize="23sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -96,7 +96,7 @@
                         android:gravity="center"
                         android:text="Thông tin của bạn"
                         android:textColor="@color/white"
-                        android:textSize="23sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
