@@ -49,6 +49,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5sp"
                     android:background="@drawable/shape_button"
+                    android:onClick="clickToValidate"
                     android:text="Xong" />
             </RelativeLayout>
 
@@ -103,23 +104,37 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/txtRecipeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Điền tên món..."
                 android:paddingLeft="15sp" />
 
             <EditText
+                android:id="@+id/txtRecipeContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Giới thiệu về món ăn này..."
                 android:paddingLeft="15sp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:text="- Nguyên liệu chính:"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layoutMainIngredient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="15sp"
-                android:text="- Danh sách nguyên liệu:"
+                android:text="- Danh sách nguyên liệu phụ:"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -147,13 +162,31 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/txtRecipeQuality"
                 android:layout_width="match_parent"
                 android:layout_height="150sp"
                 android:layout_marginHorizontal="25sp"
                 android:layout_marginVertical="15sp"
                 android:gravity="top"
                 android:inputType="text|textMultiLine"
-                android:hint="Chất đạm 50 \n Chất Vitamin C, A, D, 100"
+                android:hint="Chất đạm 50 \nChất Vitamin C, A, D, 100"
+                android:scrollbars="vertical" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:text="- Các bước làm:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtRecipeInstruct"
+                android:layout_width="match_parent"
+                android:layout_height="150sp"
+                android:layout_marginHorizontal="25sp"
+                android:layout_marginVertical="15sp"
+                android:gravity="top"
+                android:inputType="text|textMultiLine"
+                android:hint="Bước 1:\nBước 2:"
                 android:scrollbars="vertical" />
         </LinearLayout>
     </ScrollView>

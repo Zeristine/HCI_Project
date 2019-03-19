@@ -1,7 +1,9 @@
 package day01.huy.hci_project;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -27,6 +30,7 @@ import android.widget.Toast;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import day01.huy.hci_project.data.IngredientData;
@@ -39,9 +43,12 @@ public class PostRecipeActivity extends AppCompatActivity {
     private final IngredientData ingredientData = new IngredientData();
     private final RecipeData recipeData = new RecipeData();
     private final int REQUEST_CAMERA = 102, REQUEST_GALLERY = 101;
+    private final List<String> subIngredients = new ArrayList<>();
+    private final List<String> mainIngredients = new ArrayList<>();
+    private EditText txtRecipeTitle, txtRecipeContent, txtRecipeQuality, txtRecipeInstruct;
     private ImageView layoutRecipeImage;
     private Spinner spDishType;
-    private LinearLayout layoutAddIngredient;
+    private LinearLayout layoutAddIngredient, layoutMainIngredient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +56,19 @@ public class PostRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_recipe);
         layoutRecipeImage = findViewById(R.id.layoutRecipeImage);
         layoutAddIngredient = findViewById(R.id.layoutAddIngredient);
+        layoutMainIngredient = findViewById(R.id.layoutMainIngredient);
+        txtRecipeTitle = findViewById(R.id.txtRecipeTitle);
+        txtRecipeContent = findViewById(R.id.txtRecipeContent);
+        txtRecipeQuality = findViewById(R.id.txtRecipeQuality);
+        txtRecipeInstruct = findViewById(R.id.txtRecipeInstruct);
         spDishType = findViewById(R.id.spDishType);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         String[] dishTypes = new String[]{"Chọn loại món ăn", "Món chay", "Món Mặn", "Thức uống"};
         spDishType.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, dishTypes));
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột");
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột");
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột");
+        ItemGenerator.createAddIngredientRow(this, layoutMainIngredient, "Ví dụ: 100g thịt HuyLM", subIngredients, mainIngredients, true);
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột", subIngredients, mainIngredients, false);
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột", subIngredients, mainIngredients, false);
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột", subIngredients, mainIngredients, false);
     }
 
     @Override
@@ -111,7 +124,7 @@ public class PostRecipeActivity extends AppCompatActivity {
 //            });
 //            chooseDialog.show();
 //        }
-        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "");
+        ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "", subIngredients, mainIngredients, false);
     }
 
     private void getDialogIngredient(List<Ingredient> list) {
@@ -204,6 +217,60 @@ public class PostRecipeActivity extends AppCompatActivity {
                     layoutRecipeImage.setImageDrawable(drawable);
                 }
                 break;
+        }
+    }
+
+    public void clickToValidate(View view) {
+        String title = txtRecipeTitle.getText().toString();
+        String content = txtRecipeContent.getText().toString();
+        String quality = txtRecipeQuality.getText().toString();
+        String instruction = txtRecipeInstruct.getText().toString();
+        List<String> errors = new ArrayList<>();
+        if (title.isEmpty()) {
+            errors.add("thêm tên món ăn");
+        }
+        if (content.isEmpty()) {
+            errors.add("thêm phần giới thiệu về món ăn");
+        }
+        if (instruction.isEmpty()) {
+            errors.add("thêm phần cách làm món ăn");
+        }
+        if (mainIngredients.isEmpty()) {
+            errors.add("thêm nguyên liệu chính vào món ăn");
+        }
+        if (!errors.isEmpty()) {
+            String errorString = "";
+            for (String error : errors) {
+                errorString += "- " + error + "\n";
+            }
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Bài đăng món ăn còn thiếu sót!");
+            builder.setMessage("Bạn còn thiếu một số dữ liệu. Xin hãy:\n" + errorString);
+            builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Bài đăng món ăn đã hoàn chỉnh!");
+            builder.setMessage("Bạn còn muốn chỉnh sửa gì không?");
+            builder.setNegativeButton("Đăng bài", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    Toast.makeText(PostRecipeActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.setPositiveButton("Chỉnh sửa", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
         }
     }
 }

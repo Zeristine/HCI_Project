@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
@@ -106,7 +107,8 @@ public class ItemGenerator {
     public static void createIngredientRow(final String text, final String imageLink,
                                            LinearLayout linearLayout, final Context context,
                                            @NotNull final List<String> selectedList,
-                                           final ImageButton button, final List<Ingredient> main) {
+                                           final ImageButton button, final List<Ingredient> main,
+                                           final List<String> selectedMain) {
         final LinearLayout ingredientRow = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_pick_ingredient_row, null);
         final ImageView img = ingredientRow.findViewById(R.id.imgIngredient);
         final TextView txt = ingredientRow.findViewById(R.id.txtIngredient);
@@ -121,7 +123,10 @@ public class ItemGenerator {
             ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.brown100));
             txt.setTextColor(context.getResources().getColor(R.color.white));
             if (data.hasContain(main, text)) {
-                button.setEnabled(true);
+                if (!selectedMain.contains(text)) {
+                    ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
+                    txt.setTextColor(context.getResources().getColor(R.color.black));
+                }
                 button.setBackground(ColorGradient.getOrangeGradientCircle(context));
             }
         } else {
@@ -134,11 +139,19 @@ public class ItemGenerator {
                 Drawable background = v.getBackground();
                 if (background instanceof ColorDrawable) {
                     if (((ColorDrawable) background).getColor() == context.getResources().getColor(R.color.white)) {
+                        selectedList.add(text);
                         ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.brown100));
                         txt.setTextColor(context.getResources().getColor(R.color.white));
-                        selectedList.add(text);
                         if (data.hasContain(main, text)) {
-                            button.setBackground(ColorGradient.getOrangeGradientCircle(context));
+                            if (selectedMain.size() == 1) {
+                                Toast.makeText(context, "Bạn chỉ có thể chọn 1 nguyên liệu chính thôi", Toast.LENGTH_SHORT).show();
+                                selectedList.remove(text);
+                                ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
+                                txt.setTextColor(context.getResources().getColor(R.color.black));
+                            } else {
+                                selectedMain.add(text);
+                                button.setBackground(ColorGradient.getOrangeGradientCircle(context));
+                            }
                         }
                     } else {
                         ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
@@ -148,6 +161,9 @@ public class ItemGenerator {
                             if (!data.hasContainOneMainIngredient(main, selectedList)) {
                                 button.setBackground(ColorGradient.getGreyGradientCircle(context));
                             }
+                            if (data.hasContain(main, text)) {
+                                selectedMain.remove(text);
+                            }
                         }
                     }
                 }
@@ -156,15 +172,19 @@ public class ItemGenerator {
         linearLayout.addView(ingredientRow);
     }
 
-    public static void createAddIngredientRow(Context context, final LinearLayout layout, @NotNull String value) {
+    public static void createAddIngredientRow(final Context context, final LinearLayout layout, @NotNull String value,
+                                              final List<String> subIngredients, final List<String> mainIngredients,
+                                              final boolean isMain) {
         final View view = LayoutInflater.from(context).inflate(R.layout.layout_edit_text_with_cancel, layout, false);
         final TextView textView = view.findViewById(R.id.lblIngredient);
         final EditText editText = view.findViewById(R.id.txtIngredient);
         ImageButton button = view.findViewById(R.id.btnCancel);
+        if (isMain) {
+            button.setVisibility(View.GONE);
+        }
         if (!value.isEmpty()) {
-            editText.setText(value);
+            editText.setHint(value);
             textView.setText(value);
-            editText.setSelection(value.length());
             editText.setVisibility(View.INVISIBLE);
             textView.setVisibility(View.VISIBLE);
         }
@@ -173,12 +193,34 @@ public class ItemGenerator {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     String value = editText.getText().toString();
+                    String oldValue = textView.getText().toString();
                     if (value.isEmpty()) {
-                        layout.removeView(view);
+                        if(oldValue.isEmpty()){
+                            if (isMain) {
+                                Toast.makeText(context, "Không thể không có nguyên liệu chính!", Toast.LENGTH_SHORT).show();
+                                editText.setHint("Cần có nguyên liệu chính");
+                                if (mainIngredients.contains(oldValue)) {
+                                    mainIngredients.remove(oldValue);
+                                }
+                            } else {
+                                layout.removeView(view);
+                                if (subIngredients.contains(oldValue)) {
+                                    subIngredients.remove(oldValue);
+                                }
+                            }
+                        }else{
+                            editText.setVisibility(View.INVISIBLE);
+                            textView.setVisibility(View.VISIBLE);
+                        }
                     } else {
                         textView.setText(value);
                         editText.setVisibility(View.INVISIBLE);
                         textView.setVisibility(View.VISIBLE);
+                        if (isMain) {
+                            mainIngredients.add(value);
+                        } else {
+                            subIngredients.add(value);
+                        }
                     }
                 }
             }

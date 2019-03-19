@@ -36,8 +36,9 @@ public class PickIngredientActivity extends TabActivity {
     private LinearLayout mainLayout, subLayout;
     private TabHost tabHost;
     private final IngredientData recipeData = new IngredientData();
-    private String mainIngredient ;
+    private String mainIngredient;
     private final List<String> selectedIngredients = new ArrayList<>();
+    private final List<String> selectedMain = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +125,7 @@ public class PickIngredientActivity extends TabActivity {
 //        txtTitle.setTextSize(UnitConverter.getPixelValue(15, this));
         for (Ingredient ingredient : ingredients) {
             ItemGenerator.createIngredientRow(ingredient.getName(), ingredient.getImageLink(),
-                    mainLayout, PickIngredientActivity.this, selectedIngredients, btnSearch, main);
+                    mainLayout, PickIngredientActivity.this, selectedIngredients, btnSearch, main, selectedMain);
             mainLayout.addView(ItemGenerator.createLine(this));
         }
 //        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -190,7 +191,11 @@ public class PickIngredientActivity extends TabActivity {
                         initListViews(main, sub);
 //                        viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() - 1);
                         tabHost.setCurrentTab(0);
-                        value = value + " được chọn";
+                        if(!selectedMain.isEmpty() && selectedMain.contains(value)){
+                            value = value + " được chọn";
+                        }else{
+                            value = "Bạn chỉ chọn được 1 nguyên liệu chính";
+                        }
                         break;
                     case "sub":
                         initListViews(main, sub);
@@ -245,6 +250,9 @@ public class PickIngredientActivity extends TabActivity {
         }
         if (recipeData.hasContain(main, value)) {
             selectedIngredients.add(value);
+            if(selectedMain.isEmpty()){
+                selectedMain.add(value);
+            }
             return "main";
         }
         if (recipeData.hasContain(sub, value)) {
