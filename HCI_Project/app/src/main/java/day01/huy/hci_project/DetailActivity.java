@@ -89,7 +89,7 @@ public class DetailActivity extends AppCompatActivity {
         txtRecipeTitle.setLayoutParams(layoutParams);
         txtRecipeTitle.setText(recipe.getTitle());
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                UnitConverter.getPixelValue(620, this));
+                UnitConverter.getPixelValue(1150, this));
         layoutParams.leftMargin = 10;
         layoutParams.rightMargin = 10;
         viewPager.setLayoutParams(layoutParams);
