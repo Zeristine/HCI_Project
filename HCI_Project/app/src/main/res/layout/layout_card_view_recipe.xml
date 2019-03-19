@@ -23,30 +23,12 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txtRating"
+        android:id="@+id/txtContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="⭐: 4/4.5"
+        android:text="BBBBBBBBBB"
         android:textColor="@color/black"
         android:textSize="15sp" />
-    <com.iarcuschin.simpleratingbar.SimpleRatingBar
-        android:id="@+id/srbRecipe"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srb_isIndicator="true"
-        app:srb_starSize="15sp"
-        app:srb_numberOfStars="5"
-        app:srb_rating="3"
-        app:srb_stepSize="0.5"
-        />
-    <TextView
-        android:id="@+id/txtAuthor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Đầu Bếp HUYLM"
-        android:textColor="@color/black" />
 
 </LinearLayout>

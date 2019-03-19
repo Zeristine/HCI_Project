@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -12,9 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
 import android.util.Patterns;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,10 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
     private User user;
     private ImageView imgNotFound, imageViewAvatar;
     private GridLayout glYourRecipes;
-    private LinearLayout layoutUpdateProfile, layoutProfileChoice, layoutConfirmPassword;
-    private EditText txtUsername, txtPassword, txtConfirm;
-    private Button btnCancel, btnUpdate;
-    private LinearLayout.LayoutParams layoutParams;
+    private LinearLayout layoutUpdateProfile, layoutProfileChoice;
     private TextView textViewDisplayName;
     private EditText txtDisplayName, txtEmail, txtAddress, txtDescription;
     String displayName, email, address, description;
@@ -56,12 +50,6 @@ public class ProfileActivity extends AppCompatActivity {
         glYourRecipes = findViewById(R.id.glPostedRecipe);
         layoutProfileChoice = findViewById(R.id.layoutProfileChoice);
         layoutUpdateProfile = findViewById(R.id.layoutUpdateProfile);
-//        layoutConfirmPassword = findViewById(R.id.layoutConfirmPassword);
-//        btnCancel = findViewById(R.id.btnCancel);
-        btnUpdate = findViewById(R.id.btnUpdate);
-        txtUsername = findViewById(R.id.txtUsername);
-        txtPassword = findViewById(R.id.txtPassword);
-//        txtConfirm = findViewById(R.id.txtConfirm);
         layoutUpdateProfile.setVisibility(View.INVISIBLE);
         layoutProfileChoice.setVisibility(View.VISIBLE);
         textViewDisplayName = findViewById(R.id.displayName);
@@ -110,7 +98,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void createYourRecipesView() {
-        yourRecipes = recipeData.getRecipesSameChef(SessionData.getUsername(), 0);
+        yourRecipes = recipeData.getRecipesSameChef(SessionData.getUsername(), 0, "");
         glYourRecipes.removeAllViews();
         if (yourRecipes.isEmpty()) {
             imgNotFound.setVisibility(View.VISIBLE);
@@ -148,7 +136,7 @@ public class ProfileActivity extends AppCompatActivity {
         description = txtDescription.getText().toString().trim();
         address = txtAddress.getText().toString().trim();
         Pattern pattern = Patterns.EMAIL_ADDRESS;
-        if (!email.equals("") && pattern.matcher(email).matches()==false) {
+        if (!email.equals("") && pattern.matcher(email).matches() == false) {
             Toast.makeText(this, "Email không hợp lệ vui lòng nhập lại.", Toast.LENGTH_SHORT).show();
 
         } else {

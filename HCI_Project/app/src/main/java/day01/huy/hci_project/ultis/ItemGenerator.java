@@ -16,8 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.iarcuschin.simpleratingbar.SimpleRatingBar;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -49,9 +47,7 @@ public class ItemGenerator {
         View recipeView = LayoutInflater.from(context).inflate(R.layout.layout_card_view_recipe, null);
         ImageView imgRecipe = recipeView.findViewById((R.id.imgRecipeImage));
         TextView txtTitle = recipeView.findViewById(R.id.txtRecipeTitle);
-        TextView txtRating = recipeView.findViewById(R.id.txtRating);
-        TextView txtAuthor = recipeView.findViewById(R.id.txtAuthor);
-        SimpleRatingBar ratingBar = recipeView.findViewById(R.id.srbRecipe);
+        TextView txtContent = recipeView.findViewById(R.id.txtContent);
         int resId = getResId("image_food_" + recipe.getImageLink() + "_small",
                 "drawable", context.getPackageName(), context);
 
@@ -61,9 +57,11 @@ public class ItemGenerator {
             imgRecipe.setImageResource(resId);
         }
         txtTitle.setText(recipe.getTitle());
-        txtRating.setText("⭐:" + recipe.getRate() + "/5.0");
-        ratingBar.setRating((float) recipe.getRate());
-        txtAuthor.setText("Bởi " + recipe.getAuthor());
+        String content = recipe.getContent();
+        if (content.length() > 20) {
+            content = content.substring(0, 20) + "...";
+        }
+        txtContent.setText(content);
 
         recipeCard.addView(recipeView);
         return recipeCard;
@@ -178,7 +176,7 @@ public class ItemGenerator {
         final View view = LayoutInflater.from(context).inflate(R.layout.layout_edit_text_with_cancel, layout, false);
         final TextView textView = view.findViewById(R.id.lblIngredient);
         final EditText editText = view.findViewById(R.id.txtIngredient);
-        ImageButton button = view.findViewById(R.id.btnCancel);
+        final ImageButton button = view.findViewById(R.id.btnCancel);
         if (isMain) {
             button.setVisibility(View.GONE);
         }
@@ -195,7 +193,7 @@ public class ItemGenerator {
                     String value = editText.getText().toString();
                     String oldValue = textView.getText().toString();
                     if (value.isEmpty()) {
-                        if(oldValue.isEmpty()){
+                        if (oldValue.isEmpty()) {
                             if (isMain) {
                                 Toast.makeText(context, "Không thể không có nguyên liệu chính!", Toast.LENGTH_SHORT).show();
                                 editText.setHint("Cần có nguyên liệu chính");
@@ -208,7 +206,7 @@ public class ItemGenerator {
                                     subIngredients.remove(oldValue);
                                 }
                             }
-                        }else{
+                        } else {
                             editText.setVisibility(View.INVISIBLE);
                             textView.setVisibility(View.VISIBLE);
                         }
@@ -236,7 +234,14 @@ public class ItemGenerator {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                layout.removeView(view);
+                if (editText.isFocused()) {
+                    editText.clearFocus();
+                    if (view != null) {
+                        layout.removeView(view);
+                    }
+                } else {
+                    layout.removeView(view);
+                }
             }
         });
         layout.addView(view);

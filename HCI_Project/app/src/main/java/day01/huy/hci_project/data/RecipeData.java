@@ -30,6 +30,7 @@ public class RecipeData {
             recipes.add(new Recipe(12, "Cua rang me", "HuyLM", "adada", "cuarangme", 0, null,""));
             recipes.add(new Recipe(13, "Tàu hủ chiên", "HuyLM", "adada", "tauhuchien", 0, null,""));
             recipes.add(new Recipe(14, "Khoai tây chiên", "HuyLM", "adada", "khoaitaychien", 0, null,""));
+            recipes.add(new Recipe(15, "Rau muống xào tỏi", "HieuBT", "adada", "raumuong", 3.5, null,""));
 
         }
     }
@@ -95,10 +96,10 @@ public class RecipeData {
         return null;
     }
 
-    public List<Recipe> getRecipesSameChef(String chef, int limit) {
+    public List<Recipe> getRecipesSameChef(String chef, int limit, String duplicateRecipe) {
         List<Recipe> recipeList = new ArrayList<>();
         for (Recipe recipe : recipes) {
-            if (recipe.getAuthor().equals(chef)) {
+            if (recipe.getAuthor().equals(chef) && !recipe.getTitle().equals(duplicateRecipe)) {
                 recipeList.add(recipe);
                 if (limit != 0) {
                     if (recipeList.size() == limit) {
@@ -108,5 +109,15 @@ public class RecipeData {
             }
         }
         return recipeList;
+    }
+
+    public List<String> getChefsMakeSameRecipe(String recipeName){
+        List<String> chefs = new ArrayList<>();
+        for (Recipe recipe: recipes) {
+            if(recipe.getTitle().equals(recipeName)){
+                chefs.add(recipe.getAuthor());
+            }
+        }
+        return chefs;
     }
 }

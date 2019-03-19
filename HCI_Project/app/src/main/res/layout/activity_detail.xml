@@ -8,7 +8,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
+        >
 
         <LinearLayout
 
@@ -73,40 +75,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtRating"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Please rate us!"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <RatingBar
-                    android:id="@+id/rbRecipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:numStars="5"
-                    android:stepSize="0.5" />
-
-                <Button
-                    android:id="@+id/btnRate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/shape_button"
-                    android:text="Rate"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8sp"
-                android:layout_marginBottom="8sp"
-                android:orientation="vertical">
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -155,36 +123,36 @@
                 </HorizontalScrollView>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8sp"
-                android:layout_marginBottom="8sp"
-                android:orientation="vertical">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="8sp"-->
+                <!--android:layout_marginBottom="8sp"-->
+                <!--android:orientation="vertical">-->
 
-                <TextView
-                    android:id="@+id/txtChef"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/brown400"
-                    android:paddingLeft="15sp"
-                    android:text="[Chef]'s Other Recipes"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                <!--<TextView-->
+                    <!--android:id="@+id/txtChef"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/brown400"-->
+                    <!--android:paddingLeft="15sp"-->
+                    <!--android:text="[Chef]'s Other Recipes"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="15sp"-->
+                    <!--android:textStyle="bold" />-->
 
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <!--<HorizontalScrollView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
 
-                    <LinearLayout
-                        android:id="@+id/layoutChef"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal" />
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/layoutChef"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal" />-->
 
-                </HorizontalScrollView>
-            </LinearLayout>
+                <!--</HorizontalScrollView>-->
+            <!--</LinearLayout>-->
         </LinearLayout>
     </ScrollView>
 

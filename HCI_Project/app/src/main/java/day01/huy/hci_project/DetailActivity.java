@@ -25,7 +25,6 @@ import day01.huy.hci_project.custom.SlicePagerAdapter;
 import day01.huy.hci_project.data.RecipeData;
 import day01.huy.hci_project.dto.Recipe;
 import day01.huy.hci_project.fragments.RecipeContentFragment;
-import day01.huy.hci_project.fragments.SuggestionFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
 import day01.huy.hci_project.ultis.ItemGenerator;
 import day01.huy.hci_project.ultis.UnitConverter;
@@ -34,13 +33,14 @@ public class DetailActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
-    private LinearLayout layoutSuggest, layoutChef;
+    private LinearLayout layoutSuggest;
     private Button btnFavorite, btnRate;
     private RelativeLayout layoutRecipeImage;
-    private TextView txtRecipeTitle, txtChef, txtRating;
+    private TextView txtRecipeTitle, txtRating;
     private DisplayMetrics displayMetrics;
     private TabLayout tabDots;
     private final RecipeData recipeData = new RecipeData();
+    private final List<Fragment> fragmentList = new ArrayList<>();
     private Recipe recipe;
 
     @Override
@@ -54,11 +54,9 @@ public class DetailActivity extends AppCompatActivity {
         txtRecipeTitle = findViewById(R.id.txtRecipeTitle);
         btnFavorite = findViewById(R.id.btnFavorite);
         tabDots = findViewById(R.id.tabDots);
-        txtChef = findViewById(R.id.txtChef);
         txtRating = findViewById(R.id.txtRating);
         btnRate = findViewById(R.id.btnRate);
         layoutSuggest = findViewById(R.id.layoutSuggest);
-        layoutChef = findViewById(R.id.layoutChef);
         displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
@@ -69,12 +67,8 @@ public class DetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Unknown Recipe", Toast.LENGTH_SHORT).show();
             finish();
         }
-        txtChef.setText(recipe.getAuthor() + "'s Other Recipes");
-        List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new RecipeContentFragment());
-        fragmentList.add(new RecipeContentFragment());
-        fragmentList.add(new RecipeContentFragment());
-        fragmentList.add(new SuggestionFragment());
+        List<String> cooks = recipeData.getChefsMakeSameRecipe(recipe.getTitle());
+        initRecipeInstructions(cooks);
         pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(pagerAdapter);
 
@@ -109,10 +103,6 @@ public class DetailActivity extends AppCompatActivity {
             btnFavorite.setText("Thích");
             btnFavorite.setBackground(ColorGradient.getRedGradientOrange(this));
         }
-
-        List<Recipe> chefRecipes = recipeData.getRecipesSameChef(recipe.getAuthor(), 5);
-
-        initHorizontalCardsView(chefRecipes, layoutChef);
         initHorizontalCardsView(recipeData.getFavorites(), layoutSuggest);
     }
 
@@ -136,6 +126,15 @@ public class DetailActivity extends AppCompatActivity {
     private void initHorizontalCardsView(@NotNull List<Recipe> list, LinearLayout layout) {
         for (Recipe recipe : list) {
             ItemGenerator.createCardViewLinearLayout(recipe, layout, this, getResources().getColor(R.color.white));
+        }
+    }
+
+    private void initRecipeInstructions(@NotNull List<String> cooks) {
+        RecipeContentFragment fragment = null;
+        for (String cook : cooks) {
+            fragment = new RecipeContentFragment();
+            fragment.getDataFromParent(recipeData.getRecipesSameChef(cook, 5, recipe.getTitle()), cook);
+            fragmentList.add(fragment);
         }
     }
 }
