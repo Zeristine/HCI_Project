@@ -10,9 +10,12 @@ public class Recipe {
     private String content;
     private String imageLink;
     private double rate;
+    private String description;
     private List<String> ingredients;
 
-    public Recipe(long id, String title, String author, String content, String imageLink, double rate, List<String> ingredients) {
+
+
+    public Recipe(long id, String title, String author, String content, String imageLink, double rate, List<String> ingredients,String description) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -20,6 +23,15 @@ public class Recipe {
         this.imageLink = imageLink;
         this.rate = rate;
         this.ingredients = ingredients;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getId() {

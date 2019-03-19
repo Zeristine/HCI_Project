@@ -79,7 +79,7 @@ public class ItemGenerator {
     }
 
     public static void createCardViewLinearLayout(@NotNull final Recipe recipe, @NotNull LinearLayout linearLayout, final Context context, int color) {
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(200, 375);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(300, 450);
         layoutParams.setMargins(20, 20, 20, 20);
         CardView cardView = createCardView(recipe, context, color);
         cardView.setLayoutParams(layoutParams);

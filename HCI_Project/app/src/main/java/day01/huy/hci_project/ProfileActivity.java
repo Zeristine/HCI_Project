@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText txtUsername, txtPassword, txtConfirm;
     private Button btnCancel, btnUpdate;
     private LinearLayout.LayoutParams layoutParams;
+    private TextView textViewDisplayName;
     private EditText txtDisplayName, txtEmail, txtAddress, txtDescription;
     String displayName, email, address, description;
 
@@ -62,6 +64,9 @@ public class ProfileActivity extends AppCompatActivity {
 //        txtConfirm = findViewById(R.id.txtConfirm);
         layoutUpdateProfile.setVisibility(View.INVISIBLE);
         layoutProfileChoice.setVisibility(View.VISIBLE);
+        textViewDisplayName = findViewById(R.id.displayName);
+        txtDisplayName = findViewById(R.id.txtDisplayName);
+        txtDisplayName.setText(textViewDisplayName.getText());
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         createYourRecipesView();
@@ -136,7 +141,7 @@ public class ProfileActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail);
         txtAddress = findViewById(R.id.txtAddress);
         txtDescription = findViewById(R.id.txtDescription);
-        txtDisplayName = findViewById(R.id.txtDisplayName);
+//        txtDisplayName = findViewById(R.id.txtDisplayName);
         //set EditText to String
         email = txtEmail.getText().toString().trim();
         displayName = txtDisplayName.getText().toString().trim();
@@ -151,6 +156,7 @@ public class ProfileActivity extends AppCompatActivity {
             txtDisplayName.setText(displayName);
             txtDescription.setText(description);
             txtAddress.setText(address);
+            textViewDisplayName.setText(displayName);
             Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
             layoutUpdateProfile.setVisibility(View.INVISIBLE);
             layoutProfileChoice.setVisibility(View.VISIBLE);
