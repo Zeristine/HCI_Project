@@ -30,7 +30,6 @@
                     android:layout_height="150sp"
                     android:layout_margin="7sp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_button"
                     android:onClick="clickToPickIngredient"
                     android:orientation="vertical">
 
@@ -38,6 +37,7 @@
                         android:layout_width="75sp"
                         android:layout_height="75sp"
                         android:layout_gravity="center"
+                        android:background="@drawable/shape_button"
                         android:src="@drawable/icon_nav_timkiemnguyenlieu" />
 
                     <TextView
@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Chọn nguyên liệu"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold"/>
                 </LinearLayout>
@@ -55,7 +55,6 @@
                     android:layout_height="150sp"
                     android:layout_margin="7sp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_button"
                     android:onClick="clickToAddMeal"
                     android:orientation="vertical">
 
@@ -63,6 +62,7 @@
                         android:layout_width="75sp"
                         android:layout_height="75sp"
                         android:layout_gravity="center"
+                        android:background="@drawable/shape_button"
                         android:src="@drawable/icon_nav_dangmonan" />
 
                     <TextView
@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Đăng món ăn"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -80,7 +80,6 @@
                     android:layout_height="150sp"
                     android:layout_margin="7sp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_button"
                     android:onClick="clickToProfile"
                     android:orientation="vertical">
 
@@ -88,6 +87,7 @@
                         android:layout_width="75sp"
                         android:layout_height="75sp"
                         android:layout_gravity="center"
+                        android:background="@drawable/shape_button"
                         android:src="@drawable/icon_nav_thongtincanhan" />
 
                     <TextView
@@ -95,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Thông tin của bạn"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
