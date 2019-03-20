@@ -137,18 +137,21 @@ public class ItemGenerator {
                 Drawable background = v.getBackground();
                 if (background instanceof ColorDrawable) {
                     if (((ColorDrawable) background).getColor() == context.getResources().getColor(R.color.white)) {
-                        selectedList.add(text);
-                        ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.brown100));
-                        txt.setTextColor(context.getResources().getColor(R.color.white));
-                        if (data.hasContain(main, text)) {
-                            if (selectedMain.size() == 1) {
-                                Toast.makeText(context, "Bạn chỉ có thể chọn 1 nguyên liệu chính thôi", Toast.LENGTH_SHORT).show();
-                                selectedList.remove(text);
-                                ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
-                                txt.setTextColor(context.getResources().getColor(R.color.black));
-                            } else {
-                                selectedMain.add(text);
-                                button.setBackground(ColorGradient.getOrangeGradientCircle(context));
+                        String amount = createAmountIngredientDialog(context, text);
+                        if (!amount.isEmpty()) {
+                            selectedList.add(text + "-" + amount);
+                            ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.brown100));
+                            txt.setTextColor(context.getResources().getColor(R.color.white));
+                            if (data.hasContain(main, text)) {
+                                if (selectedMain.size() == 1) {
+                                    Toast.makeText(context, "Bạn chỉ có thể chọn 1 nguyên liệu chính thôi", Toast.LENGTH_SHORT).show();
+                                    selectedList.remove(text);
+                                    ingredientRow.setBackgroundColor(context.getResources().getColor(R.color.white));
+                                    txt.setTextColor(context.getResources().getColor(R.color.black));
+                                } else {
+                                    selectedMain.add(text);
+                                    button.setBackground(ColorGradient.getOrangeGradientCircle(context));
+                                }
                             }
                         }
                     } else {
@@ -248,5 +251,18 @@ public class ItemGenerator {
         if (value.isEmpty()) {
             editText.requestFocus();
         }
+    }
+
+    public static String createAmountIngredientDialog(Context context, String ingredient) {
+        return "";
+    }
+
+    public static String checkSelectedListContainIngredientWithAmount(List<String> selected, String ingredient) {
+        for (String item : selected) {
+            if (item.contains(ingredient)) {
+                return item;
+            }
+        }
+        return null;
     }
 }

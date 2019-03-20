@@ -6,10 +6,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ public class NavigationActivity extends AppCompatActivity {
     private GridLayout glFavorite;
     private List<Recipe> favorites;
     private ImageView imgNotFound;
+    private DisplayMetrics displayMetrics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class NavigationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_navigation);
         glFavorite = findViewById(R.id.glFavorite);
         imgNotFound = findViewById(R.id.imgNotFound);
+        displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         setUpFavoriteRecipes();
     }
 
@@ -113,6 +118,17 @@ public class NavigationActivity extends AppCompatActivity {
             int rowCount = (int) row;
             if ((row * 10.0) % 2.0 != 0) {
                 rowCount++;
+            }
+            if (favorites.size() == 1) {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((displayMetrics.widthPixels / 2),
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                glFavorite.setLayoutParams(params);
+                glFavorite.setColumnCount(1);
+            } else {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                glFavorite.setLayoutParams(params);
+                glFavorite.setColumnCount(2);
             }
             glFavorite.setColumnCount(2);
             glFavorite.setRowCount(rowCount);
