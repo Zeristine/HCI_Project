@@ -47,7 +47,7 @@
                         android:text="Chọn nguyên liệu"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -118,13 +118,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:alignmentMode="alignMargins"
-                app:columnOrderPreserved="false" />
+                app:rowOrderPreserved="false"
+                app:useDefaultMargins="false" />
 
             <ImageView
                 android:id="@+id/imgNotFound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_list_not_found"/>
+                android:src="@drawable/icon_list_not_found" />
         </LinearLayout>
     </ScrollView>
 

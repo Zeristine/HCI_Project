@@ -34,7 +34,7 @@ public class DetailActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
     private LinearLayout layoutSuggest;
-    private Button btnFavorite, btnRate;
+    private Button btnFavorite;
     private RelativeLayout layoutRecipeImage;
     private TextView txtRecipeTitle, txtRating;
     private DisplayMetrics displayMetrics;
@@ -55,7 +55,6 @@ public class DetailActivity extends AppCompatActivity {
         btnFavorite = findViewById(R.id.btnFavorite);
         tabDots = findViewById(R.id.tabDots);
         txtRating = findViewById(R.id.txtRating);
-        btnRate = findViewById(R.id.btnRate);
         layoutSuggest = findViewById(R.id.layoutSuggest);
         displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -136,5 +135,12 @@ public class DetailActivity extends AppCompatActivity {
             fragment.getDataFromParent(recipeData.getRecipesSameChef(cook, 5, recipe.getTitle()), cook);
             fragmentList.add(fragment);
         }
+    }
+
+    public void clickToContribute(View view) {
+        Intent intent = new Intent(this, PostRecipeActivity.class);
+        intent.putExtra("title", recipe.getTitle());
+        intent.putExtra("content", recipe.getContent());
+        startActivity(intent);
     }
 }

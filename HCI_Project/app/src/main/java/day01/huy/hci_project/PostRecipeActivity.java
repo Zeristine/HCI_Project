@@ -63,6 +63,13 @@ public class PostRecipeActivity extends AppCompatActivity {
         txtRecipeInstruct = findViewById(R.id.txtRecipeInstruct);
         spDishType = findViewById(R.id.spDishType);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("title");
+        String content = intent.getStringExtra("content");
+        if (title != null && content != null) {
+            txtRecipeTitle.setText(title);
+            txtRecipeContent.setText(content);
+        }
         String[] dishTypes = new String[]{"Chọn loại món ăn", "Món chay", "Món Mặn", "Thức uống"};
         spDishType.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, dishTypes));
         ItemGenerator.createAddIngredientRow(this, layoutMainIngredient, "Ví dụ: 100g thịt HuyLM", subIngredients, mainIngredients, true);
@@ -253,7 +260,7 @@ public class PostRecipeActivity extends AppCompatActivity {
                 }
             });
             builder.show();
-        }else{
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Bài đăng món ăn đã hoàn chỉnh!");
             builder.setMessage("Bạn còn muốn chỉnh sửa gì không?");

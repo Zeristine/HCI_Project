@@ -16,21 +16,21 @@ public class RecipeData {
 
     private void initRecipes() {
         if (recipes.isEmpty()) {
-            recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", "raumuong", 3.5, null,""));
-            recipes.add(new Recipe(2, "Canh rau muống", "HuyLM", "adada", "canhraumuong", 4.5, null,""));
-            recipes.add(new Recipe(3, "Chè", "HuyLM", "adada", "che", 4, null,""));
-            recipes.add(new Recipe(4, "Chè trân châu", "HuyLM", "adada", "chetranchau", 0, null,""));
-            recipes.add(new Recipe(5, "Viên Socola", "HuyLM", "adada", "chocoball", 0, null,""));
-            recipes.add(new Recipe(6, "Gà chiên", "HieuBT", "adada", "garan", 0, null,""));
-            recipes.add(new Recipe(7, "Hamburger", "HieuBT", "adada", "hamburger", 0, null,""));
-            recipes.add(new Recipe(8, "Nui xào bò", "HieuBT", "adada", "nuixaobo", 0, null,""));
-            recipes.add(new Recipe(9, "Canh chua cá lóc", "HuyLM", "adada", "canhchuacaloc", 0, null,""));
-            recipes.add(new Recipe(10, "Thịt heo quay", "HuyLM", "adada", "thitheoquay", 0, null,""));
-            recipes.add(new Recipe(11, "Cá chiên xù", "HuyLM", "adada", "cachienxu", 0, null,""));
-            recipes.add(new Recipe(12, "Cua rang me", "HuyLM", "adada", "cuarangme", 0, null,""));
-            recipes.add(new Recipe(13, "Tàu hủ chiên", "HuyLM", "adada", "tauhuchien", 0, null,""));
-            recipes.add(new Recipe(14, "Khoai tây chiên", "HuyLM", "adada", "khoaitaychien", 0, null,""));
-            recipes.add(new Recipe(15, "Rau muống xào tỏi", "HieuBT", "adada", "raumuong", 3.5, null,""));
+            recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", "raumuong", 3.5, null, ""));
+            recipes.add(new Recipe(2, "Canh rau muống", "HuyLM", "adada", "canhraumuong", 4.5, null, ""));
+            recipes.add(new Recipe(3, "Chè", "HuyLM", "adada", "che", 4, null, ""));
+            recipes.add(new Recipe(4, "Chè trân châu", "HuyLM", "adada", "chetranchau", 0, null, ""));
+            recipes.add(new Recipe(5, "Viên Socola", "HuyLM", "adada", "chocoball", 0, null, ""));
+            recipes.add(new Recipe(6, "Gà chiên", "HieuBT", "adada", "garan", 0, null, ""));
+            recipes.add(new Recipe(7, "Hamburger", "HieuBT", "adada", "hamburger", 0, null, ""));
+            recipes.add(new Recipe(8, "Nui xào bò", "HieuBT", "adada", "nuixaobo", 0, null, ""));
+            recipes.add(new Recipe(9, "Canh chua cá lóc", "HuyLM", "adada", "canhchuacaloc", 0, null, ""));
+            recipes.add(new Recipe(10, "Thịt heo quay", "HuyLM", "adada", "thitheoquay", 0, null, ""));
+            recipes.add(new Recipe(11, "Cá chiên xù", "HuyLM", "adada", "cachienxu", 0, null, ""));
+            recipes.add(new Recipe(12, "Cua rang me", "HuyLM", "adada", "cuarangme", 0, null, ""));
+            recipes.add(new Recipe(13, "Tàu hủ chiên", "HuyLM", "adada", "tauhuchien", 0, null, ""));
+            recipes.add(new Recipe(14, "Khoai tây chiên", "HuyLM", "adada", "khoaitaychien", 0, null, ""));
+            recipes.add(new Recipe(15, "Rau muống xào tỏi", "HieuBT", "adada", "raumuong", 3.5, null, ""));
 
         }
     }
@@ -111,10 +111,20 @@ public class RecipeData {
         return recipeList;
     }
 
-    public List<String> getChefsMakeSameRecipe(String recipeName){
+    public List<Recipe> findRecipesByTitle(String title) {
+        List<Recipe> recipeList = new ArrayList<>();
+        for (Recipe recipe : recipes) {
+            if (recipe.getTitle().toLowerCase().contains(title.toLowerCase()) && !recipeList.contains(recipe)) {
+                recipeList.add(recipe);
+            }
+        }
+        return recipeList;
+    }
+
+    public List<String> getChefsMakeSameRecipe(String recipeName) {
         List<String> chefs = new ArrayList<>();
-        for (Recipe recipe: recipes) {
-            if(recipe.getTitle().equals(recipeName)){
+        for (Recipe recipe : recipes) {
+            if (recipe.getTitle().equals(recipeName)) {
                 chefs.add(recipe.getAuthor());
             }
         }

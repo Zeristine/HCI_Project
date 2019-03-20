@@ -59,7 +59,13 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabDots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabBackground="@drawable/tab_dot_indicator"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0sp" />
             <android.support.v4.view.ViewPager
                 android:id="@+id/pagerRecipe"
                 android:layout_width="match_parent"
@@ -83,14 +89,15 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btnContribute"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="15sp"
                     android:background="@drawable/shape_button"
                     android:text="Đóng góp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:onClick="clickToContribute"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -123,46 +130,7 @@
                 </HorizontalScrollView>
             </LinearLayout>
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="8sp"-->
-                <!--android:layout_marginBottom="8sp"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/txtChef"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@color/brown400"-->
-                    <!--android:paddingLeft="15sp"-->
-                    <!--android:text="[Chef]'s Other Recipes"-->
-                    <!--android:textColor="@color/white"-->
-                    <!--android:textSize="15sp"-->
-                    <!--android:textStyle="bold" />-->
-
-                <!--<HorizontalScrollView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <!--<LinearLayout-->
-                        <!--android:id="@+id/layoutChef"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="horizontal" />-->
-
-                <!--</HorizontalScrollView>-->
-            <!--</LinearLayout>-->
         </LinearLayout>
     </ScrollView>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabDots"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:tabBackground="@drawable/tab_dot_indicator"
-        app:tabGravity="center"
-        app:tabIndicatorHeight="0sp" />
 
 </RelativeLayout>

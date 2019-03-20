@@ -191,9 +191,9 @@ public class PickIngredientActivity extends TabActivity {
                         initListViews(main, sub);
 //                        viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() - 1);
                         tabHost.setCurrentTab(0);
-                        if(!selectedMain.isEmpty() && selectedMain.contains(value)){
+                        if (!selectedMain.isEmpty() && selectedMain.contains(value)) {
                             value = value + " được chọn";
-                        }else{
+                        } else {
                             value = "Bạn chỉ chọn được 1 nguyên liệu chính";
                         }
                         break;
@@ -202,6 +202,9 @@ public class PickIngredientActivity extends TabActivity {
 //                        viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() + 1);
                         tabHost.setCurrentTab(1);
                         value = value + " được chọn";
+                        break;
+                    case "cancel":
+                        value = "Đã hủy lựa chọn";
                         break;
                     default:
                         value = "Unknown Approach";
@@ -243,20 +246,23 @@ public class PickIngredientActivity extends TabActivity {
     }
 
     @NotNull
-    private String addToSelectedList(String
-                                             value, @NotNull List<Ingredient> main, List<Ingredient> sub) {
-        if (selectedIngredients.contains(value)) {
+    private String addToSelectedList(String value, @NotNull List<Ingredient> main, List<Ingredient> sub) {
+        if (ItemGenerator.checkSelectedListContainIngredientWithAmount(selectedIngredients, value) != null) {
             return "already";
         }
+
+        String amount = ItemGenerator.createAmountIngredientDialog(this, value);
+        if (amount.isEmpty()) {
+            return "cancel";
+        }
+        selectedIngredients.add(value + "-" + amount);
         if (recipeData.hasContain(main, value)) {
-            selectedIngredients.add(value);
-            if(selectedMain.isEmpty()){
+            if (selectedMain.isEmpty()) {
                 selectedMain.add(value);
             }
             return "main";
         }
         if (recipeData.hasContain(sub, value)) {
-            selectedIngredients.add(value);
             return "sub";
         }
         return "";
