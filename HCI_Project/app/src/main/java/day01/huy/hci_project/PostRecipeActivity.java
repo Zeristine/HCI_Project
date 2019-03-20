@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -35,13 +36,16 @@ import java.util.List;
 
 import day01.huy.hci_project.data.IngredientData;
 import day01.huy.hci_project.data.RecipeData;
+import day01.huy.hci_project.data.SessionData;
 import day01.huy.hci_project.dto.Ingredient;
+import day01.huy.hci_project.dto.Recipe;
 import day01.huy.hci_project.ultis.ItemGenerator;
 
 public class PostRecipeActivity extends AppCompatActivity {
 
     private final IngredientData ingredientData = new IngredientData();
     private final RecipeData recipeData = new RecipeData();
+    private Recipe recipeDto;
     private final int REQUEST_CAMERA = 102, REQUEST_GALLERY = 101;
     private final List<String> subIngredients = new ArrayList<>();
     private final List<String> mainIngredients = new ArrayList<>();
@@ -49,6 +53,8 @@ public class PostRecipeActivity extends AppCompatActivity {
     private ImageView layoutRecipeImage;
     private Spinner spDishType;
     private LinearLayout layoutAddIngredient, layoutMainIngredient;
+    private ImageButton btnAddImage;
+    private TextView txtSubtitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,10 @@ public class PostRecipeActivity extends AppCompatActivity {
         txtRecipeQuality = findViewById(R.id.txtRecipeQuality);
         txtRecipeInstruct = findViewById(R.id.txtRecipeInstruct);
         spDishType = findViewById(R.id.spDishType);
+        btnAddImage = findViewById(R.id.btnAddImage);
+        txtSubtitle = findViewById(R.id.txtSub);
+        recipeDto = new Recipe();
+        recipeDto.setAuthor(SessionData.getUsername());
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
@@ -69,10 +79,28 @@ public class PostRecipeActivity extends AppCompatActivity {
         if (title != null && content != null) {
             txtRecipeTitle.setText(title);
             txtRecipeContent.setText(content);
+            String imageLink = intent.getStringExtra("imageLink");
+            Bitmap image = (Bitmap) intent.getParcelableExtra("imageBitMap");
+            recipeDto.setTitle(title);
+            recipeDto.setContent(content);
+            recipeDto.setImageLink(imageLink);
+            recipeDto.setImage(image);
+            if (image == null) {
+                int resId = ItemGenerator.getResId("image_food_" + imageLink, "drawable", getPackageName(), this);
+                if (resId != 0) {
+                    layoutRecipeImage.setImageResource(resId);
+                    btnAddImage.setVisibility(View.GONE);
+                    txtSubtitle.setVisibility(View.GONE);
+                }
+            } else {
+                layoutRecipeImage.setImageBitmap(image);
+                btnAddImage.setVisibility(View.GONE);
+                txtSubtitle.setVisibility(View.GONE);
+            }
         }
         String[] dishTypes = new String[]{"Chọn loại món ăn", "Món chay", "Món Mặn", "Thức uống"};
         spDishType.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, dishTypes));
-        ItemGenerator.createAddIngredientRow(this, layoutMainIngredient, "Ví dụ: 100g thịt HuyLM", subIngredients, mainIngredients, true);
+        ItemGenerator.createAddIngredientRow(this, layoutMainIngredient, "Ví dụ: 100g thịt gà", subIngredients, mainIngredients, true);
         ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột", subIngredients, mainIngredients, false);
         ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột", subIngredients, mainIngredients, false);
         ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột", subIngredients, mainIngredients, false);

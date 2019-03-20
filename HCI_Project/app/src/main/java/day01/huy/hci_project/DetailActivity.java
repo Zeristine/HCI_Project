@@ -141,6 +141,8 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PostRecipeActivity.class);
         intent.putExtra("title", recipe.getTitle());
         intent.putExtra("content", recipe.getContent());
+        intent.putExtra("imageLink", recipe.getImageLink());
+        intent.putExtra("imageBitMap", recipe.getImage());
         startActivity(intent);
     }
 }

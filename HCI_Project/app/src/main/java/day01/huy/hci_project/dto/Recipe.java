@@ -1,5 +1,7 @@
 package day01.huy.hci_project.dto;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,21 +11,24 @@ public class Recipe {
     private String author;
     private String content;
     private String imageLink;
+    private Bitmap image;
     private double rate;
     private String description;
     private List<String> ingredients;
 
+    public Recipe() {
+    }
 
-
-    public Recipe(long id, String title, String author, String content, String imageLink, double rate, List<String> ingredients,String description) {
+    public Recipe(long id, String title, String author, String content, String imageLink, Bitmap image, double rate, String description, List<String> ingredients) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.content = content;
         this.imageLink = imageLink;
+        this.image = image;
         this.rate = rate;
-        this.ingredients = ingredients;
         this.description = description;
+        this.ingredients = ingredients;
     }
 
     public String getDescription() {
@@ -56,6 +61,14 @@ public class Recipe {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 
     public String getAuthor() {
