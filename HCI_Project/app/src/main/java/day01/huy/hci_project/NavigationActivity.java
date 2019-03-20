@@ -1,11 +1,18 @@
 package day01.huy.hci_project;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -46,8 +53,48 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     public void clickToAddMeal(View view) {
-        Intent intent = new Intent(this, PostRecipeActivity.class);
-        startActivity(intent);
+        final Dialog dialog = new Dialog(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout layout = new LinearLayout(this);
+        Button sameRecipe = new Button(this);
+        Button newRecipe = new Button(this);
+        TextView textView = new TextView(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        textView.setText("Chọn cách thêm cách làm");
+        textView.setLayoutParams(layoutParams);
+        textView.setGravity(Gravity.CENTER);
+        textView.setTypeface(Typeface.DEFAULT_BOLD);
+        layoutParams.setMargins(10, 5, 10, 5);
+        sameRecipe.setText("Thêm vào món ăn có sẵn");
+        sameRecipe.setLayoutParams(layoutParams);
+        sameRecipe.setBackgroundResource(R.drawable.shape_button);
+        sameRecipe.setTextColor(getColor(R.color.white));
+        sameRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(NavigationActivity.this, RecipeActivity.class);
+                startActivity(intent);
+            }
+        });
+        newRecipe.setText("Thêm vào món ăn mới");
+        newRecipe.setLayoutParams(layoutParams);
+        newRecipe.setBackgroundResource(R.drawable.shape_button);
+        newRecipe.setTextColor(getColor(R.color.white));
+        newRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(NavigationActivity.this, PostRecipeActivity.class);
+                startActivity(intent);
+            }
+        });
+        layout.addView(textView);
+        layout.addView(sameRecipe);
+        layout.addView(newRecipe);
+        dialog.addContentView(layout, layoutParams);
+        dialog.show();
     }
 
     public void clickToPickIngredient(View view) {
@@ -62,9 +109,9 @@ public class NavigationActivity extends AppCompatActivity {
             imgNotFound.setVisibility(View.VISIBLE);
             glFavorite.setVisibility(View.GONE);
         } else {
-            double row = favorites.size() / 2;
+            double row = favorites.size() / 2.0;
             int rowCount = (int) row;
-            if ((row * 10) % 2 != 0) {
+            if ((row * 10.0) % 2.0 != 0) {
                 rowCount++;
             }
             glFavorite.setColumnCount(2);
