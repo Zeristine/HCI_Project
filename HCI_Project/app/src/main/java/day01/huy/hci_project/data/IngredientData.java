@@ -139,4 +139,32 @@ public class IngredientData {
         }
         return  false;
     }
+
+    public List<Ingredient> getSelectedIngredientByTitle(List<String> selected, String type){
+        List<Ingredient> ingredientList = new ArrayList<>();
+        List<Ingredient> selectedIngredient = new ArrayList<>();
+        switch (type){
+            case "chay":
+                ingredientList.addAll(getVegetarians().get("main"));
+                ingredientList.addAll(getVegetarians().get("sub"));
+                break;
+            case "man":
+                ingredientList.addAll(getNonVegetarians().get("main"));
+                ingredientList.addAll(getNonVegetarians().get("sub"));
+                break;
+            case "nuoc":
+                ingredientList.addAll(getDrinks().get("main"));
+                ingredientList.addAll(getDrinks().get("sub"));
+                break;
+        }
+        for (Ingredient ingredient : ingredientList) {
+            for (String item: selected) {
+                if(ingredient.getName().equals(item)){
+                    selectedIngredient.add(ingredient);
+                    break;
+                }
+            }
+        }
+        return selectedIngredient;
+    }
 }

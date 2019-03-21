@@ -75,18 +75,18 @@ public class PickIngredientActivity extends TabActivity {
         switch (choiceValue) {
             case 1:
                 initAdapterForView(recipeData.getNonVegetarians().get("main"),
-                        recipeData.getNonVegetarians().get("sub"));
+                        recipeData.getNonVegetarians().get("sub"), "nam");
                 break;
             case 2:
                 initAdapterForView(recipeData.getVegetarians().get("main"),
-                        recipeData.getVegetarians().get("sub"));
+                        recipeData.getVegetarians().get("sub"), "chay");
                 break;
             case 3:
                 initAdapterForView(recipeData.getDrinks().get("main"),
-                        recipeData.getDrinks().get("sub"));
+                        recipeData.getDrinks().get("sub"), "nuoc");
                 break;
             default:
-                initAdapterForView(null, null);
+                initAdapterForView(null, null, null);
                 break;
         }
     }
@@ -162,8 +162,8 @@ public class PickIngredientActivity extends TabActivity {
         return page;
     }
 
-    private void initAdapterForView(final List<Ingredient> main, final List<Ingredient> sub) {
-        if (main == null || sub == null) {
+    private void initAdapterForView(final List<Ingredient> main, final List<Ingredient> sub, final String type) {
+        if (main == null || sub == null || type == null) {
             Toast.makeText(this, "Unknown Approach", Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -230,8 +230,9 @@ public class PickIngredientActivity extends TabActivity {
             public void onClick(View v) {
                 if (!selectedIngredients.isEmpty()) {
                     if (recipeData.hasContainOneMainIngredient(main, selectedIngredients)) {
-                        Intent intent = new Intent(PickIngredientActivity.this, SearchResultActivity.class);
+                        Intent intent = new Intent(PickIngredientActivity.this, IngredientAmountActivity.class);
                         intent.putStringArrayListExtra("ingredients", (ArrayList<String>) selectedIngredients);
+                        intent.putExtra("type", type);
                         startActivity(intent);
                     } else {
                         Toast.makeText(PickIngredientActivity.this,
@@ -250,12 +251,7 @@ public class PickIngredientActivity extends TabActivity {
         if (ItemGenerator.checkSelectedListContainIngredientWithAmount(selectedIngredients, value) != null) {
             return "already";
         }
-
-        String amount = ItemGenerator.createAmountIngredientDialog(this, value);
-        if (amount.isEmpty()) {
-            return "cancel";
-        }
-        selectedIngredients.add(value + "-" + amount);
+        selectedIngredients.add(value);
         if (recipeData.hasContain(main, value)) {
             if (selectedMain.isEmpty()) {
                 selectedMain.add(value);
