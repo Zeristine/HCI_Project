@@ -182,8 +182,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/shape_button"
-                    android:text="Rate"
-                    android:textColor="@color/white" />
+                    android:text="Gửi Đánh Giá"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="15sp"/>
             </LinearLayout>
 
             <Button
