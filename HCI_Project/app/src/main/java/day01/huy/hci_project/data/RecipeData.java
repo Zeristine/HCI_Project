@@ -18,21 +18,21 @@ public class RecipeData {
 
     private void initRecipes() {
         if (recipes.isEmpty()) {
-            recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", "raumuong", null, 3.5, null, null));
-            recipes.add(new Recipe(2, "Canh rau muống", "HuyLM", "adada", "canhraumuong", null, 4.5, null, null));
-            recipes.add(new Recipe(3, "Chè", "HuyLM", "adada", "che", null, 4, null, null));
-            recipes.add(new Recipe(4, "Chè trân châu", "HuyLM", "adada", "chetranchau", null, 0, null, null));
-            recipes.add(new Recipe(5, "Viên Socola", "HuyLM", "adada", "chocoball", null, 0, null, null));
-            recipes.add(new Recipe(6, "Gà chiên", "HieuBT", "adada", "garan", null, 0, null, null));
-            recipes.add(new Recipe(7, "Hamburger", "HieuBT", "adada", "hamburger", null, 0, null, null));
-            recipes.add(new Recipe(8, "Nui xào bò", "HieuBT", "adada", "nuixaobo", null, 0, null, null));
-            recipes.add(new Recipe(9, "Canh chua cá lóc", "HuyLM", "adada", "canhchuacaloc", null, 0, null, null));
-            recipes.add(new Recipe(10, "Thịt heo quay", "HuyLM", "adada", "thitheoquay", null, 0, null, null));
-            recipes.add(new Recipe(11, "Cá chiên xù", "HuyLM", "adada", "cachienxu", null, 0, null, null));
-            recipes.add(new Recipe(12, "Cua rang me", "HuyLM", "adada", "cuarangme", null, 0, null, null));
-            recipes.add(new Recipe(13, "Tàu hủ chiên", "HuyLM", "adada", "tauhuchien", null, 0, null, null));
-            recipes.add(new Recipe(14, "Khoai tây chiên", "HuyLM", "adada", "khoaitaychien", null, 0, null, null));
-            recipes.add(new Recipe(15, "Rau muống xào tỏi", "HieuBT", "adada", "raumuong", null, 2.5, null, null));
+            recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "Rau muống xào tỏi trứ danh", "raumuong", null, 3.5, null, null));
+            recipes.add(new Recipe(2, "Canh rau muống", "HuyLM", "Canh rau muống đậm đà hương vị", "canhraumuong", null, 4.5, null, null));
+            recipes.add(new Recipe(3, "Chè", "HuyLM", "Chè thập cẩm thơm ngon", "che", null, 4, null, null));
+            recipes.add(new Recipe(4, "Chè trân châu", "HuyLM", "Chè trân châu sánh mịn", "chetranchau", null, 0, null, null));
+            recipes.add(new Recipe(5, "Viên Socola", "HuyLM", "Viên socola ngon lành", "chocoball", null, 0, null, null));
+            recipes.add(new Recipe(6, "Gà chiên", "HieuBT", "Gà chiên giòn tan", "garan", null, 0, null, null));
+            recipes.add(new Recipe(7, "Hamburger", "HieuBT", "Hamburger ", "hamburger", null, 0, null, null));
+            recipes.add(new Recipe(8, "Nui xào bò", "HieuBT", "Nui xào bò ngon lành", "nuixaobo", null, 0, null, null));
+            recipes.add(new Recipe(9, "Canh chua cá lóc", "HuyLM", "Hương vị đồng quê", "canhchuacaloc", null, 0, null, null));
+            recipes.add(new Recipe(10, "Thịt heo quay", "HuyLM", "Bí kíp da giòn", "thitheoquay", null, 0, null, null));
+            recipes.add(new Recipe(11, "Cá chiên xù", "HuyLM", "Cá chiên giòn rượm", "cachienxu", null, 0, null, null));
+            recipes.add(new Recipe(12, "Cua rang me", "HuyLM", "Cua rang chua ngọt", "cuarangme", null, 0, null, null));
+            recipes.add(new Recipe(13, "Tàu hủ chiên", "HuyLM", "Tàu hủ chiên vàng", "tauhuchien", null, 0, null, null));
+            recipes.add(new Recipe(14, "Khoai tây chiên", "HuyLM", "Món Âu khó cưỡng", "khoaitaychien", null, 0, null, null));
+            recipes.add(new Recipe(15, "Rau muống xào tỏi", "HieuBT", "Rau muống xào tỏi trứ danh", "raumuong", null, 2.5, null, null));
 
         }
     }

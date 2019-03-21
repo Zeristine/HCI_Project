@@ -66,7 +66,7 @@ public class NavigationActivity extends AppCompatActivity {
         Button newRecipe = new Button(this);
         TextView textView = new TextView(this);
         layout.setOrientation(LinearLayout.VERTICAL);
-        textView.setText("Chọn cách thêm cách làm");
+        textView.setText("Chọn cách thêm công thức");
         textView.setLayoutParams(layoutParams);
         textView.setGravity(Gravity.CENTER);
         textView.setTypeface(Typeface.DEFAULT_BOLD);
