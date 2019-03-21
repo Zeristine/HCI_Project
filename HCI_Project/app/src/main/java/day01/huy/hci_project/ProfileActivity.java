@@ -1,5 +1,6 @@
 package day01.huy.hci_project;
 
+import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,14 +8,16 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,26 +31,26 @@ import day01.huy.hci_project.dto.Recipe;
 import day01.huy.hci_project.dto.User;
 import day01.huy.hci_project.ultis.ItemGenerator;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends TabActivity {
 
     private final RecipeData recipeData = new RecipeData();
     private final UserData userData = new UserData();
-    private List<Recipe> yourRecipes;
     private User user;
-    private ImageView imgNotFound, imageViewAvatar;
-    private GridLayout glYourRecipes;
+    private ImageView imageViewAvatar;
+    private GridLayout glYourRecipes, glPending;
     private LinearLayout layoutUpdateProfile, layoutProfileChoice;
     private TextView textViewDisplayName;
     private EditText txtDisplayName, txtEmail, txtAddress, txtDescription;
+    private TabHost tabHost;
     String displayName, email, address, description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        imgNotFound = findViewById(R.id.imgNotFound);
         imageViewAvatar = findViewById(R.id.imageViewAvatar);
         glYourRecipes = findViewById(R.id.glPostedRecipe);
+        glPending = findViewById(R.id.glPendingRecipe);
         layoutProfileChoice = findViewById(R.id.layoutProfileChoice);
         layoutUpdateProfile = findViewById(R.id.layoutUpdateProfile);
         layoutUpdateProfile.setVisibility(View.INVISIBLE);
@@ -55,15 +58,29 @@ public class ProfileActivity extends AppCompatActivity {
         textViewDisplayName = findViewById(R.id.displayName);
         txtDisplayName = findViewById(R.id.txtDisplayName);
         txtDisplayName.setText(textViewDisplayName.getText());
-
+        tabHost = getTabHost();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        createYourRecipesView();
+        createYourRecipesView(recipeData.getRecipesSameChef(SessionData.getUsername(), 0, ""), glYourRecipes,
+                (ImageView) findViewById(R.id.imgNotFound1));
+        createYourRecipesView(recipeData.getFavorites(), glPending, (ImageView) findViewById(R.id.imgNotFound2));
+        addTabSpec("Posted Recipes", R.id.layoutPosted);
+        addTabSpec("Pending Recipes", R.id.layoutPending);
+        for (int i = 0; i < tabHost.getTabWidget().getTabCount(); i++) {
+            View v = tabHost.getTabWidget().getChildTabViewAt(i);
+            v.setBackgroundResource(R.drawable.tab_indicator);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+            TextView tv = tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+            tv.setLayoutParams(layoutParams);
+            tv.setGravity(Gravity.CENTER);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        createYourRecipesView();
+        createYourRecipesView(recipeData.getRecipesSameChef(SessionData.getUsername(), 0, ""), glYourRecipes, (ImageView) findViewById(R.id.imgNotFound1));
+        createYourRecipesView(recipeData.getFavorites(), glPending, (ImageView) findViewById(R.id.imgNotFound2));
     }
 
     public void clickToFinish(View view) {
@@ -97,25 +114,25 @@ public class ProfileActivity extends AppCompatActivity {
         layoutProfileChoice.setVisibility(View.INVISIBLE);
     }
 
-    private void createYourRecipesView() {
-        yourRecipes = recipeData.getRecipesSameChef(SessionData.getUsername(), 0, "");
+    private void createYourRecipesView(List<Recipe> list, GridLayout layout, ImageView imgNotFound) {
+        List<Recipe> recipes = list;
         glYourRecipes.removeAllViews();
-        if (yourRecipes.isEmpty()) {
+        if (recipes.isEmpty()) {
             imgNotFound.setVisibility(View.VISIBLE);
-            glYourRecipes.setVisibility(View.INVISIBLE);
+            layout.setVisibility(View.INVISIBLE);
         } else {
-            double row = yourRecipes.size() / 2;
+            double row = recipes.size() / 2;
             int rowCount = (int) row;
             if ((row * 10) % 2 != 0) {
                 rowCount++;
             }
-            glYourRecipes.setColumnCount(2);
-            glYourRecipes.setRowCount(rowCount);
-            for (Recipe recipe : yourRecipes) {
-                ItemGenerator.createCardViewGridLayout(recipe, glYourRecipes, this, getResources().getColor(R.color.white));
+            layout.setColumnCount(2);
+            layout.setRowCount(rowCount);
+            for (Recipe recipe : recipes) {
+                ItemGenerator.createCardViewGridLayout(recipe, layout, this, getResources().getColor(R.color.white));
             }
-            imgNotFound.setVisibility(View.INVISIBLE);
-            glYourRecipes.setVisibility(View.VISIBLE);
+            imgNotFound.setVisibility(View.GONE);
+            layout.setVisibility(View.VISIBLE);
         }
     }
 
@@ -167,6 +184,13 @@ public class ProfileActivity extends AppCompatActivity {
             Uri imageUri = data.getData();
             imageViewAvatar.setImageURI(imageUri);
         }
+    }
+
+    private void addTabSpec(String label, int viewId) {
+        TabHost.TabSpec spec = tabHost.newTabSpec(label);
+        spec.setIndicator(label);
+        spec.setContent(viewId);
+        tabHost.addTab(spec);
     }
 
 }
