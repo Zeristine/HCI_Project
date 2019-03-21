@@ -30,7 +30,7 @@ public class RecipeData {
             recipes.add(new Recipe(12, "Cua rang me", "HuyLM", "adada", "cuarangme", null, 0, null, null));
             recipes.add(new Recipe(13, "Tàu hủ chiên", "HuyLM", "adada", "tauhuchien", null, 0, null, null));
             recipes.add(new Recipe(14, "Khoai tây chiên", "HuyLM", "adada", "khoaitaychien", null, 0, null, null));
-            recipes.add(new Recipe(15, "Rau muống xào tỏi", "HieuBT", "adada", "raumuong", null, 3.5, null, null));
+            recipes.add(new Recipe(15, "Rau muống xào tỏi", "HieuBT", "adada", "raumuong", null, 2.5, null, null));
 
         }
     }
@@ -129,5 +129,14 @@ public class RecipeData {
             }
         }
         return chefs;
+    }
+
+    public Recipe getRecipeByTitleAndChef(String chef, String title){
+        for (Recipe recipe: recipes) {
+            if(recipe.getTitle().equals(title) && recipe.getAuthor().equals(chef)){
+                return recipe;
+            }
+        }
+        return null;
     }
 }
