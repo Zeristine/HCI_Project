@@ -65,8 +65,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
-                            android:paddingLeft="20sp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:paddingLeft="20sp">
 
                             <ImageView
                                 android:id="@+id/imageViewAvatar"
@@ -78,13 +78,14 @@
                                 android:padding="5sp"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/icon_user_avatar" />
+
                             <TextView
                                 android:id="@+id/displayName"
                                 android:layout_width="130sp"
                                 android:layout_height="wrap_content"
-                                android:text="Nguyễn Văn A"
                                 android:gravity="center"
-                                android:textSize="20sp"/>
+                                android:text="Nguyễn Văn A"
+                                android:textSize="20sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -125,30 +126,77 @@
                         android:layout_height="1sp"
                         android:background="@color/black" />
 
-                    <TextView
+                    <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginVertical="10sp"-->
+                    <!--android:background="@color/brown400"-->
+                    <!--android:gravity="center"-->
+                    <!--android:paddingVertical="10sp"-->
+                    <!--android:text="Các bài đăng của bạn"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textStyle="bold" />-->
+                    <TabHost
+                        android:id="@android:id/tabhost"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="10sp"
-                        android:background="@color/brown400"
-                        android:gravity="center"
-                        android:paddingVertical="10sp"
-                        android:text="Các bài đăng của bạn"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content">
 
-                    <android.support.v7.widget.GridLayout
-                        android:id="@+id/glPostedRecipe"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:alignmentMode="alignMargins"
-                        app:columnOrderPreserved="false" />
+                        <TabWidget
+                            android:id="@android:id/tabs"
+                            android:layout_width="match_parent"
+                            android:layout_height="50sp"
+                            android:gravity="center"
+                            android:textAlignment="center" />
 
-                    <ImageView
-                        android:id="@+id/imgNotFound"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon_list_not_found" />
+                        <FrameLayout
+                            android:id="@android:id/tabcontent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50sp">
+
+                            <LinearLayout
+                                android:id="@+id/layoutPosted"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <android.support.v7.widget.GridLayout
+                                    android:id="@+id/glPostedRecipe"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:alignmentMode="alignMargins"
+                                    app:columnOrderPreserved="false" />
+
+                                <ImageView
+                                    android:id="@+id/imgNotFound1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/icon_list_not_found" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layoutPending"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <android.support.v7.widget.GridLayout
+                                    android:id="@+id/glPendingRecipe"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:alignmentMode="alignMargins"
+                                    app:columnOrderPreserved="false" />
+
+                                <ImageView
+                                    android:id="@+id/imgNotFound2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/icon_list_not_found" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </TabHost>
+
                 </LinearLayout>
 
 
@@ -226,13 +274,13 @@
                         android:id="@+id/btnUpdate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="15sp"
                         android:background="@drawable/shape_button"
                         android:onClick="clickToUpdate"
                         android:text="Cập nhật"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:textSize="20sp"
-                        android:layout_marginHorizontal="15sp"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
