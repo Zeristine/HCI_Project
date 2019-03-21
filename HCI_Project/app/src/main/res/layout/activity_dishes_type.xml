@@ -46,7 +46,7 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:weightSum="2"
-        android:background="@color/greenPrimary"
+        android:background="@drawable/shape_dishtype_button"
         android:orientation="horizontal"
         android:layout_margin="10dp">
 
@@ -63,7 +63,7 @@
             android:gravity="center|left"
             android:textSize="25dp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="MÓN CHAY"/>
 
     </LinearLayout>
@@ -74,7 +74,7 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:weightSum="2"
-        android:background="@color/greenPrimary"
+        android:background="@drawable/shape_dishtype_button"
         android:orientation="horizontal"
         android:layout_margin="10dp">
 
@@ -91,7 +91,7 @@
             android:gravity="center|left"
             android:textSize="25dp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="MÓN MẶN"/>
 
     </LinearLayout>
@@ -103,7 +103,7 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:weightSum="2"
-        android:background="@color/greenPrimary"
+        android:background="@drawable/shape_dishtype_button"
         android:orientation="horizontal"
         android:layout_margin="10dp">
 
@@ -120,7 +120,7 @@
             android:gravity="center|left"
             android:textSize="25dp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="THỨC UỐNG"/>
 
     </LinearLayout>

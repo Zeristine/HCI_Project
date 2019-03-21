@@ -64,8 +64,8 @@ public class ProfileActivity extends TabActivity {
         createYourRecipesView(recipeData.getRecipesSameChef(SessionData.getUsername(), 0, ""), glYourRecipes,
                 (ImageView) findViewById(R.id.imgNotFound1));
         createYourRecipesView(recipeData.getFavorites(), glPending, (ImageView) findViewById(R.id.imgNotFound2));
-        addTabSpec("Posted Recipes", R.id.layoutPosted);
-        addTabSpec("Pending Recipes", R.id.layoutPending);
+        addTabSpec("Công thức đã đăng", R.id.layoutPosted);
+        addTabSpec("Công thức chờ kiểm duyệt", R.id.layoutPending);
         for (int i = 0; i < tabHost.getTabWidget().getTabCount(); i++) {
             View v = tabHost.getTabWidget().getChildTabViewAt(i);
             v.setBackgroundResource(R.drawable.tab_indicator);

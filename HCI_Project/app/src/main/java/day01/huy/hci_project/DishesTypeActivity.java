@@ -27,9 +27,9 @@ public class DishesTypeActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         txtTitle.setTextSize((displayMetrics.widthPixels*1)/25);
-        btnChay.setBackground(ColorGradient.getRedGradientOrange(this));
-        btnMan.setBackground(ColorGradient.getRedGradientOrange(this));
-        btnDrinks.setBackground(ColorGradient.getRedGradientOrange(this));
+//        btnChay.setBackground(ColorGradient.getRedGradientOrange(this));
+//        btnMan.setBackground(ColorGradient.getRedGradientOrange(this));
+//        btnDrinks.setBackground(ColorGradient.getRedGradientOrange(this));
         btnChay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

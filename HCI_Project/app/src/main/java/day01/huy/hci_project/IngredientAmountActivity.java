@@ -150,6 +150,7 @@ public class IngredientAmountActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
+                    finish();
                     startActivity(intent);
                 }
             });
@@ -161,6 +162,7 @@ public class IngredientAmountActivity extends AppCompatActivity {
             });
             builder.show();
         } else {
+            finish();
             startActivity(intent);
         }
     }
