@@ -132,7 +132,8 @@ public class DetailActivity extends AppCompatActivity {
         RecipeContentFragment fragment = null;
         for (String cook : cooks) {
             fragment = new RecipeContentFragment();
-            fragment.getDataFromParent(recipeData.getRecipesSameChef(cook, 5, recipe.getTitle()), cook);
+            fragment.getDataFromParent(recipeData.getRecipesSameChef(cook, 5, recipe.getTitle()), cook,
+                    (float) recipeData.getRecipeByTitleAndChef(cook, recipe.getTitle()).getRate());
             fragmentList.add(fragment);
         }
     }
