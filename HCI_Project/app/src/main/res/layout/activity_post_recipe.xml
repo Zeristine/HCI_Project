@@ -51,7 +51,8 @@
                     android:layout_marginRight="5sp"
                     android:background="@drawable/shape_button"
                     android:onClick="clickToValidate"
-                    android:text="Xong" />
+                    android:text="Xong"
+                    android:textColor="@color/white"/>
             </RelativeLayout>
 
             <RelativeLayout

@@ -77,8 +77,11 @@ public class PostRecipeActivity extends AppCompatActivity {
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
         if (title != null && content != null) {
+            spDishType.setVisibility(View.INVISIBLE);
             txtRecipeTitle.setText(title);
             txtRecipeContent.setText(content);
+            txtRecipeTitle.setEnabled(false);
+            txtRecipeContent.setEnabled(false);
             String imageLink = intent.getStringExtra("imageLink");
             Bitmap image = (Bitmap) intent.getParcelableExtra("imageBitMap");
             recipeDto.setTitle(title);

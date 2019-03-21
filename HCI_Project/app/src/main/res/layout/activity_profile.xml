@@ -230,7 +230,9 @@
                         android:onClick="clickToUpdate"
                         android:text="Cập nhật"
                         android:textColor="@color/white"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_marginHorizontal="15sp"/>
 
                 </LinearLayout>
 

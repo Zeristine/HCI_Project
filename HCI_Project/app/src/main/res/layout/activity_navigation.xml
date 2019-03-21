@@ -37,7 +37,6 @@
                         android:layout_width="75sp"
                         android:layout_height="75sp"
                         android:layout_gravity="center"
-                        android:background="@drawable/shape_button"
                         android:src="@drawable/icon_nav_timkiemnguyenlieu" />
 
                     <TextView
@@ -62,7 +61,6 @@
                         android:layout_width="75sp"
                         android:layout_height="75sp"
                         android:layout_gravity="center"
-                        android:background="@drawable/shape_button"
                         android:src="@drawable/icon_nav_dangmonan" />
 
                     <TextView
@@ -87,7 +85,6 @@
                         android:layout_width="75sp"
                         android:layout_height="75sp"
                         android:layout_gravity="center"
-                        android:background="@drawable/shape_button"
                         android:src="@drawable/icon_nav_thongtincanhan" />
 
                     <TextView

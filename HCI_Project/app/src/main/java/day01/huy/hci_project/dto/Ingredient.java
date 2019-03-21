@@ -4,12 +4,18 @@ public class Ingredient {
     private float id;
     private String name;
     private String imageLink;
+    private String type;
 
-    public Ingredient(float id, String name, String imageLink) {
+    public Ingredient(float id, String name, String imageLink, String type) {
         this.id = id;
         this.name = name;
         this.imageLink = imageLink;
+        this.type = type;
     }
+
+    public String getType() { return type; }
+
+    public void setType(String type) { this.type = type; }
 
     public float getId() {
         return id;
