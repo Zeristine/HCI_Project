@@ -186,6 +186,26 @@
                     android:textColor="@color/white" />
             </LinearLayout>
 
+            <Button
+                android:id="@+id/btnUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginVertical="10sp"
+                android:background="@drawable/shape_button"
+                android:text="Chỉnh sửa"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginVertical="10sp"
+                android:background="@drawable/shape_button"
+                android:text="Xóa bài đăng"
+                android:textColor="@color/white" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

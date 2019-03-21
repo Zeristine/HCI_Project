@@ -1,5 +1,7 @@
 package day01.huy.hci_project.data;
 
+import org.jetbrains.annotations.Contract;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,11 @@ public class RecipeData {
 
     public List<Recipe> getFavorites() {
         return favorites;
+    }
+
+    @Contract(pure = true)
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
     public String removeFromFavorite(String recipeTitle) {
@@ -131,12 +138,48 @@ public class RecipeData {
         return chefs;
     }
 
-    public Recipe getRecipeByTitleAndChef(String chef, String title){
-        for (Recipe recipe: recipes) {
-            if(recipe.getTitle().equals(title) && recipe.getAuthor().equals(chef)){
+    public Recipe getRecipeByTitleAndChef(String chef, String title) {
+        for (Recipe recipe : recipes) {
+            if (recipe.getTitle().equals(title) && recipe.getAuthor().equals(chef)) {
                 return recipe;
             }
         }
         return null;
+    }
+
+    public boolean isContributed(Recipe target) {
+        List<Recipe> sameRecipeList = new ArrayList<>();
+        for (Recipe recipe : recipes) {
+            if (recipe.getTitle().equals(target.getTitle())) {
+                sameRecipeList.add(recipe);
+            }
+        }
+        if (!sameRecipeList.isEmpty()) {
+            if (sameRecipeList.get(0).getId() != target.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeFromRecipe(Recipe target, String type) {
+        switch (type) {
+            case "contribute":
+                for (Recipe recipe : recipes) {
+                    if (recipe.getId() == target.getId()) {
+                        recipes.remove(recipe);
+                        removeFromFavorite(recipe);
+                        return;
+                    }
+                }
+            case "post":
+                for (Recipe recipe : recipes) {
+                    if (recipe.getTitle().equals(target.getTitle())) {
+                        recipes.remove(recipe);
+                        removeFromFavorite(recipe);
+                    }
+                }
+                break;
+        }
     }
 }

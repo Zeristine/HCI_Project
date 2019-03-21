@@ -60,7 +60,13 @@ public class DetailActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         Intent intent = getIntent();
-        recipe = recipeData.findRecipeById(intent.getLongExtra("id", 0));
+        long id = intent.getLongExtra("id", 0);
+        String title = intent.getStringExtra("name");
+        if(id == 0){
+            recipe = recipeData.findRecipeByTitle(title);
+        }else{
+            recipe = recipeData.findRecipeById(id);
+        }
 
         if (recipe == null) {
             Toast.makeText(this, "Unknown Recipe", Toast.LENGTH_SHORT).show();
@@ -133,7 +139,7 @@ public class DetailActivity extends AppCompatActivity {
         for (String cook : cooks) {
             fragment = new RecipeContentFragment();
             fragment.getDataFromParent(recipeData.getRecipesSameChef(cook, 5, recipe.getTitle()), cook,
-                    (float) recipeData.getRecipeByTitleAndChef(cook, recipe.getTitle()).getRate());
+                    (float) recipeData.getRecipeByTitleAndChef(cook, recipe.getTitle()).getRate(), recipe.getTitle());
             fragmentList.add(fragment);
         }
     }

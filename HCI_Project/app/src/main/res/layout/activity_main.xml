@@ -8,8 +8,6 @@
     tools:context=".MainActivity">
 
 
-
-
         <ImageView
             android:id="@+id/imgTitle"
             android:layout_width="match_parent"

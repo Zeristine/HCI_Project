@@ -21,6 +21,8 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -35,7 +37,6 @@ public class ProfileActivity extends TabActivity {
 
     private final RecipeData recipeData = new RecipeData();
     private final UserData userData = new UserData();
-    private List<Recipe> yourRecipes;
     private User user;
     private ImageView imageViewAvatar;
     private GridLayout glYourRecipes, glPending;
@@ -43,7 +44,7 @@ public class ProfileActivity extends TabActivity {
     private TextView textViewDisplayName;
     private EditText txtDisplayName, txtEmail, txtAddress, txtDescription;
     private TabHost tabHost;
-    String displayName, email, address, description;
+    private String displayName, email, address, description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +59,14 @@ public class ProfileActivity extends TabActivity {
         layoutProfileChoice.setVisibility(View.VISIBLE);
         textViewDisplayName = findViewById(R.id.displayName);
         txtDisplayName = findViewById(R.id.txtDisplayName);
-        txtDisplayName.setText(textViewDisplayName.getText());
+        textViewDisplayName.setText(SessionData.getUsername());
+        txtDisplayName.setText(SessionData.getUsername());
         tabHost = getTabHost();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         createYourRecipesView(recipeData.getRecipesSameChef(SessionData.getUsername(), 0, ""), glYourRecipes,
                 (ImageView) findViewById(R.id.imgNotFound1));
         createYourRecipesView(recipeData.getFavorites(), glPending, (ImageView) findViewById(R.id.imgNotFound2));
-        addTabSpec("Công thức đã đăng", R.id.layoutPosted);
+        addTabSpec("Bài đăng/Đóng góp của tôi", R.id.layoutPosted);
         addTabSpec("Công thức chờ kiểm duyệt", R.id.layoutPending);
         for (int i = 0; i < tabHost.getTabWidget().getTabCount(); i++) {
             View v = tabHost.getTabWidget().getChildTabViewAt(i);
@@ -115,13 +117,9 @@ public class ProfileActivity extends TabActivity {
         layoutProfileChoice.setVisibility(View.INVISIBLE);
     }
 
-    private void createYourRecipesView() {
-//        yourRecipes = recipeData.getRecipesSameChef(SessionData.getUsername(), 0, "");
-         yourRecipes = recipeData.getFavorites();
-    }
-    private void createYourRecipesView(List<Recipe> list, GridLayout layout, ImageView imgNotFound) {
+    private void createYourRecipesView(List<Recipe> list, @NotNull GridLayout layout, ImageView imgNotFound) {
         List<Recipe> recipes = list;
-        glYourRecipes.removeAllViews();
+        layout.removeAllViews();
         if (recipes.isEmpty()) {
             imgNotFound.setVisibility(View.VISIBLE);
             layout.setVisibility(View.INVISIBLE);
@@ -134,10 +132,9 @@ public class ProfileActivity extends TabActivity {
             layout.setColumnCount(2);
             layout.setRowCount(rowCount);
             for (Recipe recipe : recipes) {
-                ItemGenerator.createCardViewGridLayout(recipe, layout, this, getResources().getColor(R.color.white));
+                ItemGenerator.createCardViewGridLayoutProfile(recipe, layout, this, getResources().getColor(R.color.white));
             }
             imgNotFound.setVisibility(View.GONE);
-            glYourRecipes.setVisibility(View.VISIBLE);
             layout.setVisibility(View.VISIBLE);
         }
     }

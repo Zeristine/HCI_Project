@@ -16,19 +16,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 import day01.huy.hci_project.DetailActivity;
+import day01.huy.hci_project.PostRecipeActivity;
 import day01.huy.hci_project.R;
 import day01.huy.hci_project.data.IngredientData;
+import day01.huy.hci_project.data.RecipeData;
 import day01.huy.hci_project.dto.Ingredient;
 import day01.huy.hci_project.dto.Recipe;
 
 public class ItemGenerator {
 
     private static final IngredientData data = new IngredientData();
+    private static final RecipeData recipeData = new RecipeData();
 
     public static CardView createCardView(@NotNull final Recipe recipe, final Context context, int color) {
         CardView recipeCard = new CardView(context);
@@ -72,6 +77,15 @@ public class ItemGenerator {
                 , GridLayout.spec(GridLayout.UNDEFINED, 1f));
         layoutParams.setMargins(20, 20, 20, 20);
         CardView cardView = createCardView(recipe, context, color);
+        cardView.setLayoutParams(layoutParams);
+        gridLayout.addView(cardView);
+    }
+
+    public static void createCardViewGridLayoutProfile(@NotNull final Recipe recipe, @NotNull GridLayout gridLayout, final Context context, int color) {
+        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                , GridLayout.spec(GridLayout.UNDEFINED, 1f));
+        layoutParams.setMargins(20, 20, 20, 20);
+        CardView cardView = createCardViewInProfile(recipe, context, color);
         cardView.setLayoutParams(layoutParams);
         gridLayout.addView(cardView);
     }
@@ -250,12 +264,58 @@ public class ItemGenerator {
         }
     }
 
-    public static String checkSelectedListContainIngredientWithAmount(List<String> selected, String ingredient) {
+    @Nullable
+    @Contract(pure = true)
+    public static String checkSelectedListContainIngredientWithAmount(@NotNull List<String> selected, String ingredient) {
         for (String item : selected) {
             if (item.contains(ingredient)) {
                 return item;
             }
         }
         return null;
+    }
+
+    public static CardView createCardViewInProfile(@NotNull final Recipe recipe, final Context context, int color) {
+        CardView recipeCard = new CardView(context);
+        recipeCard.setCardElevation(8);
+        recipeCard.setRadius(10);
+        recipeCard.setCardBackgroundColor(color);
+        recipeCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (recipeData.isContributed(recipe)) {
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra("id", recipe.getId());
+                    context.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(context, PostRecipeActivity.class);
+                    intent.putExtra("id", recipe.getId());
+                    intent.putExtra("title", recipe.getTitle());
+                    intent.putExtra("content", recipe.getContent());
+                    intent.putExtra("imageLink", recipe.getImageLink());
+                    intent.putExtra("chinhsua", true);
+                    context.startActivity(intent);
+                }
+            }
+        });
+
+        View recipeView = LayoutInflater.from(context).inflate(R.layout.layout_card_view_recipe, null);
+        ImageView imgRecipe = recipeView.findViewById((R.id.imgRecipeImage));
+        TextView txtTitle = recipeView.findViewById(R.id.txtRecipeTitle);
+        TextView txtContent = recipeView.findViewById(R.id.txtContent);
+        int resId = getResId("image_food_" + recipe.getImageLink() + "_small",
+                "drawable", context.getPackageName(), context);
+
+        if (resId == 0) {
+            imgRecipe.setImageResource(R.drawable.icon_no_image);
+        } else {
+            imgRecipe.setImageResource(resId);
+        }
+        txtTitle.setText(recipe.getTitle());
+        txtContent.setText(recipeData.isContributed(recipe) ? "Đóng góp" : "Bài Đăng");
+        txtContent.setTextColor(context.getResources().getColor(recipeData.isContributed(recipe) ?
+                R.color.greenDarkPrimary : R.color.orange));
+        recipeCard.addView(recipeView);
+        return recipeCard;
     }
 }

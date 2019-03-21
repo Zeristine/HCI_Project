@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -54,7 +55,9 @@ public class PostRecipeActivity extends AppCompatActivity {
     private Spinner spDishType;
     private LinearLayout layoutAddIngredient, layoutMainIngredient;
     private ImageButton btnAddImage;
-    private TextView txtSubtitle;
+    private Button btnDone;
+    private TextView txtSubtitle, txtTitle;
+    private boolean isChinhSua;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +73,16 @@ public class PostRecipeActivity extends AppCompatActivity {
         spDishType = findViewById(R.id.spDishType);
         btnAddImage = findViewById(R.id.btnAddImage);
         txtSubtitle = findViewById(R.id.txtSub);
+        txtTitle = findViewById(R.id.txtTitle);
+        btnDone = findViewById(R.id.btnDone);
         recipeDto = new Recipe();
+        recipeDto.setId(recipeData.getRecipes().size() + 1);
         recipeDto.setAuthor(SessionData.getUsername());
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
+        isChinhSua = intent.getBooleanExtra("chinhsua", false);
         if (title != null && content != null) {
             spDishType.setVisibility(View.INVISIBLE);
             txtRecipeTitle.setText(title);
@@ -99,6 +106,11 @@ public class PostRecipeActivity extends AppCompatActivity {
                 layoutRecipeImage.setImageBitmap(image);
                 btnAddImage.setVisibility(View.GONE);
                 txtSubtitle.setVisibility(View.GONE);
+            }
+            if (isChinhSua) {
+                btnDone.setText("Chỉnh sửa");
+                txtTitle.setText("Chỉnh sửa " + (recipeData.isContributed(recipeData.findRecipeById(intent.getLongExtra("id", 0)))
+                        ? "đóng góp" : "bài đăng"));
             }
         }
         String[] dishTypes = new String[]{"Chọn loại món ăn", "Món chay", "Món Mặn", "Thức uống"};
