@@ -15,10 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="450sp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="-100sp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/image_title_no_text" />
+            android:src="@drawable/image_title" />
 
         <android.support.v7.widget.GridLayout
             android:id="@+id/layoutLoginChoice"
@@ -38,7 +37,7 @@
             <LinearLayout
                 android:layout_height="50sp"
                 android:layout_margin="5sp"
-                android:background="@drawable/shape_button"
+                android:background="@drawable/google_button_withcolor"
                 android:onClick="clickToSocial"
                 android:orientation="horizontal"
                 android:weightSum="20"
@@ -68,7 +67,7 @@
             <LinearLayout
                 android:layout_height="50sp"
                 android:layout_margin="5sp"
-                android:background="@drawable/shape_button"
+                android:background="@drawable/facebook_button_withcolor"
                 android:onClick="clickToSocial"
                 android:orientation="horizontal"
                 android:weightSum="20"

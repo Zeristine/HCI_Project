@@ -30,6 +30,9 @@
                     android:layout_height="150sp"
                     android:layout_margin="7sp"
                     android:layout_weight="1"
+                    android:paddingHorizontal="5sp"
+                    android:paddingVertical="5sp"
+                    android:background="@drawable/shape_nav_button"
                     android:onClick="clickToPickIngredient"
                     android:orientation="vertical">
 
@@ -55,6 +58,9 @@
                     android:layout_margin="7sp"
                     android:layout_weight="1"
                     android:onClick="clickToAddMeal"
+                    android:paddingHorizontal="5sp"
+                    android:paddingVertical="5sp"
+                    android:background="@drawable/shape_nav_button"
                     android:orientation="vertical">
 
                     <ImageView
@@ -79,6 +85,9 @@
                     android:layout_margin="7sp"
                     android:layout_weight="1"
                     android:onClick="clickToProfile"
+                    android:background="@drawable/shape_nav_button"
+                    android:paddingHorizontal="5sp"
+                    android:paddingVertical="5sp"
                     android:orientation="vertical">
 
                     <ImageView
