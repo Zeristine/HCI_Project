@@ -56,6 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
         txtDisplayName = findViewById(R.id.txtDisplayName);
         txtDisplayName.setText(textViewDisplayName.getText());
 
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         createYourRecipesView();
     }
@@ -98,7 +99,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void createYourRecipesView() {
-        yourRecipes = recipeData.getRecipesSameChef(SessionData.getUsername(), 0, "");
+//        yourRecipes = recipeData.getRecipesSameChef(SessionData.getUsername(), 0, "");
+        yourRecipes = recipeData.getFavorites();
         glYourRecipes.removeAllViews();
         if (yourRecipes.isEmpty()) {
             imgNotFound.setVisibility(View.VISIBLE);
@@ -114,7 +116,7 @@ public class ProfileActivity extends AppCompatActivity {
             for (Recipe recipe : yourRecipes) {
                 ItemGenerator.createCardViewGridLayout(recipe, glYourRecipes, this, getResources().getColor(R.color.white));
             }
-            imgNotFound.setVisibility(View.INVISIBLE);
+            imgNotFound.setVisibility(View.GONE);
             glYourRecipes.setVisibility(View.VISIBLE);
         }
     }

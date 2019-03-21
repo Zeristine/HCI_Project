@@ -10,12 +10,14 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import day01.huy.hci_project.data.RecipeData;
 import day01.huy.hci_project.dto.Recipe;
 import day01.huy.hci_project.ultis.ItemGenerator;
 import day01.huy.hci_project.ultis.UnitConverter;
 
 public class SearchResultActivity extends AppCompatActivity {
 
+    private final RecipeData recipeData = new RecipeData();
     private GridLayout resultGridLayout, suggestGridLayout;
     private ImageButton btnBack;
     private List<Recipe> recipes, recipesS;
@@ -41,6 +43,8 @@ public class SearchResultActivity extends AppCompatActivity {
         btnBack.setLayoutParams(params);
         btnBack.setImageResource(R.drawable.icon_arrow_return);
         btnBack.setBackgroundResource(R.color.transparent);
+        recipes = recipeData.getFavorites();
+        recipesS = recipeData.getFavorites();
         double row = recipes.size() / 2;
         int rowCount = (int) row;
         if ((row * 10) % 2 != 0) {

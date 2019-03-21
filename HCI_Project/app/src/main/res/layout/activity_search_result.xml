@@ -22,10 +22,11 @@
                 android:layout_height="wrap_content"
                 android:background="@color/brown200"
                 android:gravity="center"
-                android:text="Kết quả"
+                android:text="Kết quả tìm kiếm"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:paddingVertical="10sp"/>
 
             <android.support.v7.widget.GridLayout
                 android:id="@+id/glResult"
@@ -42,7 +43,8 @@
                 android:text="Các gợi ý khác"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:paddingVertical="10sp" />
 
             <android.support.v7.widget.GridLayout
                 android:id="@+id/glSuggest"
