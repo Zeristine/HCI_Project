@@ -75,7 +75,7 @@ public class PickIngredientActivity extends TabActivity {
         switch (choiceValue) {
             case 1:
                 initAdapterForView(recipeData.getNonVegetarians().get("main"),
-                        recipeData.getNonVegetarians().get("sub"), "nam");
+                        recipeData.getNonVegetarians().get("sub"), "man");
                 break;
             case 2:
                 initAdapterForView(recipeData.getVegetarians().get("main"),
