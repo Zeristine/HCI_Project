@@ -111,11 +111,14 @@ public class PostRecipeActivity extends AppCompatActivity {
                 btnDone.setText("Chỉnh sửa");
                 txtTitle.setText("Chỉnh sửa " + (recipeData.isContributed(recipeData.findRecipeById(intent.getLongExtra("id", 0)))
                         ? "đóng góp" : "bài đăng"));
+                recipeDto.setId(intent.getLongExtra("id", 0));
+
             }
         }
         String[] dishTypes = new String[]{"Chọn loại món ăn", "Món chay", "Món Mặn", "Thức uống"};
+        String updateValue = intent.getStringExtra("nguyenlieuchinh") == null ? "100g" : intent.getStringExtra("nguyenlieuchinh");
         spDishType.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, dishTypes));
-        ItemGenerator.createAddIngredientRow(this, layoutMainIngredient, "Ví dụ: 100g thịt gà", subIngredients, mainIngredients, true);
+        ItemGenerator.createAddIngredientRow(this, layoutMainIngredient, isChinhSua ? updateValue : "Ví dụ: 100g thịt gà", subIngredients, mainIngredients, true);
         ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột", subIngredients, mainIngredients, false);
         ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột", subIngredients, mainIngredients, false);
         ItemGenerator.createAddIngredientRow(this, layoutAddIngredient, "Ví dụ: 100g bột", subIngredients, mainIngredients, false);
@@ -311,7 +314,9 @@ public class PostRecipeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    Toast.makeText(PostRecipeActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(PostRecipeActivity.this, FridgeActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
             builder.setPositiveButton("Chỉnh sửa", new DialogInterface.OnClickListener() {

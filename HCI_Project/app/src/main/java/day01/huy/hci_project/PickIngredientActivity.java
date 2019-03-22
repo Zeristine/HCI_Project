@@ -96,7 +96,7 @@ public class PickIngredientActivity extends TabActivity {
         super.onResume();
     }
 
-    private void initListViews(List<Ingredient> main, List<Ingredient> sub) {
+    private void initListViews(List<Ingredient> main, List<Ingredient> sub, boolean isAutoCompleteText) {
 //        List<Fragment> list = new ArrayList<>();
         mainLayout.removeAllViews();
         subLayout.removeAllViews();
@@ -168,7 +168,7 @@ public class PickIngredientActivity extends TabActivity {
             finish();
         }
 
-        initListViews(main, sub);
+        initListViews(main, sub, false);
 
         List<String> ingredients = recipeData.getIngredientOneType(main, sub);
         ArrayAdapter<String> adapter =
@@ -188,7 +188,7 @@ public class PickIngredientActivity extends TabActivity {
                         value = value + " đã được chọn";
                         break;
                     case "main":
-                        initListViews(main, sub);
+                        initListViews(main, sub, true);
 //                        viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() - 1);
                         tabHost.setCurrentTab(0);
                         if (!selectedMain.isEmpty() && selectedMain.contains(value)) {
@@ -198,7 +198,7 @@ public class PickIngredientActivity extends TabActivity {
                         }
                         break;
                     case "sub":
-                        initListViews(main, sub);
+                        initListViews(main, sub, true);
 //                        viewPagerIngredient.setCurrentItem(viewPagerIngredient.getCurrentItem() + 1);
                         tabHost.setCurrentTab(1);
                         value = value + " được chọn";

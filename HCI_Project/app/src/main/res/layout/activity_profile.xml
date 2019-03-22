@@ -127,78 +127,32 @@
                         android:layout_height="1sp"
                         android:background="@color/black" />
 
-                    <!--<TextView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginVertical="10sp"-->
-                    <!--android:background="@color/brown400"-->
-                    <!--android:gravity="center"-->
-                    <!--android:paddingVertical="10sp"-->
-                    <!--android:text="Các bài đăng của bạn"-->
-                    <!--android:textColor="@color/white"-->
-                    <!--android:textSize="20sp"-->
-                    <!--android:textStyle="bold" />-->
-                    <TabHost
-                        android:id="@android:id/tabhost"
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10sp"
+                        android:background="@color/brown400"
+                        android:gravity="center"
+                        android:paddingVertical="10sp"
+                        android:text="Các bài đăng của tôi"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                        <TabWidget
-                            android:id="@android:id/tabs"
-                            android:layout_width="match_parent"
-                            android:layout_height="50sp"
-                            android:gravity="center"
-                            android:textAlignment="center" />
+                    <android.support.v7.widget.GridLayout
+                        android:id="@+id/glPostedRecipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:alignmentMode="alignMargins"
+                        app:rowOrderPreserved="false"
+                        app:useDefaultMargins="false" />
 
-                        <FrameLayout
-                            android:id="@android:id/tabcontent"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="50sp">
-
-                            <LinearLayout
-                                android:id="@+id/layoutPosted"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <android.support.v7.widget.GridLayout
-                                    android:id="@+id/glPostedRecipe"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    app:alignmentMode="alignMargins"
-                                    app:rowOrderPreserved="false"
-                                    app:useDefaultMargins="false" />
-
-                                <ImageView
-                                    android:id="@+id/imgNotFound1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/icon_list_not_found" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/layoutPending"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <android.support.v7.widget.GridLayout
-                                    android:id="@+id/glPendingRecipe"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    app:alignmentMode="alignMargins"
-                                    app:rowOrderPreserved="false"
-                                    app:useDefaultMargins="false" />
-
-                                <ImageView
-                                    android:id="@+id/imgNotFound2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/icon_list_not_found" />
-                            </LinearLayout>
-                        </FrameLayout>
-                    </TabHost>
+                    <ImageView
+                        android:id="@+id/imgNotFound1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_list_not_found" />
+                    >
 
                 </LinearLayout>
 

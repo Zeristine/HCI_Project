@@ -23,6 +23,7 @@ import java.util.List;
 
 import day01.huy.hci_project.custom.SlicePagerAdapter;
 import day01.huy.hci_project.data.RecipeData;
+import day01.huy.hci_project.data.SessionData;
 import day01.huy.hci_project.dto.Recipe;
 import day01.huy.hci_project.fragments.RecipeContentFragment;
 import day01.huy.hci_project.ultis.ColorGradient;
@@ -33,7 +34,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
-    private LinearLayout layoutSuggest;
+    private LinearLayout layoutSuggest, layoutContribute;
     private Button btnFavorite;
     private RelativeLayout layoutRecipeImage;
     private TextView txtRecipeTitle, txtRating;
@@ -55,6 +56,7 @@ public class DetailActivity extends AppCompatActivity {
         btnFavorite = findViewById(R.id.btnFavorite);
         tabDots = findViewById(R.id.tabDots);
         txtRating = findViewById(R.id.txtRating);
+        layoutContribute = findViewById(R.id.layoutContribute);
         layoutSuggest = findViewById(R.id.layoutSuggest);
         displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -62,9 +64,9 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         long id = intent.getLongExtra("id", 0);
         String title = intent.getStringExtra("name");
-        if(id == 0){
+        if (id == 0) {
             recipe = recipeData.findRecipeByTitle(title);
-        }else{
+        } else {
             recipe = recipeData.findRecipeById(id);
         }
 
@@ -137,6 +139,9 @@ public class DetailActivity extends AppCompatActivity {
     private void initRecipeInstructions(@NotNull List<String> cooks) {
         RecipeContentFragment fragment = null;
         for (String cook : cooks) {
+            if (cook.equals(SessionData.getUsername())) {
+                layoutContribute.setVisibility(View.GONE);
+            }
             fragment = new RecipeContentFragment();
             fragment.getDataFromParent(recipeData.getRecipesSameChef(cook, 5, recipe.getTitle()), cook,
                     (float) recipeData.getRecipeByTitleAndChef(cook, recipe.getTitle()).getRate(), recipe.getTitle());

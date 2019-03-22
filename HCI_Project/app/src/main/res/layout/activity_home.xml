@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15sp"
+                android:background="@color/brown400"
+                android:gravity="center"
+                android:paddingVertical="10sp"
+                android:text="Món ăn ưa thích"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.GridLayout
+                android:id="@+id/glFavorite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignmentMode="alignMargins"
+                app:rowOrderPreserved="false"
+                app:useDefaultMargins="false" />
+
+            <ImageView
+                android:id="@+id/imgNotFound1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_list_not_found" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="15sp"
+                android:background="@color/brown400"
+                android:gravity="center"
+                android:paddingVertical="10sp"
+                android:text="Món ăn đánh giá cao"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.GridLayout
+                android:id="@+id/glRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignmentMode="alignMargins"
+                app:rowOrderPreserved="false"
+                app:useDefaultMargins="false" />
+
+            <ImageView
+                android:id="@+id/imgNotFound2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_list_not_found" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

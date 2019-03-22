@@ -45,6 +45,7 @@ public class RecipeContentFragment extends Fragment {
         TextView txtChef = rootView.findViewById(R.id.txtChef);
         TextView txtAuthor = rootView.findViewById(R.id.txtAuthor);
         TextView txtDate = rootView.findViewById(R.id.txtDate);
+        final TextView txtMainIngredient = rootView.findViewById(R.id.txtMain);
         final Button btnRate = rootView.findViewById(R.id.btnRate);
         final RatingBar rbRecipe = rootView.findViewById(R.id.rbRecipe);
         final RatingBar rbAverage = rootView.findViewById(R.id.rbRecipeAverage);
@@ -100,12 +101,13 @@ public class RecipeContentFragment extends Fragment {
                 intent.putExtra("title", currentRecipe.getTitle());
                 intent.putExtra("content", currentRecipe.getContent());
                 intent.putExtra("imageLink", currentRecipe.getImageLink());
+                intent.putExtra("nguyenlieuchinh", txtMainIngredient.getText().toString());
                 intent.putExtra("chinhsua", true);
                 startActivity(intent);
             }
         });
         initHorizontalCardsView(chefRecipes, layoutChef);
-        txtChef.setText(chef + "'s Other Recipes");
+        txtChef.setText("Các món ăn khác bởi " + chef);
         txtAuthor.setText("Người đăng: " + chef);
         if (currentRecipe.getAuthor().equals(SessionData.getUsername())) {
             btnUpdate.setVisibility(View.VISIBLE);
