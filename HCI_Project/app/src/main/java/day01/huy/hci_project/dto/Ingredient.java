@@ -3,14 +3,25 @@ package day01.huy.hci_project.dto;
 public class Ingredient {
     private float id;
     private String name;
+    private String parent;
     private String imageLink;
     private String type;
 
-    public Ingredient(float id, String name, String imageLink, String type) {
+
+    public Ingredient(float id, String name, String parent, String imageLink, String type) {
         this.id = id;
         this.name = name;
+        this.parent = parent;
         this.imageLink = imageLink;
         this.type = type;
+    }
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
     }
 
     public String getType() { return type; }
