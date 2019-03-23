@@ -1,40 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingHorizontal="10sp"
     tools:context=".FridgeActivity">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Đăng công thức thành công"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_marginTop="200sp"
-        android:textColor="@color/greenDarkPrimary"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Công thức của bạn sẽ được kiểm duyệt và đăng trong vòng 24 giờ"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginTop="20sp"
-        android:textColor="@color/brown400"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75sp"
+                android:layout_marginTop="20sp"
+                android:background="@drawable/shape_fridge_top">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Tử lạnh của bạn"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layoutAddIngredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_fridge_inner_row"
+                        android:gravity="center"
+                        android:paddingVertical="30sp"
+                        android:text="Không có gì trong tủ lạnh..."
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75sp"
+                android:background="@drawable/shape_fridge_bottom" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginBottom="60sp"
         android:background="@drawable/shape_button"
-        android:layout_marginHorizontal="35sp"
-        android:layout_marginTop="50sp"
-        android:text="Xác nhận"
+        android:onClick="clickToAddIngredient"
+        android:padding="10sp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_add"
         android:textColor="@color/white"
-        android:onClick="clickToConfirm"
-        />
-</LinearLayout>
+        android:textStyle="bold" />
+
+</RelativeLayout>
