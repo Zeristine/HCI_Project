@@ -132,7 +132,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void initHorizontalCardsView(@NotNull List<Recipe> list, LinearLayout layout) {
         for (Recipe recipe : list) {
-            ItemGenerator.createCardViewLinearLayout(recipe, layout, this, getResources().getColor(R.color.white));
+            ItemGenerator.createCardViewLinearLayout(recipe, layout, this, R.color.white);
         }
     }
 

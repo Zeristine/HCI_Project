@@ -49,13 +49,13 @@ public class ItemGenerator {
             }
         });
 
-        View recipeView = LayoutInflater.from(context).inflate(R.layout.layout_card_view_recipe, null);
+        View recipeView = LayoutInflater.from(context)
+                .inflate(R.layout.layout_card_view_recipe_grid_layout, null);
         ImageView imgRecipe = recipeView.findViewById((R.id.imgRecipeImage));
         TextView txtTitle = recipeView.findViewById(R.id.txtRecipeTitle);
         TextView txtContent = recipeView.findViewById(R.id.txtContent);
-        int resId = getResId("image_food_" + recipe.getImageLink() + "_small",
+        int resId = getResId("image_food_" + recipe.getImageLink(),
                 "drawable", context.getPackageName(), context);
-
         if (resId == 0) {
             imgRecipe.setImageResource(R.drawable.icon_no_image);
         } else {
@@ -76,9 +76,12 @@ public class ItemGenerator {
     public static void createCardViewGridLayout(@NotNull final Recipe recipe,
                                                 @NotNull GridLayout gridLayout,
                                                 final Context context, int colorId) {
-        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                , GridLayout.spec(GridLayout.UNDEFINED, 1f));
+        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
         layoutParams.setMargins(20, 20, 20, 20);
+        layoutParams.width = GridLayout.LayoutParams.WRAP_CONTENT;
+        layoutParams.height = GridLayout.LayoutParams.WRAP_CONTENT;
+        layoutParams.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+        layoutParams.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
         CardView cardView = createCardView(recipe, context, colorId);
         cardView.setLayoutParams(layoutParams);
         gridLayout.addView(cardView);
@@ -87,9 +90,12 @@ public class ItemGenerator {
     public static void createCardViewGridLayoutProfile(@NotNull final Recipe recipe,
                                                        @NotNull GridLayout gridLayout,
                                                        final Context context, int colorId) {
-        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                , GridLayout.spec(GridLayout.UNDEFINED, 1f));
+        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
         layoutParams.setMargins(20, 20, 20, 20);
+        layoutParams.width = GridLayout.LayoutParams.WRAP_CONTENT;
+        layoutParams.height = GridLayout.LayoutParams.WRAP_CONTENT;
+        layoutParams.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+        layoutParams.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
         CardView cardView = createCardViewInProfile(recipe, context, colorId);
         cardView.setLayoutParams(layoutParams);
         gridLayout.addView(cardView);

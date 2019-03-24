@@ -82,5 +82,19 @@
         android:src="@drawable/icon_add"
         android:textColor="@color/white"
         android:textStyle="bold" />
+    <ImageButton
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginBottom="60sp"
+        android:background="@drawable/shape_button"
+        android:onClick="clickToSearch"
+        android:padding="10sp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_search"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
 </RelativeLayout>

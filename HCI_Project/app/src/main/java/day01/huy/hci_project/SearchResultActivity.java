@@ -3,12 +3,19 @@ package day01.huy.hci_project;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import day01.huy.hci_project.data.RecipeData;
 import day01.huy.hci_project.dto.Recipe;
@@ -20,19 +27,17 @@ public class SearchResultActivity extends AppCompatActivity {
     private final RecipeData recipeData = new RecipeData();
     private GridLayout resultGridLayout, suggestGridLayout;
     private ImageButton btnBack;
-    private List<Recipe> recipes, recipesS;
+    private DisplayMetrics metrics = new DisplayMetrics();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
-//        List<String> ingredients = getIntent().getStringArrayListExtra("ingredients");
+        List<String> ingredients = getIntent().getStringArrayListExtra("ingredients");
         resultGridLayout = findViewById(R.id.glResult);
         suggestGridLayout = findViewById(R.id.glSuggest);
         btnBack = findViewById(R.id.btnBack);
-        makeListForResult();
-        makeListForSuggestion();
-
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 UnitConverter.getPixelValue(50, this),
                 UnitConverter.getPixelValue(50, this));
@@ -43,56 +48,57 @@ public class SearchResultActivity extends AppCompatActivity {
         btnBack.setLayoutParams(params);
         btnBack.setImageResource(R.drawable.icon_arrow_return);
         btnBack.setBackgroundResource(R.color.transparent);
-        recipes = recipeData.getFavorites();
-        recipesS = recipeData.getFavorites();
-        double row = recipes.size() / 2;
-        int rowCount = (int) row;
-        if ((row * 10) % 2 != 0) {
-            rowCount++;
-        }
-        resultGridLayout.setColumnCount(2);
-        resultGridLayout.setRowCount(rowCount);
-        for (Recipe recipe : recipes) {
-            ItemGenerator.createCardViewGridLayout(recipe, resultGridLayout, this, R.color.white);
-        }
-
-        double rowS = recipesS.size() / 2;
-        int rowCountS = (int) rowS;
-        if ((rowS * 10) % 2 != 0) {
-            rowCountS++;
-        }
-        suggestGridLayout.setColumnCount(2);
-        suggestGridLayout.setRowCount(rowCountS);
-        for (Recipe recipe : recipesS) {
-            ItemGenerator.createCardViewGridLayout(recipe, suggestGridLayout, this, R.color.white);
-        }
-    }
-
-    public void makeListForResult() {
-        recipes = new ArrayList<>();
-//        Calendar calendar = Calendar.getInstance();
-//        Date date = calendar.getTime();
-//        recipes.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
-//        recipes.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
-//        recipes.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
-//        recipes.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
-    }
-
-    public void makeListForSuggestion() {
-
-        recipesS = new ArrayList<>();
-//        Calendar calendar = Calendar.getInstance();
-//        Date date = calendar.getTime();
-//
-//        recipesS.add(new Recipe(1, "Rau muống xào tỏi", "HuyLM", "adada", date, "raumuong", null));
-//        recipesS.add(new Recipe(2, "Nui xào bò", "HuyLM", "adada", date, "nuixaobo", null));
-//        recipesS.add(new Recipe(3, "Chè trân châu", "HuyLM", "adada", date, "che", null));
-//        recipesS.add(new Recipe(4, "Bánh viên sô cô la", "HuyLM", "adada", date, "chocoball", null));
-//        recipesS.add(new Recipe(5, "Canh rau muống", "HuyLM", "adada", date, "canhraumuong", null));
-
+        setUpGridView(searchRecipeByIngredients(getIngredientOnly(ingredients)), resultGridLayout);
+        setUpGridView(recipeData.getFavorites(), suggestGridLayout);
     }
 
     public void clickToFinish(View view) {
         finish();
+    }
+
+    private List<String> getIngredientOnly(@NotNull List<String> fridge) {
+        List<String> result = new ArrayList<>();
+        for (String item : fridge) {
+            StringTokenizer tokenizer = new StringTokenizer(item, "-");
+            result.add(tokenizer.nextToken());
+        }
+        return result;
+    }
+
+    private List<Recipe> searchRecipeByIngredients(List<String> ingredients) {
+        List<Recipe> result = new ArrayList<>();
+        for (Recipe recipe : recipeData.getRecipes()) {
+            for (String ingredient : ingredients) {
+                if (recipe.getIngredients().equalsIgnoreCase(ingredient)) {
+                    result.add(recipe);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    private void setUpGridView(@NotNull List<Recipe> recipes, GridLayout layout) {
+        double rowS = recipes.size() / 2;
+        int rowCountS = (int) rowS;
+        if ((rowS * 10) % 2 != 0) {
+            rowCountS++;
+        }
+        if (recipes.size() == 1) {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((metrics.widthPixels / 2),
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            layout.setLayoutParams(params);
+            layout.setColumnCount(1);
+        } else {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            layout.setLayoutParams(params);
+            layout.setColumnCount(2);
+        }
+        layout.setColumnCount(2);
+        layout.setRowCount(rowCountS);
+        for (Recipe recipe : recipes) {
+            ItemGenerator.createCardViewGridLayout(recipe, layout, this, R.color.white);
+        }
     }
 }

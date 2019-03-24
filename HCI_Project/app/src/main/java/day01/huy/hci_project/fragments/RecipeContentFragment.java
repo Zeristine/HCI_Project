@@ -122,7 +122,7 @@ public class RecipeContentFragment extends Fragment {
 
     private void initHorizontalCardsView(@NotNull List<Recipe> list, LinearLayout layout) {
         for (Recipe recipe : list) {
-            ItemGenerator.createCardViewLinearLayout(recipe, layout, getContext(), getResources().getColor(R.color.white));
+            ItemGenerator.createCardViewLinearLayout(recipe, layout, getContext(), R.color.white);
         }
     }
 

@@ -22,36 +22,38 @@
                 android:layout_height="wrap_content"
                 android:background="@color/brown200"
                 android:gravity="center"
+                android:paddingVertical="10sp"
                 android:text="Kết quả tìm kiếm"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:textStyle="bold"
-                android:paddingVertical="10sp"/>
+                android:textStyle="bold" />
 
             <android.support.v7.widget.GridLayout
                 android:id="@+id/glResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:alignmentMode="alignMargins"
-                app:columnCount="2" />
+                app:alignmentMode="alignBounds"
+                app:rowOrderPreserved="false"
+                app:useDefaultMargins="true" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/brown200"
                 android:gravity="center"
+                android:paddingVertical="10sp"
                 android:text="Các gợi ý khác"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:textStyle="bold"
-                android:paddingVertical="10sp" />
+                android:textStyle="bold" />
 
             <android.support.v7.widget.GridLayout
                 android:id="@+id/glSuggest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:alignmentMode="alignMargins"
-                app:columnCount="2" />
+                app:rowOrderPreserved="false"
+                app:useDefaultMargins="false" />
 
         </LinearLayout>
     </ScrollView>

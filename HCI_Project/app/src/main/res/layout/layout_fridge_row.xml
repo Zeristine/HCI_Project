@@ -9,7 +9,7 @@
         android:id="@+id/txtView"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:gravity="center"
+        android:gravity="left"
         android:paddingHorizontal="10sp"
         android:paddingBottom="5sp"
         android:text="AAAAAA"

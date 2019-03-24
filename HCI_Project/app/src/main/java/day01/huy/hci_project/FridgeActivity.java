@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -58,6 +59,10 @@ public class FridgeActivity extends AppCompatActivity {
 
     private void addCurrentFridgeData() {
         List<String> fridge = fridgeData.getList();
+        if(fridge.isEmpty()){
+            fridge.add("Rau muống-500-kg");
+            fridge.add("Cá-200-kg");
+        }
         if (fridge.isEmpty()) {
             txtEmpty.setVisibility(View.VISIBLE);
         } else {
@@ -253,5 +258,12 @@ public class FridgeActivity extends AppCompatActivity {
         text.setText(value);
         text.clearFocus();
         text.setBackgroundResource(R.color.transparent);
+    }
+
+    public void clickToSearch(View view) {
+        List<String> list = fridgeData.getList();
+        Intent intent = new Intent(this, SearchResultActivity.class);
+        intent.putStringArrayListExtra("ingredients", (ArrayList<String>) list);
+        startActivity(intent);
     }
 }
