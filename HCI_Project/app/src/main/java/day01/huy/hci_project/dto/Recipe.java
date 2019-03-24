@@ -14,12 +14,12 @@ public class Recipe {
     private Bitmap image;
     private double rate;
     private String description;
-    private List<String> ingredients;
+    private String ingredients;
 
     public Recipe() {
     }
 
-    public Recipe(long id, String title, String author, String content, String imageLink, Bitmap image, double rate, String description, List<String> ingredients) {
+    public Recipe(long id, String title, String author, String content, String imageLink, Bitmap image, double rate, String description, String ingredients) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -87,11 +87,11 @@ public class Recipe {
         this.content = content;
     }
 
-    public List<String> getIngredients() {
+    public String getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<String> ingredients) {
+    public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
 

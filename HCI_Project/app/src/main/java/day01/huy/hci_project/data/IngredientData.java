@@ -27,66 +27,66 @@ public class IngredientData {
     }
 
     private void initMapMan() {
-        mainMan.add(new Ingredient(1, "rau muống","", "raumuong","gram"));
-        mainMan.add(new Ingredient(2, "cà rốt","", "carot","gram"));
-        mainMan.add(new Ingredient(3, "củ cải trắng","", "cucaitrang","gram"));
-        mainMan.add(new Ingredient(4, "khoai tây","", "khoaitay","gram"));
-        mainMan.add(new Ingredient(5, "trứng","", "trung","gram"));
-        mainMan.add(new Ingredient(6, "thịt bò","", "thitbo","gram"));
-        mainMan.add(new Ingredient(7, "thịt heo", "","thitheo","gram"));
-        mainMan.add(new Ingredient(8, "thịt gà", "","thitga","gram"));
-        mainMan.add(new Ingredient(9, "thịt cá", "","thitca","gram"));
-        mainMan.add(new Ingredient(10, "thịt tôm","", "thittom","gram"));
-        mainMan.add(new Ingredient(11, "thịt cua","", "thitcua","gram"));
+        mainMan.add(new Ingredient(1, "Rau muống","", "raumuong","gram"));
+        mainMan.add(new Ingredient(2, "Cà rốt","", "carot","gram"));
+        mainMan.add(new Ingredient(3, "Củ cải trắng","", "cucaitrang","gram"));
+        mainMan.add(new Ingredient(4, "Khoai tây","", "khoaitay","gram"));
+        mainMan.add(new Ingredient(5, "Trứng","", "trung","gram"));
+        mainMan.add(new Ingredient(6, "Thịt bò","", "thitbo","gram"));
+        mainMan.add(new Ingredient(7, "Thịt heo", "","thitheo","gram"));
+        mainMan.add(new Ingredient(8, "Thịt gà", "","thitga","gram"));
+        mainMan.add(new Ingredient(9, "Cá", "","thitca","gram"));
+        mainMan.add(new Ingredient(10, "Tôm","", "thittom","gram"));
+        mainMan.add(new Ingredient(11, "Cua","", "thitcua","gram"));
 
-        subMan.add(new Ingredient(1, "muối","", "muoi","gram"));
-        subMan.add(new Ingredient(2, "đường","", "duong","gram"));
-        subMan.add(new Ingredient(3, "tiêu","", "tieu","gram"));
-        subMan.add(new Ingredient(4, "tỏi","", "toi","gram"));
-        subMan.add(new Ingredient(5, "ớt","", "ot","gram"));
-        subMan.add(new Ingredient(6, "hành phi", "","hanhphi","gram"));
-        subMan.add(new Ingredient(7, "hành lá", "","hanhla","gram"));
-        subMan.add(new Ingredient(8, "hành tây", "","hanhtay","gram"));
+        subMan.add(new Ingredient(1, "Muối","", "muoi","gram"));
+        subMan.add(new Ingredient(2, "Đường","", "duong","gram"));
+        subMan.add(new Ingredient(3, "Tiêu","", "tieu","gram"));
+        subMan.add(new Ingredient(4, "Tỏi","", "toi","gram"));
+        subMan.add(new Ingredient(5, "Ớt","", "ot","gram"));
+        subMan.add(new Ingredient(6, "Hành phi", "","hanhphi","gram"));
+        subMan.add(new Ingredient(7, "Hành lá", "","hanhla","gram"));
+        subMan.add(new Ingredient(8, "Hành tây", "","hanhtay","gram"));
 
         nonVegetarians.put("main", mainMan);
         nonVegetarians.put("sub", subMan);
     }
 
     private void initMapChay() {
-        mainChay.add(new Ingredient(1, "rau muống","", "raumuong","gram"));
-        mainChay.add(new Ingredient(2, "tàu hủ","", "tauhu","gram"));
-        mainChay.add(new Ingredient(3, "cà rốt","", "carot","gram"));
-        mainChay.add(new Ingredient(4, "nấm","", "nam","gram"));
-        mainChay.add(new Ingredient(5, "khoai tây", "","khoaitay","gram"));
-        mainChay.add(new Ingredient(6, "bông cải", "","bongcai","gram"));
-        mainChay.add(new Ingredient(7, "gạo lứt","", "gaolut","gram"));
+        mainChay.add(new Ingredient(1, "Rau muống","", "raumuong","gram"));
+        mainChay.add(new Ingredient(2, "Tàu hủ","", "tauhu","gram"));
+        mainChay.add(new Ingredient(3, "Cà rốt","", "carot","gram"));
+        mainChay.add(new Ingredient(4, "Nấm","", "nam","gram"));
+        mainChay.add(new Ingredient(5, "Khoai tây", "","khoaitay","gram"));
+        mainChay.add(new Ingredient(6, "Bông cải", "","bongcai","gram"));
+        mainChay.add(new Ingredient(7, "Gạo lứt","", "gaolut","gram"));
 
-        subChay.add(new Ingredient(1, "muối", "","muoi","gram"));
-        subChay.add(new Ingredient(2, "đường", "","duong","gram"));
-        subChay.add(new Ingredient(3, "tiêu", "","tieu","gram"));
-        subChay.add(new Ingredient(4, "tỏi", "","toi","gram"));
-        subChay.add(new Ingredient(5, "ớt", "","ot","gram"));
-        subChay.add(new Ingredient(6, "hành phi", "","hanhphi","gram"));
-        subChay.add(new Ingredient(7, "hành lá", "","hanhla","gram"));
-        subChay.add(new Ingredient(8, "hành tay", "","hanhtay","gram"));
+        subChay.add(new Ingredient(1, "Muối","", "muoi","gram"));
+        subChay.add(new Ingredient(2, "Đường","", "duong","gram"));
+        subChay.add(new Ingredient(3, "Tiêu","", "tieu","gram"));
+        subChay.add(new Ingredient(4, "Tỏi","", "toi","gram"));
+        subChay.add(new Ingredient(5, "Ớt","", "ot","gram"));
+        subChay.add(new Ingredient(6, "Hành phi", "","hanhphi","gram"));
+        subChay.add(new Ingredient(7, "Hành lá", "","hanhla","gram"));
+        subChay.add(new Ingredient(8, "Hành tây", "","hanhtay","gram"));
 
         vegetarians.put("main", mainChay);
         vegetarians.put("sub", subChay);
     }
 
     private void initMapDrink() {
-        mainDrink.add(new Ingredient(1, "rượu đỏ","", "ruoudo","ml"));
-        mainDrink.add(new Ingredient(2, "rượu trắng","", "ruoutrang","ml"));
-        mainDrink.add(new Ingredient(3, "champagne", "","champagne","ml"));
-        mainDrink.add(new Ingredient(4, "cà phê đen", "","capheden","ml"));
-        mainDrink.add(new Ingredient(5, "sữa", "","sua","ml"));
+        mainDrink.add(new Ingredient(1, "Rượu đỏ","", "ruoudo","ml"));
+        mainDrink.add(new Ingredient(2, "Rượu trắng","", "ruoutrang","ml"));
+        mainDrink.add(new Ingredient(3, "Champagne", "","champagne","ml"));
+        mainDrink.add(new Ingredient(4, "Cà phê đen", "","capheden","ml"));
+        mainDrink.add(new Ingredient(5, "Sữa", "","sua","ml"));
 
-        subDrink.add(new Ingredient(1, "dâu tây", "","dautay","gram"));
-        subDrink.add(new Ingredient(1, "xoài","", "xoai","gram"));
-        subDrink.add(new Ingredient(1, "chanh", "","chanh","gram"));
-        subDrink.add(new Ingredient(1, "mật ong", "","matong","ml"));
-        subDrink.add(new Ingredient(1, "dưa hấu","", "duahau","gram"));
-        subDrink.add(new Ingredient(1, "bơ","", "bo","gram"));
+        subDrink.add(new Ingredient(1, "Dâu tây", "","dautay","gram"));
+        subDrink.add(new Ingredient(1, "Xoài","", "xoai","gram"));
+        subDrink.add(new Ingredient(1, "Chanh", "","chanh","gram"));
+        subDrink.add(new Ingredient(1, "Mật ong", "","matong","ml"));
+        subDrink.add(new Ingredient(1, "Dưa hấu","", "duahau","gram"));
+        subDrink.add(new Ingredient(1, "Bơ","", "bo","gram"));
 
         drinks.put("main", mainDrink);
         drinks.put("sub", subDrink);
