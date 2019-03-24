@@ -19,7 +19,7 @@ public class FridgeData {
         this.list = list;
     }
 
-    
+
 
     //add Ingredient to List
     public void addIngredientToFridge(Ingredient ingredient){
