@@ -53,7 +53,7 @@ public class SearchResultActivity extends AppCompatActivity {
         resultGridLayout.setColumnCount(2);
         resultGridLayout.setRowCount(rowCount);
         for (Recipe recipe : recipes) {
-            ItemGenerator.createCardViewGridLayout(recipe, resultGridLayout, this, getResources().getColor(R.color.white));
+            ItemGenerator.createCardViewGridLayout(recipe, resultGridLayout, this, R.color.white);
         }
 
         double rowS = recipesS.size() / 2;
@@ -64,7 +64,7 @@ public class SearchResultActivity extends AppCompatActivity {
         suggestGridLayout.setColumnCount(2);
         suggestGridLayout.setRowCount(rowCountS);
         for (Recipe recipe : recipesS) {
-            ItemGenerator.createCardViewGridLayout(recipe, suggestGridLayout, this, getResources().getColor(R.color.white));
+            ItemGenerator.createCardViewGridLayout(recipe, suggestGridLayout, this, R.color.white);
         }
     }
 
