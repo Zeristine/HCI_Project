@@ -1,51 +1,49 @@
 package day01.huy.hci_project.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import day01.huy.hci_project.dto.Ingredient;
-
 public class FridgeData {
-    private List<Ingredient> list;
+    private static List<String> list = new ArrayList<>();
 
-    public FridgeData(List<Ingredient> list) {
-        this.list = list;
+    public FridgeData() {
+
     }
 
-    public List<Ingredient> getList() {
+    public List<String> getList() {
         return list;
     }
 
-    public void setList(List<Ingredient> list) {
-        this.list = list;
-    }
-
-
-
     //add Ingredient to List
-    public void addIngredientToFridge(Ingredient ingredient){
-        list.add(ingredient);
+    public void addIngredientToFridge(String ingredient, String amount, String unit) {
+        list.add(ingredient + "-" + amount + "-" + unit);
     }
 
     //update Ingredient in List
-    public void updateIngredientInFridge(Ingredient ingredient){
+    public void updateIngredientInFridge(String ingredient, String amount, String unit) {
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getName().equals(ingredient.getName())){
-                list.set(i,ingredient);
+            if (list.get(i).contains(ingredient)) {
+                list.set(i, ingredient + "-" + amount + "-" + unit);
+                return;
             }
         }
     }
 
     //delete Ingredient in list
-    public void deleteIngredientInFridge(Ingredient ingredient){
+    public void deleteIngredientInFridge(String ingredient) {
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getName().equals(ingredient.getName())){
+            if (list.get(i).contains(ingredient)) {
                 list.remove(i);
             }
         }
     }
 
-    public List<Ingredient> showAllIngredient(){
-        return list;
+    public boolean checkIngredientExist(String ingredient){
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).contains(ingredient)) {
+                return true;
+            }
+        }
+        return false;
     }
-
 }

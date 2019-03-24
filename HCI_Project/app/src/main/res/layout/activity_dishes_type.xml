@@ -1,129 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="10"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".DishesTypeActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/brown400"
-        >
+        android:layout_height="50sp"
+        android:background="@color/brown400">
 
         <ImageButton
-            android:layout_width="50dp"
+            android:id="@+id/btnBack"
+            android:layout_width="50sp"
             android:layout_height="match_parent"
-            android:src="@drawable/icon_arrow_return"
-            android:background="@color/transparent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:onClick="clickToFinish"/>
+            android:background="@color/transparent"
+            android:src="@drawable/icon_arrow_return" />
 
         <TextView
             android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
             android:layout_weight="1"
-            android:text="Hôm nay bạn ăn gì?"
             android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="30sp"
+            android:text="Chọn cách tìm kiếm"
             android:textColor="@color/white"
-            android:layout_centerInParent="true"/>
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
-
     <LinearLayout
-        android:id="@+id/btnChay"
+        android:id="@+id/layoutDishType"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:weightSum="2"
-        android:background="@drawable/shape_dishtype_button"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:weightSum="6">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/icon_mon_chay"
-            android:layout_margin="32dp"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center|left"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="MÓN CHAY"/>
+        <LinearLayout
+            android:id="@+id/btnChay"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:background="@drawable/shape_dishtype_button"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="32dp"
+                android:layout_weight="1"
+                android:src="@drawable/icon_mon_chay" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text="MÓN CHAY"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnMan"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:background="@drawable/shape_dishtype_button"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="32dp"
+                android:layout_weight="1"
+                android:src="@drawable/icon_mon_man" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text="MÓN MẶN"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnDrinks"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:background="@drawable/shape_dishtype_button"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="32dp"
+                android:layout_weight="1"
+                android:src="@drawable/icon_drink" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text="THỨC UỐNG"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btnMan"
+        android:id="@+id/layoutOption"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:weightSum="2"
-        android:background="@drawable/shape_dishtype_button"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_height="0sp"
+        android:layout_weight="9"
+        android:orientation="vertical"
+        android:weightSum="2">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:src="@drawable/icon_mon_man"
-            android:layout_margin="32dp"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center|left"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="MÓN MẶN"/>
+            android:background="@drawable/shape_dishtype_button"
+            android:onClick="clickToShowDishType"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="32dp"
+                android:layout_weight="1"
+                android:src="@drawable/icon_drink" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="NGUYÊN\nLIỆU\nCỦA\nLOẠI\nMÓN ĂN"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_dishtype_button"
+            android:onClick="clickToSearch"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="32dp"
+                android:layout_weight="1"
+                android:src="@drawable/icon_drink" />
+
+            <TextView
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="NGUYÊN\nLIỆU\nCÓ SẴN\nTRONG\nTỦ LẠNH"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/btnDrinks"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:weightSum="2"
-        android:background="@drawable/shape_dishtype_button"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/icon_drink"
-            android:layout_margin="32dp"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center|left"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="THỨC UỐNG"/>
-
-    </LinearLayout>
-
 
 </LinearLayout>

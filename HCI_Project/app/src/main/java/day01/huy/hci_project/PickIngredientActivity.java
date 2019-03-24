@@ -51,7 +51,6 @@ public class PickIngredientActivity extends TabActivity {
         mainLayout = findViewById(R.id.mainLayout);
         subLayout = findViewById(R.id.subLayout);
         tabHost = getTabHost();
-//        viewPagerIngredient = findViewById(R.id.vpIngredient);
         TabHost.TabSpec spec = tabHost.newTabSpec("Chính");
         spec.setIndicator("Nguyên liệu\nchính");
         spec.setContent(R.id.mainLayout);
@@ -97,68 +96,21 @@ public class PickIngredientActivity extends TabActivity {
     }
 
     private void initListViews(List<Ingredient> main, List<Ingredient> sub, boolean isAutoCompleteText) {
-//        List<Fragment> list = new ArrayList<>();
         mainLayout.removeAllViews();
         subLayout.removeAllViews();
-        mainLayout.addView(createView(main, main, true, false, false));
-        subLayout.addView(createView(sub, main, false, false, true));
-//        SlicePagerAdapter pagerAdapter = new SlicePagerAdapter(getSupportFragmentManager(), list);
-//        viewPagerIngredient.setAdapter(pagerAdapter);
+        mainLayout.addView(createView(main, main));
+        subLayout.addView(createView(sub, main));
     }
 
-//    private Fragment initIngredientFragment(String title, List<Ingredient> ingredients, boolean isFirst,
-//                                            boolean isMiddle, boolean isLast, List<Ingredient> main) {
-//        IngredientFragment fragment = new IngredientFragment();
-//        fragment.setResource(title, ingredients, selectedIngredients, isFirst, isMiddle, isLast, viewPagerIngredient, btnSearch, main);
-//        return fragment;
-//    }
 
-    private View createView(@NotNull List<Ingredient> ingredients, List<Ingredient> main,
-                            boolean isFirst, boolean isMiddle, boolean isLast) {
+    private View createView(@NotNull List<Ingredient> ingredients, List<Ingredient> main) {
         LinearLayout page = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.layout_pick_ingredient_fragment, null);
-
-//        TextView txtTitle = page.findViewById(R.id.txtTitle);
-//        ImageButton btnForward = page.findViewById(R.id.imgPickIngredientIconFor);
-//        ImageButton btnBack = page.findViewById(R.id.imgPickIngredientIconBack);
         LinearLayout mainLayout = page.findViewById(R.id.mainLayout);
-//        txtTitle.setText(title);
-//        txtTitle.setTextSize(UnitConverter.getPixelValue(15, this));
         for (Ingredient ingredient : ingredients) {
             ItemGenerator.createIngredientRow(ingredient.getName(), ingredient.getImageLink(),
                     mainLayout, PickIngredientActivity.this, selectedIngredients, btnSearch, main, selectedMain);
             mainLayout.addView(ItemGenerator.createLine(this));
         }
-//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,
-//                4f);
-//        layoutParams.gravity = Gravity.CENTER;
-
-//        if (isFirst == true && isMiddle == false && isLast == false) {
-//            btnBack.setVisibility(View.GONE);
-//            btnForward.setVisibility(View.VISIBLE);
-//            layoutParams.weight = 5f;
-//        }
-//        if (isFirst == false && isMiddle == true && isLast == false) {
-//            btnBack.setVisibility(View.VISIBLE);
-//            btnForward.setVisibility(View.VISIBLE);
-//        }
-//        if (isFirst == false && isMiddle == false && isLast == true) {
-//            btnBack.setVisibility(View.VISIBLE);
-//            btnForward.setVisibility(View.GONE);
-//            layoutParams.weight = 5f;
-//        }
-//        txtTitle.setLayoutParams(layoutParams);
-//        btnBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                clickToMove(0, 1);
-//            }
-//        });
-//        btnForward.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                clickToMove(1, 0);
-//            }
-//        });
         return page;
     }
 

@@ -104,6 +104,17 @@ public class IngredientData {
         return drinks;
     }
 
+    public List<Ingredient> getIngredients(){
+        List<Ingredient> list = new ArrayList<>();
+        list.addAll(nonVegetarians.get("main"));
+        list.addAll(nonVegetarians.get("sub"));
+        list.addAll(vegetarians.get("main"));
+        list.addAll(vegetarians.get("sub"));
+        list.addAll(drinks.get("main"));
+        list.addAll(drinks.get("sub"));
+        return list;
+    }
+
     public List<String> getIngredientOneType(List<Ingredient> main, List<Ingredient> sub) {
         List<String> list = new ArrayList<>();
         List<Ingredient> ingredients = new ArrayList<>(main);
@@ -167,4 +178,6 @@ public class IngredientData {
         }
         return selectedIngredient;
     }
+
+
 }

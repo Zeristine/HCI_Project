@@ -1,19 +1,22 @@
 package day01.huy.hci_project;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import day01.huy.hci_project.ultis.ColorGradient;
+import java.util.ArrayList;
+
+import day01.huy.hci_project.data.FridgeData;
 
 public class DishesTypeActivity extends AppCompatActivity {
 
-    private LinearLayout btnMan, btnChay, btnDrinks;
-    private TextView txtTitle;
+    private final FridgeData fridgeData = new FridgeData();
+    private LinearLayout btnMan, btnChay, btnDrinks, layoutDishType, layoutOption;
+    private ImageButton btnBack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +25,12 @@ public class DishesTypeActivity extends AppCompatActivity {
         btnChay = findViewById(R.id.btnChay);
         btnMan = findViewById(R.id.btnMan);
         btnDrinks = findViewById(R.id.btnDrinks);
-        txtTitle = findViewById(R.id.txtTitle);
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-
-        txtTitle.setTextSize((displayMetrics.widthPixels*1)/25);
-//        btnChay.setBackground(ColorGradient.getRedGradientOrange(this));
-//        btnMan.setBackground(ColorGradient.getRedGradientOrange(this));
-//        btnDrinks.setBackground(ColorGradient.getRedGradientOrange(this));
+        layoutDishType = findViewById(R.id.layoutDishType);
+        layoutOption = findViewById(R.id.layoutOption);
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setVisibility(View.GONE);
+        layoutDishType.setVisibility(View.GONE);
+        layoutOption.setVisibility(View.VISIBLE);
         btnChay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,9 +55,27 @@ public class DishesTypeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (layoutDishType.getVisibility() == View.VISIBLE) {
+                    layoutOption.setVisibility(View.VISIBLE);
+                    layoutDishType.setVisibility(View.GONE);
+                    btnBack.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
-    public void clickToFinish(View view) {
-        finish();
+    public void clickToShowDishType(View view) {
+        layoutOption.setVisibility(View.GONE);
+        layoutDishType.setVisibility(View.VISIBLE);
+        btnBack.setVisibility(View.VISIBLE);
+    }
+
+    public void clickToSearch(View view) {
+        Intent intent = new Intent(DishesTypeActivity.this, SearchResultActivity.class);
+        intent.putStringArrayListExtra("frigde", (ArrayList<String>) fridgeData.getList());
+        startActivity(intent);
     }
 }

@@ -20,11 +20,15 @@ public class NavigationActivity extends TabActivity {
         setContentView(R.layout.activity_navigation);
         host = getTabHost();
         widget = getTabWidget();
+        int currentTab = getIntent().getIntExtra("currentTab", -1);
         addTabSpec("Trang chủ", R.drawable.file_icon_navigation_home, new Intent(this, HomeActivity.class));
         addTabSpec("Tủ lạnh", R.drawable.file_icon_navigation_fridge, new Intent(this, FridgeActivity.class));
-        addTabSpec("Tìm kiếm", R.drawable.file_icon_navigation_fridge, new Intent(this, PickIngredientActivity.class));
+        addTabSpec("Tìm kiếm", R.drawable.file_icon_navigation_fridge, new Intent(this, DishesTypeActivity.class));
         addTabSpec("Đăng bài", R.drawable.file_icon_navigation_fridge, new Intent(this, PostRecipeActivity.class));
         addTabSpec("Tài khoản", R.drawable.file_icon_navigation_fridge, new Intent(this, ProfileActivity.class));
+        if(currentTab > -1){
+            host.setCurrentTab(currentTab);
+        }
     }
 
     private void addTabSpec(String label, int drawableId, Intent intent) {
