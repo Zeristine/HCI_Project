@@ -38,4 +38,6 @@
     <color name="brown800">#4e342e</color>
     <color name="brown900">#3e2723</color>
     <color name="orange">#ff9100</color>
+    <color name="fridgeInner">#00838f</color>
+    <color name="fridgeOuter">#18ffff</color>
 </resources>
