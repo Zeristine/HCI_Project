@@ -305,16 +305,17 @@ public class ItemGenerator {
                     intent.putExtra("content", recipe.getContent());
                     intent.putExtra("imageLink", recipe.getImageLink());
                     intent.putExtra("chinhsua", true);
+                    intent.putExtra("isFromTab", 1);
                     context.startActivity(intent);
                 }
             }
         });
 
-        View recipeView = LayoutInflater.from(context).inflate(R.layout.layout_card_view_recipe, null);
+        View recipeView = LayoutInflater.from(context).inflate(R.layout.layout_card_view_recipe_grid_layout, null);
         ImageView imgRecipe = recipeView.findViewById((R.id.imgRecipeImage));
         TextView txtTitle = recipeView.findViewById(R.id.txtRecipeTitle);
         TextView txtContent = recipeView.findViewById(R.id.txtContent);
-        int resId = getResId("image_food_" + recipe.getImageLink() + "_small",
+        int resId = getResId("image_food_" + recipe.getImageLink(),
                 "drawable", context.getPackageName(), context);
 
         if (resId == 0) {

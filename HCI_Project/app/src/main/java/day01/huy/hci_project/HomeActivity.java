@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity {
             imgRecipe.setImageResource(resId);
         }
         txtTitle.setText(recipe.getTitle());
-        String content = isRated ? (recipe.getRate() + "/5.0\n" + recipe.getContent()) : recipe.getContent();
+        String content = isRated ? ("\t⭐:"+recipe.getRate() + "/5.0\n" + recipe.getContent()) : recipe.getContent();
         if (content.length() > (isRated ? 20 : 30)) {
             content = content.substring(0, (isRated ? 20 : 30)) + "...";
         }

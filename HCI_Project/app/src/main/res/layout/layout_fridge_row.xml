@@ -9,24 +9,23 @@
         android:id="@+id/txtView"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:gravity="left"
+        android:gravity="center_vertical|left"
         android:paddingHorizontal="10sp"
-        android:paddingBottom="5sp"
+        android:layout_marginHorizontal="10sp"
         android:text="AAAAAA"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/brown400"
+        android:textColor="@color/white"
         android:visibility="gone"
         />
     <ImageButton
         android:id="@+id/btnDelete"
         android:layout_width="50sp"
         android:layout_height="50sp"
-        android:src="@drawable/icon_cancel"
+        android:src="@drawable/icon_clear"
         android:background="@color/transparent"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15sp"
-        android:paddingBottom="7sp"
         android:visibility="gone"
         />
 
@@ -42,8 +41,12 @@
             android:layout_height="wrap_content"
             android:hint="Tên nguyên liệu"
             android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:maxLines="1"
-            android:paddingHorizontal="10sp" />
+            android:paddingHorizontal="10sp"
+            android:layout_marginHorizontal="10sp"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,6 +77,8 @@
                 android:layout_weight="6"
                 android:inputType="number"
                 android:maxLength="5"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:paddingRight="5sp"
                 android:textAlignment="textEnd" />
 
@@ -84,6 +89,7 @@
                 android:layout_weight="6"
                 android:gravity="center_vertical"
                 android:paddingLeft="10sp"
+                android:textColor="@color/white"
                 android:text="kg"
                 android:textSize="20sp"
                 android:textStyle="bold" />

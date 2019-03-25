@@ -56,6 +56,7 @@ public class PostRecipeActivity extends AppCompatActivity {
     private LinearLayout layoutAddIngredient, layoutMainIngredient;
     private ImageButton btnAddImage;
     private Button btnDone;
+    private ImageButton btnBack;
     private TextView txtSubtitle, txtTitle;
     private boolean isChinhSua;
 
@@ -75,6 +76,7 @@ public class PostRecipeActivity extends AppCompatActivity {
         txtSubtitle = findViewById(R.id.txtSub);
         txtTitle = findViewById(R.id.txtTitle);
         btnDone = findViewById(R.id.btnDone);
+        btnBack = findViewById(R.id.btnBack);
         recipeDto = new Recipe();
         recipeDto.setId(recipeData.getRecipes().size() + 1);
         recipeDto.setAuthor(SessionData.getUsername());
@@ -83,6 +85,23 @@ public class PostRecipeActivity extends AppCompatActivity {
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
         isChinhSua = intent.getBooleanExtra("chinhsua", false);
+        boolean isFromTab = intent.getIntExtra("isFromTab", 0) == 0;
+        if(isFromTab){
+            btnBack.setVisibility(View.GONE);
+        }else{
+            btnBack.setVisibility(View.VISIBLE);
+        }
+        spDishType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(getColor(R.color.white));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         if (title != null && content != null) {
             spDishType.setVisibility(View.INVISIBLE);
             txtRecipeTitle.setText(title);

@@ -155,6 +155,7 @@ public class DetailActivity extends AppCompatActivity {
         intent.putExtra("content", recipe.getContent());
         intent.putExtra("imageLink", recipe.getImageLink());
         intent.putExtra("imageBitMap", recipe.getImage());
+        intent.putExtra("isFromTab", 1);
         startActivity(intent);
     }
 }

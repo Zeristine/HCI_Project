@@ -33,7 +33,8 @@ public class RecipeData {
             recipes.add(new Recipe(13, "Tàu hủ chiên", "HuyLM", "Tàu hủ chiên vàng", "tauhuchien", null, 5, null, "Tàu hủ"));
             recipes.add(new Recipe(14, "Khoai tây chiên", "HuyLM", "Món Âu khó cưỡng", "khoaitaychien", null, 2.5, null, "Khoai tây"));
             recipes.add(new Recipe(15, "Rau muống xào tỏi", "HieuBT", "Rau muống xào tỏi trứ danh", "raumuong", null, 2.5, null, "Rau muống"));
-
+            recipes.add(new Recipe(14, "Khoai tây chiên", "HieuBT", "Món Âu khó cưỡng", "khoaitaychien", null, 2.5, null, "Khoai tây"));
+            recipes.add(new Recipe(12, "Cua rang me", "HieuBT", "Cua rang chua ngọt", "cuarangme", null, 4.5, null, "Cua"));
         }
     }
 
